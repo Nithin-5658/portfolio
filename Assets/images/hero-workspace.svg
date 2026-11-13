@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" fill="none" role="img" aria-labelledby="title desc">
+<title id="title">Laptop in a blue-lit workspace</title>
+<desc id="desc">A sleek dark laptop with a glowing code symbol on the screen, surrounded by a desk, a small plant and a cup. The artwork has a transparent background.</desc>
+<defs>
+  <linearGradient id="lid" x1="340" y1="190" x2="740" y2="590" gradientUnits="userSpaceOnUse"><stop stop-color="#0b1a35"/><stop offset=".5" stop-color="#020817"/><stop offset="1" stop-color="#061a3a"/></linearGradient>
+  <linearGradient id="edge" x1="330" y1="260" x2="765" y2="615" gradientUnits="userSpaceOnUse"><stop stop-color="#65ddff"/><stop offset=".45" stop-color="#087dff"/><stop offset="1" stop-color="#0544c9"/></linearGradient>
+  <linearGradient id="base" x1="360" y1="590" x2="860" y2="680" gradientUnits="userSpaceOnUse"><stop stop-color="#102c55"/><stop offset=".5" stop-color="#030b1b"/><stop offset="1" stop-color="#091d3e"/></linearGradient>
+  <linearGradient id="leaf" x1="100" y1="180" x2="270" y2="420" gradientUnits="userSpaceOnUse"><stop stop-color="#249cff"/><stop offset="1" stop-color="#063d9b"/></linearGradient>
+  <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="matrix(320 0 0 220 620 470)" gradientUnits="userSpaceOnUse"><stop stop-color="#087cff" stop-opacity=".34"/><stop offset="1" stop-color="#087cff" stop-opacity="0"/></radialGradient>
+  <filter id="softGlow" x="150" y="100" width="800" height="650" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="22"/></filter>
+  <filter id="codeGlow" x="400" y="300" width="320" height="260" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="8"/></filter>
+</defs>
+
+<!-- Soft, transparent blue illumination: no rectangular background. -->
+<ellipse cx="625" cy="465" rx="340" ry="215" fill="url(#glow)"/>
+<ellipse cx="620" cy="650" rx="330" ry="35" fill="#087cff" opacity=".3" filter="url(#softGlow)"/>
+
+<!-- Small leafy plant -->
+<g opacity=".9">
+  <path d="M202 524C204 453 188 393 151 337M204 520C230 440 265 388 309 349M200 502C157 465 113 445 72 445M211 481C244 435 289 416 338 421M186 456C157 408 151 363 160 319" stroke="#0868d7" stroke-width="7" stroke-linecap="round"/>
+  <path d="M151 337C100 318 81 276 105 245C151 255 177 292 151 337ZM309 349C326 299 369 281 398 302C383 347 349 365 309 349ZM72 445C24 412 22 372 50 352C99 378 107 416 72 445ZM338 421C376 384 420 391 435 425C399 456 365 456 338 421ZM160 319C122 272 135 229 171 214C207 256 201 293 160 319Z" fill="url(#leaf)"/>
+  <path d="M130 520H276L260 640H149Z" fill="#071a38" stroke="#0a66d7" stroke-width="3"/>
+  <path d="M148 535H260" stroke="#1b8fff" stroke-width="3" opacity=".45"/>
+</g>
+
+<!-- Laptop screen -->
+<path d="M407 172L725 142C744 140 759 151 764 170L842 561C846 580 834 592 815 594L467 621C448 623 433 612 429 593L379 199C376 184 389 174 407 172Z" fill="#006cff" opacity=".38" filter="url(#softGlow)"/>
+<path d="M403 188L718 157C737 155 750 166 754 184L831 550C835 568 824 580 806 582L469 608C452 609 440 599 436 583L377 211C374 198 386 190 403 188Z" fill="url(#lid)" stroke="url(#edge)" stroke-width="5"/>
+<path d="M398 197L716 166" stroke="#8aeaff" stroke-width="2" opacity=".5"/>
+<path d="M410 207L464 580" stroke="#1288ff" stroke-width="2" opacity=".16"/>
+
+<!-- Luminous code mark -->
+<g stroke="#00aaff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity=".8" filter="url(#codeGlow)">
+  <path d="M565 350L524 392L565 434M672 350L713 392L672 434M637 331L600 453"/>
+</g>
+<g stroke="#1bc8ff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M565 350L524 392L565 434M672 350L713 392L672 434M637 331L600 453"/>
+</g>
+<g stroke="#a6efff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".8">
+  <path d="M565 350L524 392L565 434M672 350L713 392L672 434M637 331L600 453"/>
+</g>
+
+<!-- Laptop keyboard deck and trackpad -->
+<path d="M437 594L814 567L931 619C946 626 946 636 927 642L519 704C499 707 481 704 464 696L339 641C321 633 326 623 347 617Z" fill="url(#base)" stroke="#0c78ff" stroke-width="4"/>
+<path d="M464 604L811 579L887 614L523 670L388 626Z" fill="#06142c" stroke="#15569c" stroke-width="2"/>
+<path d="M520 670L887 614" stroke="#20bdff" stroke-width="2" opacity=".55"/>
+<path d="M588 680L708 662" stroke="#1e518b" stroke-width="4" stroke-linecap="round"/>
+<path d="M349 641L464 696C481 704 499 707 519 704L927 642" stroke="#22baff" stroke-width="2.5" opacity=".72"/>
+
+<!-- Desk shadow and reflection -->
+<ellipse cx="650" cy="690" rx="300" ry="18" fill="#037dff" opacity=".22" filter="url(#softGlow)"/>
+<path d="M235 674C425 700 666 713 930 674" stroke="#137aff" stroke-width="3" opacity=".2" filter="url(#softGlow)"/>
+
+<!-- Coffee cup -->
+<ellipse cx="309" cy="654" rx="32" ry="8" fill="#020816"/>
+<path d="M285 601H333L328 653H291Z" fill="#071a36" stroke="#0b6fe8" stroke-width="2.5"/>
+<path d="M333 612C361 605 365 635 331 638" stroke="#0d7bea" stroke-width="6" stroke-linecap="round"/>
+<ellipse cx="309" cy="602" rx="24" ry="6" fill="#0d2b58" stroke="#168dff" stroke-width="2"/>
+</svg>
