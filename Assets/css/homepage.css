@@ -1,0 +1,960 @@
+/* ==========================================================
+   CARVE - HOMEPAGE RESPONSIVE STYLES
+   This file is loaded AFTER the shared style.css.
+   Keep style.css unchanged because the other pages use it.
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   1. HERO / DESKTOP WORKSPACE ARTWORK
+   The new 1950 x 807 artwork keeps its natural proportions.
+   ---------------------------------------------------------- */
+
+.hero-section {
+    position: relative;
+    display: block;
+    min-height: clamp(570px, 75vh, 720px);
+    isolation: isolate;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 84% 48%, rgba(0, 65, 190, .18), transparent 44%),
+        linear-gradient(100deg, #010817 0%, #020b20 57%, #03143a 100%);
+}
+
+.hero-art {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 83% 48%, rgba(0, 94, 255, .10), transparent 48%);
+}
+
+.hero-art::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 82% 54%, rgba(0, 99, 255, .16), transparent 45%);
+    pointer-events: none;
+}
+
+.hero-workspace-image {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: auto;
+    bottom: auto;
+    display: block;
+
+    width: min(84vw, 1650px);
+    height: auto;
+    max-width: none;
+    max-height: 100%;
+
+    object-fit: contain;
+    object-position: right center;
+    transform: translateY(-50%);
+    transform-origin: right center;
+
+    opacity: .98;
+    filter: saturate(1.08) contrast(1.035);
+    -webkit-mask-image: none;
+    mask-image: none;
+}
+
+.hero-art-shade {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg,
+            #010817 0%,
+            rgba(1, 8, 23, .98) 23%,
+            rgba(1, 8, 23, .82) 38%,
+            rgba(1, 8, 23, .42) 51%,
+            rgba(1, 8, 23, .10) 65%,
+            transparent 78%),
+        linear-gradient(0deg,
+            #020b20 0%,
+            rgba(2, 11, 32, .28) 8%,
+            transparent 23%,
+            transparent 91%,
+            rgba(1, 8, 23, .12) 100%);
+}
+
+.hero-content-wrap {
+    position: relative;
+    z-index: 3;
+    padding-top: 50px;
+    padding-bottom: 82px;
+}
+
+.hero-copy {
+    width: min(610px, 55%);
+}
+
+.intro-heading-row {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.profile-frame {
+    flex: 0 0 112px;
+    width: 112px;
+    height: 112px;
+    padding: 3px;
+    overflow: hidden;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #00e5ff, #087bff 55%, #6a4cff);
+    box-shadow:
+        0 0 0 4px rgba(0, 139, 255, .10),
+        0 0 25px rgba(0, 124, 255, .42);
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.profile-frame:hover {
+    transform: translateY(-3px) scale(1.025);
+    box-shadow:
+        0 0 0 5px rgba(0, 139, 255, .13),
+        0 0 30px rgba(0, 180, 255, .5);
+}
+
+.profile-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 14%;
+    background: #13294b;
+}
+
+.hello-text {
+    margin: 0 0 4px;
+    color: #dceaff;
+    font-size: 19px;
+    font-weight: 500;
+}
+
+.intro-title h1 {
+    margin: 0;
+    color: var(--text, #f2f6ff);
+    font-size: clamp(43px, 4.1vw, 62px);
+    line-height: 1.04;
+    letter-spacing: -.06em;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.intro-title h1 span,
+.section-heading h2 span,
+.about-copy h2 span {
+    color: var(--cyan, #00d5ff);
+    background: linear-gradient(100deg, #078bff, #00d8f4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.intro-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 13px;
+    margin-top: 20px;
+    color: #edf4ff;
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1.5;
+}
+
+.intro-meta i {
+    display: block;
+    width: 1px;
+    height: 16px;
+    background: var(--cyan, #00d5ff);
+}
+
+.hero-description {
+    max-width: 475px;
+    margin: 25px 0 23px;
+    color: var(--muted, #c0cce2);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.btn-primary-glow,
+.btn-outline-glow {
+    min-height: 47px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    padding: 0 24px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.btn-primary-glow {
+    color: #fff;
+    background: linear-gradient(105deg, #075dff, #00b9f4);
+    box-shadow: 0 8px 24px rgba(0, 111, 255, .28);
+}
+
+.btn-outline-glow {
+    color: #fff;
+    background: rgba(1, 12, 32, .46);
+    border: 1px solid #00baff;
+}
+
+.btn-primary-glow:hover,
+.btn-outline-glow:hover {
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 0 24px rgba(0, 174, 255, .34);
+}
+
+.hero-socials {
+    margin-top: 20px;
+}
+
+.hero-wave {
+    z-index: 4;
+    height: 70px;
+}
+
+
+/* ----------------------------------------------------------
+   2. TECHNOLOGY CAROUSEL
+   Four cards on desktop / three on mobile; JS moves one card
+   at a time, then loops seamlessly.
+   ---------------------------------------------------------- */
+
+.technology-section {
+    padding: 10px 0 44px;
+}
+
+.technology-section .section-heading {
+    margin: 35px auto 23px;
+}
+
+.technology-carousel {
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.technology-viewport {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0px 0px;
+}
+
+#technologyTrack {
+    --home-tech-gap: 18px;
+    --home-tech-card-width: 240px;
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: var(--home-tech-gap);
+    width: max-content;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    transform: translate3d(0, 0, 0);
+    transition: transform .72s cubic-bezier(.22, .72, .25, 1);
+    animation: none;
+    will-change: transform;
+}
+
+#technologyTrack>.technology-card {
+    flex: 0 0 var(--home-tech-card-width);
+    width: var(--home-tech-card-width);
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+}
+
+.technology-card {
+    min-height: 116px;
+    gap: 8px;
+    border-radius: 17px;
+    background: linear-gradient(145deg, rgba(9, 31, 70, .94), rgba(3, 14, 37, .96));
+    transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+
+.technology-card img {
+    width: 43px;
+    height: 43px;
+    object-fit: contain;
+}
+
+.technology-card h3 {
+    margin: 0;
+}
+
+
+/* ----------------------------------------------------------
+   3. ABOUT PREVIEW AND CURRENT-LIFE FACT CARDS
+   Existing heading and paragraph are not rewritten.
+   ---------------------------------------------------------- */
+
+.about-preview {
+    padding: 48px 0 52px;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 74% 50%, rgba(0, 75, 190, .13), transparent 54%),
+        #020b20;
+}
+
+.about-grid {
+    min-height: 240px;
+    display: grid;
+    grid-template-columns: minmax(260px, .88fr) minmax(0, 2fr);
+    align-items: center;
+    gap: clamp(28px, 4vw, 58px);
+}
+
+.about-copy {
+    min-width: 0;
+    padding: 8px 8px 8px 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+}
+
+.about-copy::after {
+    content: none;
+    display: none;
+}
+
+.about-copy h2 {
+    max-width: 440px;
+    margin: 0 0 16px;
+    font-size: clamp(27px, 2.5vw, 36px);
+    line-height: 1.18;
+}
+
+.about-copy p {
+    max-width: 440px;
+    margin: 0 0 20px;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.about-link {
+    min-height: 42px;
+}
+
+.about-facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 15px;
+    min-width: 0;
+}
+
+.fact-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    min-height: 150px;
+    padding: 18px 15px;
+    border: 1px solid rgba(0, 139, 255, .58);
+    border-radius: 17px;
+    background:
+        radial-gradient(circle at 15% 12%, rgba(0, 132, 255, .13), transparent 46%),
+        linear-gradient(145deg, rgba(7, 31, 70, .95), rgba(2, 13, 35, .97));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035), 0 10px 25px rgba(0, 0, 0, .13);
+    transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+
+.fact-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--cyan, #00d5ff);
+    box-shadow: 0 13px 28px rgba(0, 117, 255, .16), 0 0 20px rgba(0, 213, 255, .06);
+}
+
+.fact-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(0, 181, 255, .3);
+    border-radius: 15px;
+    color: var(--cyan, #00d5ff);
+    background: linear-gradient(145deg, rgba(0, 152, 255, .22), rgba(0, 65, 155, .12));
+    box-shadow: 0 0 18px rgba(0, 135, 255, .12);
+    font-size: 23px;
+}
+
+.fact-card-content {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.fact-label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--cyan, #00d5ff);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1.15px;
+    line-height: 1.5;
+}
+
+.fact-card h3 {
+    margin: 0 0 7px;
+    color: #f5f8ff;
+    font-size: 14px;
+    line-height: 1.35;
+    font-weight: 750;
+}
+
+.fact-card p {
+    min-height: 0;
+    margin: 0 0 9px;
+    color: var(--muted, #c0cce2);
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.fact-period {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    max-width: 100%;
+    padding: 4px 9px;
+    border: 1px solid rgba(0, 145, 255, .34);
+    border-radius: 20px;
+    color: #eaf5ff;
+    background: rgba(0, 93, 190, .2);
+    font-size: 8.5px;
+    font-weight: 650;
+    line-height: 1.3;
+}
+
+
+/* ----------------------------------------------------------
+   4. STRENGTHS - SIX SOFT SKILLS
+   ---------------------------------------------------------- */
+
+.strengths-section {
+    padding: 24px 0 54px;
+}
+
+.strengths-section .section-heading {
+    margin-bottom: 25px;
+}
+
+.strength-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.strength-card {
+    min-width: 0;
+    min-height: 145px;
+    padding: 20px 15px;
+    border-radius: 17px;
+}
+
+.strength-card>i {
+    display: block;
+    margin: 0 auto 12px;
+    color: var(--cyan, #00d5ff);
+    font-size: 31px;
+    line-height: 1;
+    font-style: normal;
+    filter: drop-shadow(0 0 8px rgba(0, 194, 255, .35));
+}
+
+.strength-card h3 {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.strength-card p {
+    max-width: 250px;
+    margin-inline: auto;
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+
+/* ----------------------------------------------------------
+   5. BACK TO TOP
+   ---------------------------------------------------------- */
+
+.back-to-top {
+    z-index: 10;
+}
+
+
+/* ----------------------------------------------------------
+   6. LIGHT THEME
+   ---------------------------------------------------------- */
+
+body.light-theme .hero-section {
+    background:
+        radial-gradient(ellipse at 84% 48%, rgba(57, 135, 245, .12), transparent 44%),
+        linear-gradient(100deg, #eaf2ff 0%, #e4efff 57%, #d6e7ff 100%);
+}
+
+body.light-theme .hero-art-shade {
+    background:
+        linear-gradient(90deg,
+            #eaf2ff 0%,
+            rgba(234, 242, 255, .98) 23%,
+            rgba(234, 242, 255, .84) 38%,
+            rgba(234, 242, 255, .42) 51%,
+            rgba(234, 242, 255, .08) 65%,
+            transparent 78%),
+        linear-gradient(0deg, #eaf2ff 0%, rgba(234, 242, 255, .2) 8%, transparent 23%, transparent 91%);
+}
+
+body.light-theme .about-preview {
+    background:
+        radial-gradient(ellipse at 74% 50%, rgba(37, 114, 225, .09), transparent 54%),
+        #edf4ff;
+}
+
+body.light-theme .fact-card {
+    border-color: rgba(40, 119, 221, .36);
+    background: linear-gradient(145deg, #fff, #e8f2ff);
+    box-shadow: 0 10px 25px rgba(37, 85, 145, .08);
+}
+
+body.light-theme .fact-card h3,
+body.light-theme .strength-card h3 {
+    color: #102342;
+}
+
+body.light-theme .fact-card p,
+body.light-theme .strength-card p {
+    color: #52647e;
+}
+
+body.light-theme .fact-period {
+    color: #16436f;
+    background: rgba(0, 128, 220, .08);
+    border-color: rgba(0, 128, 220, .24);
+}
+
+
+/* ----------------------------------------------------------
+   7. TABLET / NARROW LAPTOP
+   At <= 991px, stack the artwork below the introduction so
+   the laptop remains visible instead of becoming a narrow crop.
+   ---------------------------------------------------------- */
+
+@media (max-width: 1199.98px) {
+
+    .hero-copy {
+        width: min(590px, 57%);
+    }
+
+    .intro-title h1 {
+        font-size: clamp(42px, 4.4vw, 54px);
+    }
+
+    .about-grid {
+        grid-template-columns: minmax(235px, .8fr) minmax(0, 1.8fr);
+        gap: 25px;
+    }
+
+    .about-facts {
+        gap: 10px;
+    }
+
+    .fact-card {
+        min-height: 158px;
+        gap: 10px;
+        padding: 14px 11px;
+    }
+
+    .fact-icon {
+        flex-basis: 42px;
+        width: 42px;
+        height: 42px;
+        font-size: 21px;
+    }
+
+}
+
+
+@media (max-width: 991.98px) {
+
+    .hero-section {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .hero-content-wrap {
+        order: 1;
+        width: 100%;
+        padding-top: 42px;
+        padding-bottom: 22px;
+    }
+
+    .hero-copy {
+        width: min(680px, 100%);
+    }
+
+    .hero-art {
+        position: relative;
+        inset: auto;
+        order: 2;
+        flex: 0 0 auto;
+        width: 100%;
+        height: clamp(245px, 37vw, 330px);
+        overflow: hidden;
+        opacity: 1;
+    }
+
+    .hero-art::before {
+        inset: 0;
+        background: radial-gradient(ellipse at 73% 50%, rgba(0, 95, 255, .16), transparent 52%);
+    }
+
+    .hero-workspace-image {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        object-fit: cover;
+        object-position: 68% center;
+        transform: none;
+        opacity: 1;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .hero-art-shade {
+        background:
+            linear-gradient(0deg,
+                #020b20 0%,
+                rgba(2, 11, 32, .36) 13%,
+                transparent 38%,
+                rgba(1, 8, 23, .08) 100%),
+            linear-gradient(90deg, rgba(1, 8, 23, .12), transparent 55%);
+    }
+
+    .hero-wave {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 55px;
+        z-index: 4;
+        pointer-events: none;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .about-copy {
+        max-width: 650px;
+    }
+
+    .about-facts {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .fact-card {
+        min-height: 168px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 17px 14px;
+    }
+
+    .strength-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+/* ----------------------------------------------------------
+   8. MOBILE
+   Intro stays readable first; the image is its own visual band
+   underneath, cropped toward the laptop and code window.
+   ---------------------------------------------------------- */
+
+@media (max-width: 640px) {
+
+    .hero-content-wrap {
+        padding-top: 34px;
+        padding-bottom: 16px;
+    }
+
+    .intro-heading-row {
+        gap: 14px;
+    }
+
+    .profile-frame {
+        flex-basis: 78px;
+        width: 78px;
+        height: 78px;
+    }
+
+    .hello-text {
+        margin-bottom: 3px;
+        font-size: 15px;
+    }
+
+    .intro-title h1 {
+        font-size: clamp(34px, 8.7vw, 43px);
+        letter-spacing: -.055em;
+    }
+
+    .intro-meta {
+        gap: 8px;
+        margin-top: 18px;
+        font-size: 10.5px;
+    }
+
+    .intro-meta i {
+        height: 13px;
+    }
+
+    .hero-description {
+        max-width: 480px;
+        margin: 17px 0 18px;
+        font-size: 12px;
+        line-height: 1.75;
+    }
+
+    .hero-actions {
+        gap: 10px;
+    }
+
+    .btn-primary-glow,
+    .btn-outline-glow {
+        min-height: 42px;
+        padding-inline: 16px;
+        gap: 9px;
+        font-size: 10.5px;
+    }
+
+    .hero-socials {
+        margin-top: 16px;
+    }
+
+    .hero-art {
+        height: clamp(210px, 62vw, 270px);
+        margin-top: 0;
+    }
+
+    .hero-workspace-image {
+        object-position: 68% center;
+    }
+
+    .hero-art-shade {
+        background:
+            linear-gradient(0deg, #020b20 0%, rgba(2, 11, 32, .16) 14%, transparent 40%, rgba(1, 8, 23, .05) 100%),
+            linear-gradient(90deg, rgba(1, 8, 23, .12), transparent 60%);
+    }
+
+    .technology-section {
+        padding: 5px 0 30px;
+    }
+
+    .technology-section .section-heading {
+        margin-bottom: 17px;
+    }
+
+    .technology-section .section-heading h2 {
+        font-size: 22px;
+    }
+
+    #technologyTrack {
+        --home-tech-gap: 10px;
+    }
+
+    .technology-card {
+        min-height: 96px;
+        border-radius: 13px;
+        gap: 6px;
+    }
+
+    .technology-card img {
+        width: 37px;
+        height: 37px;
+    }
+
+    .technology-card h3 {
+        font-size: 12px;
+    }
+
+    .about-preview {
+        padding: 32px 0 36px;
+    }
+
+    .about-copy {
+        padding: 0;
+    }
+
+    .about-copy h2 {
+        max-width: 390px;
+        font-size: 31px;
+    }
+
+    .about-copy p {
+        font-size: 13px;
+    }
+
+    .about-facts {
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
+
+    .fact-card {
+        display: grid;
+        grid-template-columns: 46px minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        min-height: auto;
+        padding: 14px;
+    }
+
+    .fact-icon {
+        grid-column: 1;
+        grid-row: 1;
+        flex-basis: 44px;
+        width: 44px;
+        height: 44px;
+        font-size: 21px;
+    }
+
+    .fact-card-content {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .fact-card p {
+        margin-bottom: 8px;
+    }
+
+    .strengths-section {
+        padding: 22px 0 40px;
+    }
+
+    .strength-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 11px;
+    }
+
+    .strength-card {
+        min-height: 128px;
+        padding: 15px 8px;
+        border-radius: 14px;
+    }
+
+    .strength-card>i {
+        margin-bottom: 10px;
+        font-size: 27px;
+    }
+
+    .strength-card h3 {
+        font-size: 11px;
+    }
+
+    .strength-card p {
+        font-size: 9.5px;
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .hero-content-wrap {
+        padding-top: 29px;
+    }
+
+    .profile-frame {
+        flex-basis: 70px;
+        width: 70px;
+        height: 70px;
+    }
+
+    .intro-title h1 {
+        font-size: 34px;
+    }
+
+    .intro-meta {
+        font-size: 9.5px;
+        gap: 7px;
+    }
+
+    .hero-art {
+        height: 215px;
+    }
+
+    .hero-workspace-image {
+        object-position: 68% center;
+    }
+
+    .fact-card {
+        padding: 12px;
+    }
+
+    .strength-card {
+        min-height: 122px;
+    }
+
+}
+
+
+/* ----------------------------------------------------------
+   9. REDUCED MOTION
+   Carousel is still readable; reveal and hover transitions
+   are removed when the visitor requests reduced motion.
+   ---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .profile-frame,
+    .btn-primary-glow,
+    .btn-outline-glow,
+    .fact-card,
+    .strength-card {
+        transition: none !important;
+    }
+
+}
+
+/* Slightly shift hero introduction to the right */
+@media (min-width: 992px) {
+    .hero-copy {
+        margin-left: 120px;
+        margin-top: 25px;
+    }
+}

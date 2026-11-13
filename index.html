@@ -14,6 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Assets/css/style.css">
+    <!-- Homepage-only refinements; shared style.css remains unchanged. -->
+    <link rel="stylesheet" href="Assets/css/homepage.css">
 </head>
 
 <body>
@@ -57,7 +59,8 @@
         <section class="hero-section" id="home">
             <div class="hero-art" aria-hidden="true">
                 <!-- Keep your existing laptop/workspace image at this path. -->
-                <img src="Assets/images/hero-workspace.png" alt="" class="hero-workspace-image">
+                <img src="Assets/images/hero-workspace.png" alt="" class="hero-workspace-image" fetchpriority="high"
+                    decoding="async" width="1950" height="807">
                 <div class="hero-art-shade"></div>
             </div>
             <div class="container-fluid site-container hero-content-wrap">
@@ -93,9 +96,9 @@
                     <div class="social-links hero-socials" aria-label="Social links">
                         <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub"><i
                                 class="bi bi-github"></i></a>
-                        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i
+                        <a href="https://www.linkedin.com/in/nithin-laiju-66258a364" target="_blank" rel="noopener" aria-label="LinkedIn"><i
                                 class="bi bi-linkedin"></i></a>
-                        <a href="mailto:your.email@example.com" aria-label="Email"><i
+                        <a href="mailto:nithinlaiju16@gmail.com" aria-label="Email"><i
                                 class="bi bi-envelope-fill"></i></a>
                     </div>
                 </div>
@@ -172,33 +175,37 @@
                                 class="bi bi-arrow-right"></i></a>
                     </div>
 
-                    <div class="about-visual reveal">
-                        <div class="about-orbit orbit-one"></div>
-                        <div class="about-orbit orbit-two"></div>
-                        <!-- Keep your existing about image at this path. -->
-                        <img src="Assets/images/about-workspace.png" alt="Laptop and workspace"
-                            class="about-workspace-image">
-                    </div>
+                    <div class="about-facts reveal" aria-label="My education and career direction">
+                        <article class="fact-card">
+                            <span class="fact-icon"><i class="bi bi-mortarboard-fill" aria-hidden="true"></i></span>
+                            <div class="fact-card-content">
+                                <span class="fact-label">CURRENT EDUCATION</span>
+                                <h3>MCA Student</h3>
+                                <p>Santhigiri College of Computer Sciences</p>
+                                <span class="fact-period">2025–2027 · Pursuing</span>
+                            </div>
+                        </article>
 
-                    <div class="about-facts reveal">
-                        <div class="fact-card"><i class="bi bi-mortarboard"></i>
-                            <div>
-                                <h3>MCA</h3>
-                                <p>Current Course</p>
+                        <article class="fact-card">
+                            <span class="fact-icon"><i class="bi bi-journal-bookmark-fill"
+                                    aria-hidden="true"></i></span>
+                            <div class="fact-card-content">
+                                <span class="fact-label">ACADEMIC BACKGROUND</span>
+                                <h3>BCA Graduate</h3>
+                                <p>Santhigiri College of Computer Sciences</p>
+                                <span class="fact-period">2022–2025 · Completed</span>
                             </div>
-                        </div>
-                        <div class="fact-card"><i class="bi bi-trophy"></i>
-                            <div>
-                                <h3>Projects</h3>
-                                <p>Completed</p>
+                        </article>
+
+                        <article class="fact-card">
+                            <span class="fact-icon"><i class="bi bi-code-slash" aria-hidden="true"></i></span>
+                            <div class="fact-card-content">
+                                <span class="fact-label">CAREER DIRECTION</span>
+                                <h3>Aspiring Developer</h3>
+                                <p>Building a foundation in software development.</p>
+                                <span class="fact-period">Always learning</span>
                             </div>
-                        </div>
-                        <div class="fact-card"><i class="bi bi-star"></i>
-                            <div>
-                                <h3>Always Learning</h3>
-                                <p>New Skills</p>
-                            </div>
-                        </div>
+                        </article>
                     </div>
                 </div>
             </div>
@@ -212,25 +219,40 @@
                     <h2>My <span>Strengths</span></h2>
                 </div>
                 <div class="strength-grid">
-                    <article class="strength-card reveal"><i class="bi bi-lightbulb"></i>
+                    <article class="strength-card reveal">
+                        <i class="bi bi-lightbulb" aria-hidden="true"></i>
                         <h3>Problem Solving</h3>
-                        <p>Turning ideas into solutions.</p>
+                        <p>Turning challenges into practical solutions.</p>
                     </article>
-                    <article class="strength-card reveal"><i class="bi bi-people"></i>
+
+                    <article class="strength-card reveal">
+                        <i class="bi bi-people-fill" aria-hidden="true"></i>
                         <h3>Teamwork</h3>
-                        <p>Growing together.</p>
+                        <p>Collaborating and growing together.</p>
                     </article>
-                    <article class="strength-card reveal"><i class="bi bi-brain"></i>
+
+                    <article class="strength-card reveal">
+                        <i class="bi bi-diagram-3" aria-hidden="true"></i>
                         <h3>Logical Thinking</h3>
-                        <p>Analyzing deeply.</p>
+                        <p>Approaching problems with clear reasoning.</p>
                     </article>
-                    <article class="strength-card reveal"><i class="bi bi-shield-check"></i>
+
+                    <article class="strength-card reveal">
+                        <i class="bi bi-flag-fill" aria-hidden="true"></i>
+                        <h3>Leadership</h3>
+                        <p>Taking initiative and supporting others.</p>
+                    </article>
+
+                    <article class="strength-card reveal">
+                        <i class="bi bi-bullseye" aria-hidden="true"></i>
                         <h3>Attention to Detail</h3>
-                        <p>Delivering excellence.</p>
+                        <p>Working carefully and consistently.</p>
                     </article>
-                    <article class="strength-card reveal"><i class="bi bi-infinity"></i>
+
+                    <article class="strength-card reveal">
+                        <i class="bi bi-infinity" aria-hidden="true"></i>
                         <h3>Continuous Learning</h3>
-                        <p>Always eager to learn.</p>
+                        <p>Staying curious and improving every day.</p>
                     </article>
                 </div>
             </div>

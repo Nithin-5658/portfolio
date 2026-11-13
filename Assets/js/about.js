@@ -6,7 +6,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
+    // Enable entrance animations only after JavaScript has loaded.
+    document.documentElement.classList.add('js');
+
+
+    // =====================================
     // 1. AUTOMATIC FOOTER YEAR
+    // =====================================
+
     const yearNode = document.getElementById('currentYear');
 
     if (yearNode) {
@@ -14,12 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // 2. LIGHT / DARK THEME TOGGLE
-    // Uses the same theme preference as index.html.
+    // =====================================
+    // 2. SHARED LIGHT / DARK THEME
+    // Uses the same localStorage key as CARVE homepage.
+    // =====================================
 
     const themeToggle = document.getElementById('themeToggle');
 
-    function getSavedTheme() {
+    function readSavedTheme() {
         try {
             return localStorage.getItem('carve-theme');
         } catch (error) {
@@ -27,70 +36,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function updateThemeIcon() {
+    function updateThemeControl() {
         if (!themeToggle) return;
 
-        const isLight =
-            document.body.classList.contains('light-theme');
+        const isLight = document.body.classList.contains('light-theme');
 
         themeToggle.setAttribute(
             'aria-label',
-            isLight
-                ? 'Switch to dark theme'
-                : 'Switch to light theme'
+            isLight ? 'Switch to dark theme' : 'Switch to light theme'
         );
 
-        themeToggle.setAttribute(
-            'aria-pressed',
-            String(isLight)
-        );
+        themeToggle.setAttribute('aria-pressed', String(isLight));
 
         themeToggle.title = isLight
             ? 'Switch to dark theme'
             : 'Switch to light theme';
     }
 
-    // Apply previously selected theme.
-    if (getSavedTheme() === 'light') {
+    // Restore previously selected theme.
+    if (readSavedTheme() === 'light') {
         document.body.classList.add('light-theme');
     }
 
-    updateThemeIcon();
+    updateThemeControl();
 
-    // Toggle theme when clicked.
+    // Theme toggle click event.
     if (themeToggle) {
-
         themeToggle.addEventListener('click', () => {
 
             document.body.classList.toggle('light-theme');
 
-            const currentTheme =
-                document.body.classList.contains('light-theme')
-                    ? 'light'
-                    : 'dark';
+            const selectedTheme = document.body.classList.contains('light-theme')
+                ? 'light'
+                : 'dark';
 
             try {
-                localStorage.setItem(
-                    'carve-theme',
-                    currentTheme
-                );
+                localStorage.setItem('carve-theme', selectedTheme);
             } catch (error) {
-                // Theme switching still works for this visit.
+                // Theme switching still works for this page view.
             }
 
-            updateThemeIcon();
-
+            updateThemeControl();
         });
-
     }
 
 
+    // =====================================
     // 3. MOBILE NAVIGATION
-    const navigation =
-        document.getElementById('mainNavigation');
+    // =====================================
+
+    const navigation = document.getElementById('mainNavigation');
 
     if (navigation) {
-
         navigation.querySelectorAll('.nav-link').forEach(link => {
 
             link.addEventListener('click', () => {
@@ -100,21 +97,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     navigation.classList.contains('show') &&
                     window.bootstrap
                 ) {
-
                     window.bootstrap.Collapse
                         .getOrCreateInstance(navigation)
                         .hide();
-
                 }
 
             });
 
         });
-
     }
 
 
+    // =====================================
     // 4. ESCAPE KEY CLOSES MOBILE MENU
+    // =====================================
+
     document.addEventListener('keydown', event => {
 
         if (
@@ -123,33 +120,62 @@ document.addEventListener('DOMContentLoaded', () => {
             navigation.classList.contains('show') &&
             window.bootstrap
         ) {
-
             window.bootstrap.Collapse
                 .getOrCreateInstance(navigation)
                 .hide();
-
         }
 
     });
 
 
-    // 5. RESPECT REDUCED MOTION SETTINGS
-    const reduceMotion =
-        window.matchMedia &&
-        window.matchMedia(
-            '(prefers-reduced-motion: reduce)'
-        ).matches;
+    // =====================================
+    // 5. SCROLL-TRIGGERED ENTRANCE ANIMATIONS
+    // =====================================
 
-    if (reduceMotion) {
+    const revealItems = document.querySelectorAll('.about-reveal');
 
-        document.querySelectorAll('.about-reveal')
-            .forEach(element => {
+    const motionPreference = window.matchMedia
+        ? window.matchMedia('(prefers-reduced-motion: reduce)')
+        : null;
 
-                element.style.animation = 'none';
-                element.style.opacity = '1';
-                element.style.transform = 'none';
+    const reduceMotion = motionPreference && motionPreference.matches;
 
-            });
+    // Display everything immediately when reduced motion is preferred
+    // or when IntersectionObserver is unavailable.
+    if (
+        reduceMotion ||
+        !('IntersectionObserver' in window)
+    ) {
+        revealItems.forEach(item => {
+            item.classList.add('is-visible');
+        });
+    } else {
+
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add('is-visible');
+
+                        // Stop observing after the animation.
+                        observer.unobserve(entry.target);
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12,
+                rootMargin: '0px 0px -35px 0px'
+            }
+        );
+
+        revealItems.forEach(item => {
+            revealObserver.observe(item);
+        });
 
     }
 

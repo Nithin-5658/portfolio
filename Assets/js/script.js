@@ -6,14 +6,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
+
+    // =====================================
     // 1. AUTOMATIC FOOTER YEAR
+    // =====================================
+
     const yearNode = document.getElementById('currentYear');
 
     if (yearNode) {
         yearNode.textContent = new Date().getFullYear();
     }
 
+
+    // =====================================
     // 2. LIGHT / DARK THEME TOGGLE
+    // =====================================
+
     const themeToggle = document.getElementById('themeToggle');
 
     function readSavedTheme() {
@@ -33,7 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
             'aria-label',
             light ? 'Switch to dark theme' : 'Switch to light theme'
         );
+
         themeToggle.setAttribute('aria-pressed', String(light));
+
         themeToggle.title = light
             ? 'Switch to dark theme'
             : 'Switch to light theme';
@@ -63,7 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+    // =====================================
     // 3. MOBILE NAVIGATION
+    // =====================================
+
     const navigation = document.getElementById('mainNavigation');
 
     if (navigation) {
@@ -96,11 +110,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+
+    // =====================================
     // 4. SCROLL REVEAL ANIMATIONS
+    // =====================================
+
     const revealItems = document.querySelectorAll('.reveal');
 
-    const reduceMotion = window.matchMedia &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const motionPreference = window.matchMedia
+        ? window.matchMedia('(prefers-reduced-motion: reduce)')
+        : null;
+
+    const reduceMotion = motionPreference && motionPreference.matches;
 
     if (reduceMotion || !('IntersectionObserver' in window)) {
         revealItems.forEach(item => item.classList.add('is-visible'));
@@ -120,107 +141,262 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         );
 
-        revealItems.forEach(item => revealObserver.observe(item));
+        revealItems.forEach(item => observerObserve(item, revealObserver));
     }
 
-    // 5. AUTOMATIC TECHNOLOGY CAROUSEL
+    function observerObserve(item, observer) {
+        observer.observe(item);
+    }
+
+
+    // =====================================
+    // 5. ONE-CARD-AT-A-TIME TECHNOLOGY CAROUSEL
+    //
+    // Desktop: 4 visible cards.
+    // Tablet/mobile: 3 visible cards.
+    // One card slides left every 3.2 seconds.
+    // The sequence loops cleanly.
+    // =====================================
+
     const track = document.getElementById('technologyTrack');
+
     const viewport = track
         ? track.closest('.technology-viewport')
         : null;
 
     if (track && viewport) {
 
-        // Get the original technology cards from HTML
+        // Ensure an older marquee animation cannot override this carousel.
+        track.classList.remove('is-auto-moving');
+        track.style.removeProperty('animation');
+
         const originalCards = Array.from(
             track.querySelectorAll(':scope > .technology-card')
         );
 
-        if (originalCards.length > 1) {
+        const originalCount = originalCards.length;
 
-            // Create the first technology group
-            const firstGroup = document.createElement('div');
-            firstGroup.className = 'technology-group';
+        if (originalCount > 1) {
 
-            originalCards.forEach(card => {
-                firstGroup.appendChild(card);
-            });
+            // Add copies of the first cards for a seamless loop.
+            const cloneCount = Math.min(4, originalCount);
 
-            // Duplicate the group for seamless looping
-            const secondGroup = firstGroup.cloneNode(true);
+            for (let i = 0; i < cloneCount; i += 1) {
 
-            secondGroup.setAttribute('aria-hidden', 'true');
+                const duplicate = originalCards[i].cloneNode(true);
 
-            secondGroup.querySelectorAll('img').forEach(img => {
-                img.alt = '';
-            });
+                duplicate.setAttribute('aria-hidden', 'true');
 
-            // Replace the original track contents
-            track.replaceChildren(firstGroup, secondGroup);
+                duplicate.querySelectorAll('img').forEach(img => {
+                    img.alt = '';
+                });
 
-            // Calculate card dimensions
-            function updateTechnologyCards() {
+                track.appendChild(duplicate);
+            }
 
-                const visibleCount =
+            let visibleCount = 4;
+            let gap = 18;
+            let stepSize = 0;
+            let currentIndex = 0;
+            let slideTimer = null;
+            let resizeObserver = null;
+            let resizeTimer = null;
+
+
+            // Reset carousel without a visible transition.
+            function resetPositionWithoutAnimation() {
+
+                track.style.setProperty(
+                    'transition',
+                    'none',
+                    'important'
+                );
+
+                currentIndex = 0;
+
+                track.style.transform =
+                    'translate3d(0, 0, 0)';
+
+                // Force layout so the browser applies the instant reset.
+                void track.offsetWidth;
+
+                track.style.removeProperty('transition');
+            }
+
+
+            // Calculate responsive card dimensions.
+            function updateCarouselLayout() {
+
+                visibleCount =
                     window.innerWidth <= 991 ? 3 : 4;
 
-                const gap = window.innerWidth <= 640 ? 10 : 18;
+                gap = window.innerWidth <= 640
+                    ? 10
+                    : (window.innerWidth <= 991 ? 14 : 18);
 
                 const viewportWidth = viewport.clientWidth;
 
-                const cardWidth =
+                if (!viewportWidth) return;
+
+                const cardWidth = Math.max(
+                    82,
                     (viewportWidth - gap * (visibleCount - 1))
-                    / visibleCount;
+                    / visibleCount
+                );
 
                 track.style.setProperty(
-                    '--tech-gap',
+                    '--home-tech-gap',
                     `${gap}px`
                 );
 
                 track.style.setProperty(
-                    '--tech-card-width',
+                    '--home-tech-card-width',
                     `${cardWidth}px`
                 );
+
+                resetPositionWithoutAnimation();
+
+                stepSize = cardWidth + gap;
             }
 
-            // Initialize card dimensions
-            updateTechnologyCards();
 
-            // Recalculate after resizing
-            let resizeTimer;
+            // Move exactly one technology card to the left.
+            function moveOneCardLeft() {
 
-            window.addEventListener('resize', () => {
+                if (document.hidden || !stepSize) return;
 
-                clearTimeout(resizeTimer);
+                currentIndex += 1;
 
-                resizeTimer = setTimeout(() => {
-                    updateTechnologyCards();
-                }, 150);
+                track.style.transform =
+                    `translate3d(${-currentIndex * stepSize}px, 0, 0)`;
+            }
+
+
+            // After the original cards have moved out,
+            // reset to the identical cloned sequence.
+            track.addEventListener('transitionend', event => {
+
+                if (
+                    event.propertyName === 'transform' &&
+                    currentIndex >= originalCount
+                ) {
+                    resetPositionWithoutAnimation();
+                }
 
             });
 
-            // Start automatic animation
-            track.classList.add('is-auto-moving');
+
+            // Start the timed carousel.
+            function startCarousel() {
+
+                if (
+                    slideTimer !== null ||
+                    document.hidden
+                ) {
+                    return;
+                }
+
+                slideTimer =
+                    window.setInterval(moveOneCardLeft, 3200);
+            }
+
+
+            // Stop the timed carousel.
+            function stopCarousel() {
+
+                if (slideTimer !== null) {
+
+                    window.clearInterval(slideTimer);
+
+                    slideTimer = null;
+                }
+            }
+
+
+            // Set initial dimensions before the first movement.
+            updateCarouselLayout();
+
+
+            // Recalculate when the carousel viewport changes.
+            if ('ResizeObserver' in window) {
+
+                resizeObserver = new ResizeObserver(() => {
+                    updateCarouselLayout();
+                });
+
+                resizeObserver.observe(viewport);
+
+            } else {
+
+                window.addEventListener('resize', () => {
+
+                    window.clearTimeout(resizeTimer);
+
+                    resizeTimer = window.setTimeout(
+                        updateCarouselLayout,
+                        150
+                    );
+
+                });
+
+            }
+
+
+            // Pause while the browser tab is hidden.
+            // Resume automatically when the visitor returns.
+            document.addEventListener('visibilitychange', () => {
+
+                if (document.hidden) {
+                    stopCarousel();
+                } else {
+                    startCarousel();
+                }
+
+            });
+
+
+            // Start automatically on desktop, tablet and mobile.
+            startCarousel();
+
         }
+
     }
 
+
+    // =====================================
     // 6. BACK-TO-TOP BUTTON
+    // =====================================
+
     const backToTop = document.getElementById('backToTop');
 
     if (backToTop) {
+
         const updateBackToTop = () => {
-            backToTop.classList.toggle('is-visible', window.scrollY > 420);
+
+            backToTop.classList.toggle(
+                'is-visible',
+                window.scrollY > 420
+            );
+
         };
 
-        window.addEventListener('scroll', updateBackToTop, { passive: true });
+        window.addEventListener(
+            'scroll',
+            updateBackToTop,
+            { passive: true }
+        );
+
         updateBackToTop();
 
         backToTop.addEventListener('click', () => {
+
             window.scrollTo({
                 top: 0,
                 behavior: reduceMotion ? 'auto' : 'smooth'
             });
+
         });
+
     }
 
 });

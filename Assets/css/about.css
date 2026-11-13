@@ -1,551 +1,1450 @@
-/* =====================================================
-   CARVE | ABOUT ME PAGE
-   Page-specific stylesheet.
-   Shared header, footer and theme variables come from
-   Assets/css/style.css. Keep that homepage file unchanged.
-   ===================================================== */
+/* ==========================================================
+   CARVE | ABOUT ME PAGE - NEW DESIGN
+   Page-specific stylesheet only.
+   Keep Assets/css/style.css unchanged.
+   ========================================================== */
 
 :root {
     --about-cyan: #00d5ff;
     --about-blue: #087bff;
+    --about-deep: #020b20;
     --about-text: #f2f6ff;
-    --about-muted: #c0cce2;
-    --about-bg: #020b20;
+    --about-muted: #bdcbe1;
+    --about-border: rgba(0, 145, 255, .3);
 }
 
 .about-page-main {
-    min-height: calc(100vh - 190px);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--bg, var(--about-deep));
+}
+
+.about-page-main a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* ==========================================================
+   1. HERO / INTRODUCTION
+   ========================================================== */
+
+.about-hero {
+    position: relative;
+    min-height: 650px;
     display: flex;
     align-items: center;
+    padding: clamp(58px, 7vw, 88px) 0 76px;
     overflow: hidden;
-    position: relative;
     isolation: isolate;
     background:
-        radial-gradient(ellipse at 78% 48%, rgba(0, 91, 220, .14), transparent 40%),
-        radial-gradient(ellipse at 12% 12%, rgba(0, 183, 255, .06), transparent 32%),
-        var(--bg, var(--about-bg));
+        radial-gradient(ellipse at 81% 42%, rgba(0, 91, 220, .19), transparent 39%),
+        radial-gradient(ellipse at 9% 8%, rgba(0, 183, 255, .055), transparent 35%),
+        linear-gradient(112deg, #020b20 0%, #04112a 56%, #031735 100%);
 }
 
-.about-page-section {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    min-height: 690px;
-    padding: clamp(58px, 7vw, 88px) 0;
-    overflow: hidden;
-}
-
-.about-page-container {
+.about-container {
     position: relative;
     z-index: 2;
 }
 
-.about-page-layout {
-    width: min(100%, 1210px);
-    margin-inline: auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(300px, .78fr);
-    align-items: center;
-    gap: clamp(42px, 7vw, 105px);
+.about-hero-orb {
+    position: absolute;
+    z-index: 0;
+    width: 390px;
+    height: 390px;
+    border-radius: 50%;
+    filter: blur(95px);
+    pointer-events: none;
 }
 
-/* -------------------- TEXT CONTENT -------------------- */
-.about-page-copy {
+.about-hero-orb-one {
+    top: -235px;
+    right: -100px;
+    background: rgba(0, 104, 255, .17);
+}
+
+.about-hero-orb-two {
+    bottom: -280px;
+    left: 25%;
+    background: rgba(0, 195, 255, .08);
+}
+
+.about-hero-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: .12;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(65, 148, 255, .08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(65, 148, 255, .08) 1px, transparent 1px);
+    background-size: 62px 62px;
+    mask-image: linear-gradient(90deg, #000, transparent 72%);
+}
+
+.about-hero-layout {
+    width: min(100%, 1190px);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, .82fr);
+    align-items: center;
+    gap: clamp(45px, 7vw, 100px);
+}
+
+
+/* Intro text */
+
+.about-intro {
     width: 100%;
-    max-width: 660px;
-    padding: 8px 0;
+    max-width: 670px;
+    min-width: 0;
 }
 
 .about-eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    margin: 0 0 20px;
+    gap: 11px;
+    margin-bottom: 23px;
     color: var(--about-cyan);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: .23em;
+    letter-spacing: .2em;
 }
 
 .about-eyebrow-line {
-    width: 30px;
+    width: 29px;
     height: 2px;
-    display: inline-block;
+    flex: 0 0 29px;
     border-radius: 10px;
     background: linear-gradient(90deg, var(--about-blue), var(--about-cyan));
     box-shadow: 0 0 13px rgba(0, 191, 255, .55);
 }
 
-.about-page-copy h1 {
-    margin: 0 0 23px;
-    color: var(--text, var(--about-text));
-    font-size: clamp(43px, 5.2vw, 68px);
-    font-weight: 800;
-    line-height: 1.06;
-    letter-spacing: -.065em;
+.about-overline {
+    margin: 0 0 4px;
+    color: #dceaff;
+    font-size: clamp(17px, 1.8vw, 21px);
+    font-weight: 500;
 }
 
-.about-page-copy h1 span {
-    display: inline-block;
+.about-intro h1 {
+    margin: 0;
+    color: var(--text, var(--about-text));
+    font-size: clamp(50px, 6vw, 78px);
+    font-weight: 800;
+    line-height: .99;
+    letter-spacing: -.07em;
+}
+
+.about-intro h1 span {
     color: transparent;
-    background: linear-gradient(105deg, #139cff 0%, var(--about-cyan) 75%, #62e7ff 100%);
+    background: linear-gradient(105deg, #128fff, var(--about-cyan) 78%, #6deaff);
     -webkit-background-clip: text;
     background-clip: text;
 }
 
-.about-lead {
-    margin: 0 0 7px;
-    color: var(--text, var(--about-text));
-    font-size: clamp(20px, 2vw, 25px);
+.about-subtitle {
+    margin: 17px 0 0;
+    color: #e5efff;
+    font-size: clamp(12px, 1.25vw, 14px);
     font-weight: 650;
-    letter-spacing: -.025em;
+    letter-spacing: .015em;
 }
 
-.about-lead strong {
-    color: #31baff;
-    font-weight: 800;
-}
-
-.about-role {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 9px;
-    margin: 0 0 27px;
+.about-subtitle span {
+    margin: 0 8px;
     color: var(--about-cyan);
-    font-size: 12px;
-    font-weight: 650;
-    line-height: 1.8;
 }
 
-.about-role span {
-    width: 4px;
-    height: 4px;
-    flex: 0 0 4px;
-    border-radius: 50%;
-    background: var(--about-blue);
-    box-shadow: 0 0 8px rgba(0, 184, 255, .8);
+.about-intro-rule {
+    width: 74px;
+    height: 2px;
+    margin: 26px 0 22px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--about-blue), var(--about-cyan));
+    box-shadow: 0 0 12px rgba(0, 190, 255, .45);
 }
 
-.about-summary {
-    max-width: 600px;
-    padding-left: 19px;
-    border-left: 2px solid rgba(0, 176, 255, .68);
-}
-
-.about-summary p {
-    margin: 0 0 14px;
+.about-intro-text {
+    max-width: 620px;
+    margin: 0 0 13px;
     color: var(--muted, var(--about-muted));
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.9;
 }
 
-.about-summary p:last-child {
+.about-intro-text:last-of-type {
     margin-bottom: 0;
 }
 
-.about-signature-row {
-    display: flex;
+.about-location-line {
+    display: inline-flex;
     align-items: center;
-    gap: 12px;
-    margin-top: 28px;
-}
-
-.about-signature-mark {
-    width: 38px;
-    height: 38px;
-    flex: 0 0 38px;
-    display: grid;
-    place-items: center;
-    border: 1px solid rgba(0, 175, 255, .58);
-    border-radius: 12px;
-    color: #8eeaff;
-    background: linear-gradient(145deg, rgba(0, 119, 255, .2), rgba(0, 205, 255, .07));
-    box-shadow: 0 0 17px rgba(0, 132, 255, .12);
-    font-size: 12px;
-    font-weight: 800;
-}
-
-.about-signature-caption {
-    color: var(--muted, var(--about-muted));
+    gap: 9px;
+    margin-top: 19px;
+    color: #d1e2f8;
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: .025em;
 }
 
-/* -------------------- PORTRAIT -------------------- */
-.about-page-portrait {
+.about-location-line i {
+    color: var(--about-cyan);
+    font-size: 14px;
+}
+
+.about-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.about-primary-link,
+.about-secondary-link,
+.about-closing-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    padding: 0 20px;
+    border-radius: 28px;
+    font-size: 11px;
+    font-weight: 750;
+    text-decoration: none;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+}
+
+.about-primary-link {
+    color: #fff;
+    border: 1px solid rgba(0, 198, 255, .55);
+    background: linear-gradient(105deg, #075dff, #00b9f4);
+    box-shadow: 0 8px 23px rgba(0, 111, 255, .24);
+}
+
+.about-secondary-link {
+    color: #edf6ff;
+    border: 1px solid rgba(0, 181, 255, .48);
+    background: rgba(2, 15, 40, .4);
+}
+
+.about-primary-link:hover,
+.about-secondary-link:hover,
+.about-closing-link:hover {
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 9px 25px rgba(0, 160, 255, .25);
+    border-color: var(--about-cyan);
+}
+
+
+/* ==========================================================
+   2. PORTRAIT - LARGE RECTANGULAR PHOTO
+   ========================================================== */
+
+.about-portrait-column {
     position: relative;
-    isolation: isolate;
     justify-self: center;
-    width: min(100%, 405px);
-    padding: 12px;
-    perspective: 1000px;
+    width: min(100%, 390px);
+    padding: 13px;
+    isolation: isolate;
 }
 
-.portrait-aura {
+.about-portrait-halo {
     position: absolute;
-    z-index: -1;
-    inset: 9% 5% 4%;
-    border-radius: 30px;
-    background: radial-gradient(ellipse, rgba(0, 112, 255, .35), rgba(0, 184, 255, .11) 55%, transparent 78%);
-    filter: blur(34px);
-    animation: portraitAura 6s ease-in-out infinite;
+    z-index: -2;
+    inset: 9% -4% 3%;
+    border-radius: 40px;
+    background: radial-gradient(ellipse, rgba(0, 112, 255, .4), rgba(0, 184, 255, .1) 57%, transparent 78%);
+    filter: blur(35px);
+    animation: aboutHalo 6s ease-in-out infinite;
     pointer-events: none;
 }
 
-.portrait-frame {
-    position: relative;
-    width: 100%;
-    padding: 5px;
-    overflow: hidden;
-    border-radius: 27px;
-    background: linear-gradient(135deg, #00d5ff, #087bff 42%, #5968dc 72%, #00d5ff);
-    background-size: 250% 250%;
-    box-shadow:
-        0 0 0 1px rgba(0, 190, 255, .2),
-        0 20px 52px rgba(0, 0, 0, .32),
-        0 0 36px rgba(0, 122, 255, .2);
-    animation: portraitBorderFlow 9s ease infinite;
-    transition: transform .45s ease, box-shadow .45s ease;
-}
-
-.portrait-frame-inner {
+.about-portrait-frame {
     position: relative;
     width: 100%;
     aspect-ratio: 4 / 5;
+    padding: 6px;
     overflow: hidden;
-    border-radius: 22px;
-    background: #07172f;
+    border: 1px solid rgba(0, 201, 255, .65);
+    border-radius: 25px;
+    background: linear-gradient(145deg, rgba(0, 213, 255, .25), rgba(7, 30, 77, .8));
+    box-shadow:
+        0 24px 55px rgba(0, 0, 0, .31),
+        0 0 0 1px rgba(0, 160, 255, .11),
+        0 0 34px rgba(0, 122, 255, .2);
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.about-portrait-frame::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 19px;
+    pointer-events: none;
 }
 
 .about-profile-photo {
     display: block;
     width: 100%;
     height: 100%;
+    border-radius: 19px;
     object-fit: cover;
-    object-position: center 12%;
-    filter: saturate(.98) contrast(1.03);
-    transform: scale(1.001);
-    transition: transform .85s cubic-bezier(.2, .7, .2, 1), filter .85s ease;
+    object-position: center 13%;
+    background: #10213d;
+    transition: transform .8s cubic-bezier(.2, .7, .2, 1), filter .8s ease;
 }
 
-.about-page-portrait:hover .portrait-frame {
-    transform: translateY(-5px) rotateX(1deg);
+.about-portrait-column:hover .about-portrait-frame {
+    transform: translateY(-6px) rotate(.5deg);
     box-shadow:
-        0 0 0 1px rgba(0, 190, 255, .28),
-        0 25px 58px rgba(0, 0, 0, .35),
-        0 0 48px rgba(0, 155, 255, .28);
+        0 30px 64px rgba(0, 0, 0, .36),
+        0 0 0 1px rgba(0, 190, 255, .2),
+        0 0 43px rgba(0, 155, 255, .28);
 }
 
-.about-page-portrait:hover .about-profile-photo {
-    transform: scale(1.055);
+.about-portrait-column:hover .about-profile-photo {
+    transform: scale(1.035);
     filter: saturate(1.08) contrast(1.04);
 }
 
-.portrait-spark {
-    position: absolute;
-    z-index: 2;
-    color: #59dfff;
-    text-shadow: 0 0 13px rgba(0, 174, 255, .85);
-    pointer-events: none;
-    animation: portraitSpark 3.4s ease-in-out infinite;
+.about-photo-caption {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 4px 0;
+    color: #a9c5e9;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .13em;
 }
 
-.portrait-spark-one {
-    top: 5%;
-    right: -1%;
-    font-size: 19px;
-}
-
-.portrait-spark-two {
-    bottom: 13%;
-    left: -1%;
-    font-size: 17px;
-    animation-delay: .9s;
-}
-
-/* Background decoration */
-.about-page-glow {
-    position: absolute;
-    z-index: 0;
-    width: 340px;
-    height: 340px;
+.about-caption-dot {
+    width: 6px;
+    height: 6px;
+    flex: 0 0 6px;
     border-radius: 50%;
-    filter: blur(78px);
+    background: #00dfbd;
+    box-shadow: 0 0 9px rgba(0, 223, 189, .8);
+}
+
+.about-caption-code {
+    margin-left: auto;
+    color: rgba(155, 190, 230, .52);
+}
+
+.about-photo-corner {
+    position: absolute;
+    z-index: -1;
+    width: 75px;
+    height: 75px;
+    border: 1px solid rgba(0, 188, 255, .28);
+    border-radius: 21px;
     pointer-events: none;
 }
 
-.about-page-glow-one {
-    top: 5%;
-    right: -160px;
-    background: rgba(0, 88, 255, .13);
+.about-photo-corner-one {
+    top: 0;
+    right: 0;
+    transform: rotate(7deg);
 }
 
-.about-page-glow-two {
-    bottom: -220px;
-    left: 12%;
-    background: rgba(0, 194, 255, .07);
+.about-photo-corner-two {
+    bottom: 10px;
+    left: 0;
+    border-color: rgba(60, 111, 255, .25);
+    transform: rotate(-7deg);
 }
 
-.about-bottom-line {
+.about-hero-bottom-line {
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(0, 125, 255, .55), rgba(0, 213, 255, .75), transparent);
-    box-shadow: 0 0 16px rgba(0, 129, 255, .2);
+    box-shadow: 0 0 15px rgba(0, 129, 255, .2);
 }
 
-/* -------------------- ENTRANCE ANIMATIONS -------------------- */
+
+/* ==========================================================
+   3. CURRENT CHAPTER
+   ========================================================== */
+
+.about-chapter-section {
+    position: relative;
+    padding: 62px 0 68px;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(0, 77, 190, .1), transparent 58%),
+        linear-gradient(180deg, #020b20, #03102a);
+}
+
+.about-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 27px;
+}
+
+.about-section-kicker {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--about-cyan);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .19em;
+}
+
+.about-section-heading h2,
+.strength-panel-heading h2,
+.about-closing-inner h2 {
+    margin: 0;
+    color: var(--text, var(--about-text));
+    font-size: clamp(27px, 3vw, 37px);
+    font-weight: 800;
+    letter-spacing: -.045em;
+    line-height: 1.14;
+}
+
+.about-section-heading h2 span,
+.strength-panel-heading h2 span,
+.about-closing-inner h2 span {
+    color: transparent;
+    background: linear-gradient(105deg, #139cff, var(--about-cyan) 78%, #62e7ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.about-section-heading>p {
+    max-width: 300px;
+    margin: 0 0 3px;
+    color: var(--about-muted);
+    font-size: 11px;
+    line-height: 1.7;
+    text-align: right;
+}
+
+.about-chapter-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.chapter-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 225px;
+    padding: 21px 21px 20px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 132, 255, .34);
+    border-radius: 17px;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(0, 123, 255, .11), transparent 44%),
+        linear-gradient(145deg, rgba(8, 30, 68, .91), rgba(3, 15, 39, .96));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .025), 0 12px 30px rgba(0, 0, 0, .11);
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+.chapter-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 213, 255, .68);
+    box-shadow: 0 17px 34px rgba(0, 0, 0, .19), 0 0 23px rgba(0, 140, 255, .09);
+}
+
+.chapter-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.chapter-icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(0, 190, 255, .29);
+    border-radius: 13px;
+    color: var(--about-cyan);
+    background: linear-gradient(145deg, rgba(0, 152, 255, .2), rgba(0, 65, 155, .1));
+    box-shadow: 0 0 17px rgba(0, 135, 255, .1);
+    font-size: 18px;
+}
+
+.chapter-number {
+    color: rgba(151, 190, 235, .43);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+}
+
+.chapter-label {
+    margin-bottom: 8px;
+    color: var(--about-cyan);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .15em;
+}
+
+.chapter-card h3 {
+    margin: 0 0 9px;
+    color: #f2f6ff;
+    font-size: 16px;
+    font-weight: 750;
+    line-height: 1.38;
+    letter-spacing: -.02em;
+}
+
+.chapter-card p {
+    margin: 0 0 12px;
+    color: var(--about-muted);
+    font-size: 11px;
+    line-height: 1.72;
+}
+
+.chapter-detail {
+    display: block;
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 145, 255, .16);
+    color: #8caaca;
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   4. PERSONAL INTERESTS + STRENGTHS
+   ========================================================== */
+
+.about-personal-section {
+    position: relative;
+    padding: 5px 0 68px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #03102a, #020b20);
+}
+
+.about-personal-layout {
+    display: grid;
+    grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
+    align-items: stretch;
+    gap: 22px;
+}
+
+.about-personal-copy {
+    position: relative;
+    min-width: 0;
+    padding: 30px 28px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 132, 255, .29);
+    border-radius: 19px;
+    background:
+        radial-gradient(ellipse at 0% 100%, rgba(0, 126, 255, .12), transparent 55%),
+        rgba(4, 20, 49, .66);
+}
+
+.about-personal-copy::before {
+    content: "♪";
+    position: absolute;
+    right: 18px;
+    bottom: -65px;
+    color: rgba(0, 190, 255, .055);
+    font-size: 190px;
+    font-weight: 800;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.about-personal-copy h2 {
+    position: relative;
+    max-width: 390px;
+    margin: 0 0 13px;
+    color: var(--text, var(--about-text));
+    font-size: clamp(25px, 2.7vw, 34px);
+    font-weight: 800;
+    line-height: 1.16;
+    letter-spacing: -.045em;
+}
+
+.about-personal-copy h2 span {
+    color: transparent;
+    background: linear-gradient(105deg, #139cff, var(--about-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.about-personal-copy>p {
+    position: relative;
+    max-width: 440px;
+    margin: 0;
+    color: var(--about-muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.personal-interest-list {
+    position: relative;
+    display: grid;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.personal-interest-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.personal-interest-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 37px;
+    width: 37px;
+    height: 37px;
+    border: 1px solid rgba(0, 190, 255, .28);
+    border-radius: 11px;
+    color: var(--about-cyan);
+    background: rgba(0, 130, 255, .12);
+    font-size: 15px;
+}
+
+.personal-interest-item>span:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.personal-interest-item strong {
+    color: #eff6ff;
+    font-size: 11px;
+    font-weight: 750;
+}
+
+.personal-interest-item small {
+    color: #9fb4d0;
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+
+/* Strength panel */
+
+.about-strength-panel {
+    min-width: 0;
+    padding: 29px 28px;
+    border: 1px solid rgba(0, 145, 255, .33);
+    border-radius: 19px;
+    background:
+        radial-gradient(ellipse at 100% 0%, rgba(0, 123, 255, .13), transparent 47%),
+        linear-gradient(145deg, rgba(7, 28, 65, .88), rgba(3, 15, 39, .94));
+    box-shadow: 0 13px 30px rgba(0, 0, 0, .12);
+}
+
+.strength-panel-heading {
+    margin-bottom: 19px;
+}
+
+.strength-panel-heading h2 {
+    font-size: clamp(24px, 2.5vw, 32px);
+}
+
+.strength-panel-heading>p {
+    margin: 8px 0 0;
+    color: var(--about-muted);
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.about-strength-list {
+    display: grid;
+    gap: 9px;
+}
+
+.about-strength-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    min-height: 58px;
+    padding: 9px 12px;
+    border: 1px solid rgba(0, 145, 255, .2);
+    border-radius: 12px;
+    background: rgba(2, 15, 39, .42);
+    transition: border-color .25s ease, background .25s ease, transform .25s ease;
+}
+
+.about-strength-item:hover {
+    transform: translateX(4px);
+    border-color: rgba(0, 213, 255, .48);
+    background: rgba(0, 110, 210, .1);
+}
+
+.strength-item-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 35px;
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    color: var(--about-cyan);
+    background: rgba(0, 159, 255, .12);
+    font-size: 15px;
+}
+
+.strength-item-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.strength-item-copy strong {
+    color: #f1f6ff;
+    font-size: 11px;
+    font-weight: 750;
+}
+
+.strength-item-copy small {
+    color: #9fb4d0;
+    font-size: 9px;
+    line-height: 1.45;
+}
+
+.strength-item-arrow {
+    margin-left: auto;
+    color: rgba(0, 213, 255, .55);
+    font-size: 12px;
+}
+
+
+/* ==========================================================
+   5. CLOSING CTA
+   ========================================================== */
+
+.about-closing-section {
+    padding: 0 0 68px;
+    background: #020b20;
+}
+
+.about-closing-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 23px 28px;
+    border: 1px solid rgba(0, 145, 255, .29);
+    border-radius: 17px;
+    background:
+        radial-gradient(ellipse at 0% 50%, rgba(0, 126, 255, .14), transparent 50%),
+        linear-gradient(105deg, rgba(7, 28, 65, .84), rgba(3, 15, 39, .88));
+}
+
+.about-closing-inner .about-section-kicker {
+    margin-bottom: 7px;
+}
+
+.about-closing-inner h2 {
+    font-size: clamp(19px, 2.4vw, 27px);
+}
+
+.about-closing-link {
+    flex: 0 0 auto;
+    color: #fff;
+    border: 1px solid rgba(0, 198, 255, .5);
+    background: linear-gradient(105deg, #075dff, #00aee9);
+}
+
+
+/* ==========================================================
+   6. ENTRANCE ANIMATIONS
+   ========================================================== */
+
 .about-reveal {
+    opacity: 1;
+    transform: none;
+}
+
+.js .about-reveal {
     opacity: 0;
-    animation: aboutEnter .8s cubic-bezier(.2, .7, .2, 1) .08s both;
+    transform: translateY(22px);
+    transition: opacity .72s ease, transform .72s cubic-bezier(.2, .7, .2, 1);
 }
 
-.about-reveal-delay {
-    animation-delay: .25s;
+.js .about-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.about-page-copy>.about-eyebrow {
-    animation-delay: .12s;
+.about-reveal-late {
+    transition-delay: .14s;
 }
 
-.about-page-copy>h1 {
-    animation-delay: .24s;
+.about-reveal-delay-one {
+    transition-delay: .08s;
 }
 
-.about-page-copy>.about-lead {
-    animation-delay: .36s;
+.about-reveal-delay-two {
+    transition-delay: .16s;
 }
 
-.about-page-copy>.about-role {
-    animation-delay: .46s;
-}
-
-.about-page-copy>.about-summary {
-    animation-delay: .58s;
-}
-
-.about-page-copy>.about-signature-row {
-    animation-delay: .7s;
-}
-
-@keyframes aboutEnter {
-    from {
-        opacity: 0;
-        transform: translateY(22px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes portraitAura {
+@keyframes aboutHalo {
 
     0%,
     100% {
-        opacity: .68;
+        opacity: .62;
         transform: scale(.96);
     }
 
     50% {
         opacity: 1;
-        transform: scale(1.04);
+        transform: scale(1.05);
     }
 }
 
-@keyframes portraitBorderFlow {
 
-    0%,
-    100% {
-        background-position: 0% 50%;
-    }
+/* ==========================================================
+   7. LIGHT THEME
+   ========================================================== */
 
-    50% {
-        background-position: 100% 50%;
-    }
-}
-
-@keyframes portraitSpark {
-
-    0%,
-    100% {
-        opacity: .42;
-        transform: scale(.86) translateY(0);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1.12) translateY(-5px);
-    }
-}
-
-/* -------------------- LIGHT THEME -------------------- */
-body.light-theme .about-page-main {
+body.light-theme .about-hero {
     background:
-        radial-gradient(ellipse at 78% 48%, rgba(0, 91, 220, .1), transparent 40%),
-        radial-gradient(ellipse at 12% 12%, rgba(0, 183, 255, .07), transparent 32%),
-        #edf4ff;
+        radial-gradient(ellipse at 81% 42%, rgba(0, 91, 220, .09), transparent 39%),
+        radial-gradient(ellipse at 9% 8%, rgba(0, 183, 255, .06), transparent 35%),
+        linear-gradient(112deg, #edf4ff 0%, #e5efff 56%, #dceaff 100%);
 }
 
-body.light-theme .about-page-copy h1,
-body.light-theme .about-lead {
+body.light-theme .about-intro h1,
+body.light-theme .about-overline,
+body.light-theme .about-section-heading h2,
+body.light-theme .about-personal-copy h2,
+body.light-theme .strength-panel-heading h2,
+body.light-theme .about-closing-inner h2 {
     color: #102342;
 }
 
-body.light-theme .about-summary p,
-body.light-theme .about-signature-caption {
+body.light-theme .about-subtitle,
+body.light-theme .about-location-line,
+body.light-theme .about-intro-text,
+body.light-theme .about-section-heading>p,
+body.light-theme .about-personal-copy>p,
+body.light-theme .strength-panel-heading>p {
     color: #52647e;
 }
 
-body.light-theme .portrait-frame {
-    box-shadow:
-        0 0 0 1px rgba(0, 120, 255, .15),
-        0 20px 48px rgba(35, 75, 130, .16),
-        0 0 30px rgba(0, 122, 255, .12);
+body.light-theme .about-chapter-section {
+    background: linear-gradient(180deg, #edf4ff, #e7f0ff);
 }
 
-/* -------------------- TABLET -------------------- */
+body.light-theme .chapter-card {
+    border-color: rgba(40, 119, 221, .22);
+    background: linear-gradient(145deg, #fff, #eaf2ff);
+    box-shadow: 0 12px 28px rgba(37, 85, 145, .07);
+}
+
+body.light-theme .chapter-card h3 {
+    color: #102342;
+}
+
+body.light-theme .chapter-card p {
+    color: #52647e;
+}
+
+body.light-theme .chapter-detail {
+    border-color: rgba(40, 119, 221, .16);
+    color: #637a98;
+}
+
+body.light-theme .about-personal-section {
+    background: linear-gradient(180deg, #e7f0ff, #edf4ff);
+}
+
+body.light-theme .about-personal-copy,
+body.light-theme .about-strength-panel,
+body.light-theme .about-closing-inner {
+    border-color: rgba(40, 119, 221, .22);
+    background: linear-gradient(145deg, #fff, #eaf2ff);
+    box-shadow: 0 12px 28px rgba(37, 85, 145, .06);
+}
+
+body.light-theme .personal-interest-item strong,
+body.light-theme .strength-item-copy strong {
+    color: #173052;
+}
+
+body.light-theme .personal-interest-item small,
+body.light-theme .strength-item-copy small {
+    color: #637a98;
+}
+
+body.light-theme .about-strength-item {
+    border-color: rgba(40, 119, 221, .17);
+    background: rgba(232, 242, 255, .78);
+}
+
+body.light-theme .about-closing-section {
+    background: #edf4ff;
+}
+
+body.light-theme .about-secondary-link {
+    color: #17436c;
+    background: rgba(255, 255, 255, .55);
+}
+
+
+/* ==========================================================
+   8. TABLET LAYOUT
+   ========================================================== */
+
 @media (max-width: 991.98px) {
-    .about-page-section {
+
+    .about-hero {
         min-height: 0;
-        padding: 68px 0 74px;
+        padding: 58px 0 68px;
     }
 
-    .about-page-layout {
-        grid-template-columns: minmax(0, 1fr) minmax(260px, .78fr);
-        gap: clamp(28px, 4vw, 48px);
-    }
-
-    .about-page-copy h1 {
-        font-size: clamp(39px, 5.2vw, 55px);
-    }
-
-    .about-page-portrait {
-        width: min(100%, 340px);
-    }
-
-    .about-summary p {
-        font-size: 13px;
-        line-height: 1.85;
-    }
-}
-
-/* -------------------- MOBILE -------------------- */
-@media (max-width: 767.98px) {
-    .about-page-main {
-        min-height: auto;
-    }
-
-    .about-page-section {
-        min-height: 0;
-        padding: 42px 0 58px;
-    }
-
-    .about-page-layout {
-        width: min(100%, 560px);
-        grid-template-columns: minmax(0, 1fr);
+    .about-hero-layout {
+        grid-template-columns: minmax(0, 1.1fr) minmax(270px, .8fr);
         gap: 30px;
     }
 
-    .about-page-portrait {
-        grid-row: 1;
-        width: min(76%, 310px);
-        padding: 8px;
+    .about-intro h1 {
+        font-size: clamp(43px, 5.2vw, 58px);
     }
 
-    .about-page-copy {
+    .about-intro-text {
+        font-size: 12px;
+        line-height: 1.82;
+    }
+
+    .about-portrait-column {
+        width: min(100%, 340px);
+        padding: 10px;
+    }
+
+    .about-chapter-grid {
+        gap: 12px;
+    }
+
+    .chapter-card {
+        min-height: 242px;
+        padding: 18px 15px;
+    }
+
+    .about-personal-layout {
+        grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+        gap: 14px;
+    }
+
+    .about-personal-copy,
+    .about-strength-panel {
+        padding: 23px 19px;
+    }
+
+}
+
+
+/* ==========================================================
+   9. MOBILE LAYOUT
+   ========================================================== */
+
+@media (max-width: 767.98px) {
+
+    .about-hero {
+        padding: 38px 0 50px;
+    }
+
+    .about-hero-layout {
+        width: min(100%, 570px);
+        grid-template-columns: minmax(0, 1fr);
+        gap: 26px;
+    }
+
+    .about-portrait-column {
+        grid-row: 1;
+        width: min(76%, 285px);
+        padding: 9px;
+    }
+
+    .about-intro {
         grid-row: 2;
-        max-width: none;
-        padding: 0;
     }
 
     .about-eyebrow {
-        margin-bottom: 15px;
-        font-size: 10px;
-    }
-
-    .about-page-copy h1 {
         margin-bottom: 17px;
-        font-size: clamp(38px, 8.5vw, 52px);
+        font-size: 9px;
+        letter-spacing: .16em;
     }
 
-    .about-lead {
-        font-size: 21px;
+    .about-overline {
+        font-size: 17px;
     }
 
-    .about-role {
-        margin-bottom: 20px;
+    .about-intro h1 {
+        font-size: clamp(46px, 11vw, 60px);
+    }
+
+    .about-subtitle {
+        margin-top: 12px;
         font-size: 11px;
     }
 
-    .about-summary {
-        padding-left: 15px;
+    .about-intro-rule {
+        margin: 21px 0 18px;
     }
 
-    .about-summary p {
-        font-size: 13px;
-        line-height: 1.85;
+    .about-intro-text {
+        font-size: 12px;
+        line-height: 1.82;
     }
 
-    .about-signature-row {
-        margin-top: 22px;
+    .about-location-line {
+        margin-top: 15px;
+        font-size: 10px;
     }
+
+    .about-hero-actions {
+        margin-top: 21px;
+    }
+
+    .about-chapter-section {
+        padding: 43px 0 48px;
+    }
+
+    .about-section-heading {
+        display: block;
+        margin-bottom: 21px;
+    }
+
+    .about-section-heading h2 {
+        font-size: clamp(27px, 7vw, 34px);
+    }
+
+    .about-section-heading>p {
+        margin-top: 8px;
+        text-align: left;
+        font-size: 10px;
+    }
+
+    .about-chapter-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 11px;
+    }
+
+    .chapter-card {
+        min-height: 0;
+        padding: 18px 18px 17px;
+    }
+
+    .chapter-card-top {
+        margin-bottom: 14px;
+    }
+
+    .chapter-card h3 {
+        font-size: 16px;
+    }
+
+    .chapter-card p {
+        font-size: 11px;
+    }
+
+    .chapter-detail {
+        margin-top: 2px;
+    }
+
+    .about-personal-section {
+        padding: 0 0 46px;
+    }
+
+    .about-personal-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .about-personal-copy,
+    .about-strength-panel {
+        padding: 22px 19px;
+        border-radius: 16px;
+    }
+
+    .about-personal-copy h2,
+    .strength-panel-heading h2 {
+        font-size: clamp(25px, 6.6vw, 32px);
+    }
+
+    .about-personal-copy>p,
+    .strength-panel-heading>p {
+        font-size: 10px;
+    }
+
+    .personal-interest-list {
+        margin-top: 18px;
+    }
+
+    .about-closing-section {
+        padding-bottom: 48px;
+    }
+
+    .about-closing-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 17px;
+        padding: 20px 19px;
+    }
+
+    .about-closing-inner h2 {
+        font-size: 23px;
+    }
+
 }
+
+
+/* ==========================================================
+   10. SMALL MOBILE
+   ========================================================== */
 
 @media (max-width: 420px) {
-    .about-page-section {
-        padding: 34px 0 48px;
+
+    .about-hero {
+        padding-top: 31px;
     }
 
-    .about-page-layout {
-        gap: 25px;
+    .about-hero-layout {
+        gap: 22px;
     }
 
-    .about-page-portrait {
-        width: min(82%, 275px);
+    .about-portrait-column {
+        width: min(80%, 260px);
     }
 
-    .about-page-copy h1 {
-        font-size: 37px;
+    .about-intro h1 {
+        font-size: 45px;
     }
 
-    .about-lead {
-        font-size: 19px;
-    }
-
-    .about-role {
-        gap: 7px;
+    .about-subtitle {
         font-size: 10px;
     }
 
-    .about-summary p {
-        font-size: 12.5px;
+    .about-intro-text {
+        font-size: 11.5px;
     }
 
-    .about-signature-caption {
+    .about-primary-link,
+    .about-secondary-link,
+    .about-closing-link {
+        min-height: 41px;
+        padding-inline: 16px;
         font-size: 10px;
     }
+
+    .chapter-card {
+        padding: 16px;
+    }
+
+    .about-personal-copy,
+    .about-strength-panel {
+        padding: 19px 16px;
+    }
+
 }
 
-/* Accessibility: disable decorative movement when requested. */
+
+/* ==========================================================
+   11. REDUCED MOTION
+   ========================================================== */
+
 @media (prefers-reduced-motion: reduce) {
 
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
+    .about-portrait-halo {
+        animation: none !important;
     }
 
-    .about-reveal {
-        opacity: 1;
+    .about-portrait-frame,
+    .about-profile-photo,
+    .about-primary-link,
+    .about-secondary-link,
+    .about-closing-link,
+    .chapter-card,
+    .about-strength-item {
+        transition: none !important;
     }
+
+    .js .about-reveal,
+    .js .about-reveal.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none !important;
+    }
+
+}
+
+
+/* =========================================
+   CARVE - PREMIUM RECTANGULAR PORTRAIT
+   Only changes the About page photo design.
+   ========================================= */
+
+.about-portrait-column {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+
+    width: min(100%, 410px);
+    padding: 22px 20px 10px;
+    isolation: isolate;
+}
+
+/* Soft background glow */
+
+.about-portrait-halo {
+    inset: 8% 3% 5%;
+    border-radius: 32px;
+    background: radial-gradient(
+        ellipse,
+        rgba(0, 135, 255, .35),
+        rgba(0, 190, 255, .10) 58%,
+        transparent 78%
+    );
+    filter: blur(38px);
+}
+
+/* Layered frame behind the portrait */
+
+.about-portrait-column::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    top: 48%;
+    left: 50%;
+
+    width: min(83%, 315px);
+    aspect-ratio: 4 / 5;
+
+    border: 1px solid rgba(0, 213, 255, .42);
+    border-radius: 27px;
+
+    background: rgba(0, 120, 255, .045);
+
+    transform: translate(-46%, -52%) rotate(6deg);
+}
+
+/* Second offset frame */
+
+.about-portrait-column::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    top: 48%;
+    left: 50%;
+
+    width: min(80%, 300px);
+    aspect-ratio: 4 / 5;
+
+    border: 1px solid rgba(77, 130, 255, .32);
+    border-radius: 27px;
+
+    transform: translate(-54%, -48%) rotate(-5deg);
+    pointer-events: none;
+}
+
+/* Main portrait frame */
+
+.about-portrait-frame {
+    position: relative;
+
+    width: min(100%, 310px);
+    aspect-ratio: 4 / 5;
+
+    padding: 7px;
+    overflow: hidden;
+
+    border: 1px solid rgba(0, 213, 255, .65);
+    border-radius: 25px 25px 25px 48px;
+
+    background: linear-gradient(
+        145deg,
+        #00d5ff,
+        #087bff 48%,
+        #4355ce 100%
+    );
+
+    box-shadow:
+        0 20px 48px rgba(0, 0, 0, .32),
+        0 0 0 4px rgba(0, 145, 255, .08),
+        0 0 35px rgba(0, 135, 255, .20);
+
+    animation: none;
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+}
+
+/* Inner photo border */
+
+.about-portrait-frame::after {
+    content: "";
+    position: absolute;
+
+    inset: 7px;
+
+    border: 1px solid rgba(255, 255, 255, .23);
+    border-radius: 18px 18px 18px 41px;
+
+    pointer-events: none;
+}
+
+/* Passport photograph */
+
+.about-profile-photo {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center 13%;
+
+    border-radius: 18px 18px 18px 41px;
+
+    background: #10213d;
+
+    filter: saturate(1.04) contrast(1.035);
+
+    transition:
+        transform .7s ease,
+        filter .7s ease;
+}
+
+/* Hover effect */
+
+.about-portrait-column:hover .about-portrait-frame {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 25px 55px rgba(0, 0, 0, .36),
+        0 0 0 5px rgba(0, 145, 255, .10),
+        0 0 42px rgba(0, 190, 255, .30);
+}
+
+.about-portrait-column:hover .about-profile-photo {
+    transform: scale(1.025);
+    filter: saturate(1.09) contrast(1.05);
+}
+
+/* Caption */
+
+.about-photo-caption {
+    width: min(100%, 310px);
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 15px 5px 5px;
+
+    color: #a9c5e9;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.25px;
+}
+
+.about-caption-code {
+    margin-left: auto;
+    color: var(--about-cyan);
+}
+
+/* Hide obsolete decorative corner elements */
+
+.about-photo-corner {
+    display: none;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 991.98px) {
+
+    .about-portrait-column {
+        width: min(100%, 340px);
+        padding: 20px 15px 10px;
+    }
+
+    .about-portrait-frame {
+        width: min(100%, 275px);
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 767.98px) {
+
+    .about-portrait-column {
+        grid-row: 1;
+        width: min(82%, 295px);
+        padding: 17px 12px 9px;
+    }
+
+    .about-portrait-frame {
+        width: min(100%, 250px);
+    }
+
+    .about-photo-caption {
+        width: min(100%, 250px);
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 420px) {
+
+    .about-portrait-column {
+        width: min(85%, 270px);
+    }
+
+    .about-portrait-frame {
+        width: min(100%, 230px);
+    }
+
+}
+
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .about-portrait-halo {
+        animation: none !important;
+    }
+
+    .about-portrait-frame,
+    .about-profile-photo {
+        animation: none !important;
+        transition: none !important;
+    }
+
 }

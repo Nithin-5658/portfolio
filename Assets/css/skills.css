@@ -1,0 +1,1857 @@
+/* =========================================
+   CARVE - SKILLS PAGE
+   Responsive technology showcase
+   ========================================= */
+
+
+/* -----------------------------------------
+   1. MAIN PAGE
+   ----------------------------------------- */
+
+.skills-main {
+    position: relative;
+    overflow: hidden;
+}
+
+.skills-container {
+    width: min(1120px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.skills-hero,
+.skills-showcase {
+    position: relative;
+    isolation: isolate;
+}
+
+
+/* -----------------------------------------
+   2. HERO SECTION
+   ----------------------------------------- */
+
+.skills-hero {
+    padding: 76px 0 65px;
+}
+
+.skills-hero::before {
+    content: "";
+    position: absolute;
+    top: -170px;
+    right: -170px;
+    width: 470px;
+    height: 470px;
+    border-radius: 50%;
+    background: rgba(0, 213, 255, 0.055);
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.skills-hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+    align-items: center;
+    gap: 45px;
+}
+
+
+/* -----------------------------------------
+   3. HERO TEXT
+   ----------------------------------------- */
+
+.skills-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.skills-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: var(--cyan, #00d5ff);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.eyebrow-line {
+    width: 25px;
+    height: 2px;
+    border-radius: 5px;
+    background: var(--cyan, #00d5ff);
+    box-shadow: 0 0 10px rgba(0, 213, 255, 0.6);
+}
+
+.skills-hero-content h1 {
+    margin: 0;
+    color: var(--text, #f2f6ff);
+    font-size: clamp(45px, 5.7vw, 72px);
+    line-height: 1.05;
+    font-weight: 900;
+    letter-spacing: -3.5px;
+}
+
+.skills-hero-content h1>span:first-child {
+    color: var(--text, #f2f6ff);
+}
+
+.hero-gradient {
+    display: inline-block;
+    color: var(--cyan, #00d5ff);
+    background: linear-gradient(100deg,
+            #00d5ff 5%,
+            #36aaff 55%,
+            #00e4d0 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.skills-hero-content>p {
+    max-width: 440px;
+    margin: 19px 0 0;
+    color: var(--muted, #c0cce2);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.explore-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 27px;
+    color: var(--text, #f2f6ff);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.explore-link:hover {
+    color: var(--cyan, #00d5ff);
+}
+
+.explore-icon {
+    display: grid;
+    place-items: center;
+    width: 37px;
+    height: 37px;
+    border: 1px solid rgba(0, 213, 255, 0.4);
+    border-radius: 50%;
+    color: var(--cyan, #00d5ff);
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.explore-link:hover .explore-icon {
+    transform: translateY(4px);
+    background: rgba(0, 213, 255, 0.1);
+}
+
+
+/* -----------------------------------------
+   4. SOLAR SYSTEM STAGE
+   ----------------------------------------- */
+
+.skills-visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    max-width: 430px;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.tech-solar-system {
+    /*
+       Orbit radii are controlled here.
+       JavaScript reads these values and uses
+       them to calculate planet positions.
+    */
+
+    --inner-radius: 86px;
+    --middle-radius: 126px;
+    --outer-radius: 170px;
+
+    isolation: isolate;
+    touch-action: pan-y;
+}
+
+.solar-glow {
+    position: absolute;
+    width: 48%;
+    height: 48%;
+    border-radius: 50%;
+    background: rgba(0, 157, 255, 0.17);
+    filter: blur(48px);
+    animation: solarGlow 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+
+/* -----------------------------------------
+   5. STATIC ORBIT RINGS
+   ----------------------------------------- */
+
+.orbit-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(0, 213, 255, 0.16);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.orbit-inner {
+    width: calc(var(--inner-radius) * 2);
+    height: calc(var(--inner-radius) * 2);
+    border-color: rgba(0, 213, 255, 0.23);
+}
+
+.orbit-middle {
+    width: calc(var(--middle-radius) * 2);
+    height: calc(var(--middle-radius) * 2);
+    border-color: rgba(0, 145, 255, 0.19);
+}
+
+.orbit-outer {
+    width: calc(var(--outer-radius) * 2);
+    height: calc(var(--outer-radius) * 2);
+    border-color: rgba(0, 213, 255, 0.12);
+}
+
+
+/* -----------------------------------------
+   6. MOVING TECHNOLOGY NODES
+   ----------------------------------------- */
+
+.orbit-node {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 4;
+
+    width: 66px;
+    height: 64px;
+
+    /*
+       JavaScript updates left and top.
+       Transform only centres each planet card.
+    */
+
+    transform: translate(-50%, -50%);
+
+    will-change: left, top;
+    pointer-events: auto;
+}
+
+.orbit-planet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    width: 100%;
+    height: 100%;
+
+    border: 1px solid rgba(0, 213, 255, 0.34);
+    border-radius: 14px;
+
+    background: linear-gradient(145deg,
+            rgba(11, 43, 78, 0.98),
+            rgba(3, 18, 42, 0.98));
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.22),
+        0 0 12px rgba(0, 145, 255, 0.08);
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.orbit-planet:hover {
+    border-color: var(--cyan, #00d5ff);
+    box-shadow:
+        0 0 18px rgba(0, 213, 255, 0.2),
+        0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.planet-symbol {
+    display: grid;
+    place-items: center;
+    width: 29px;
+    height: 29px;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.06);
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.planet-name {
+    color: #f2f6ff;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+}
+
+
+/* Technology colours */
+
+.java-planet {
+    color: #ff956e;
+    font-family: Georgia, serif;
+    font-size: 22px;
+}
+
+.php-planet {
+    color: #aebeff;
+    font-size: 11px;
+    font-style: italic;
+}
+
+.python-planet {
+    color: #ffd46b;
+}
+
+.html-planet {
+    color: #ff956e;
+    font-size: 21px;
+}
+
+.css-planet {
+    color: #79baff;
+}
+
+.mysql-planet {
+    color: #75d4ff;
+}
+
+.c-planet {
+    color: #8bc6ff;
+    font-size: 19px;
+}
+
+
+/* -----------------------------------------
+   7. CENTRAL COMPUTER
+   ----------------------------------------- */
+
+.computer-core {
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    z-index: 5;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 132px;
+    height: 122px;
+
+    transform: translate(-50%, -50%);
+    animation: computerFloat 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.computer-screen {
+    width: 118px;
+    height: 82px;
+    padding: 7px;
+    overflow: hidden;
+
+    border: 2px solid rgba(0, 213, 255, 0.75);
+    border-radius: 12px;
+
+    background: linear-gradient(145deg,
+            #0d3156,
+            #03132f);
+
+    box-shadow:
+        0 0 20px rgba(0, 157, 255, 0.18),
+        inset 0 0 18px rgba(0, 213, 255, 0.07);
+}
+
+.computer-screen-top {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 213, 255, 0.15);
+}
+
+.computer-screen-top>span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #00d5ff;
+}
+
+.computer-screen-top>span:nth-child(2) {
+    background: #438bff;
+}
+
+.computer-screen-top>span:nth-child(3) {
+    background: #00e0bf;
+}
+
+.computer-screen-top small {
+    margin-left: auto;
+    color: rgba(205, 232, 255, 0.75);
+    font-size: 5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.computer-screen-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 51px;
+}
+
+.computer-code {
+    color: var(--cyan, #00d5ff);
+    font-size: 33px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-shadow: 0 0 15px rgba(0, 213, 255, 0.5);
+}
+
+.computer-cursor {
+    width: 2px;
+    height: 19px;
+    margin-left: 4px;
+    background: var(--cyan, #00d5ff);
+    animation: cursorBlink 1s steps(2, start) infinite;
+}
+
+.computer-stand {
+    width: 13px;
+    height: 9px;
+
+    background: linear-gradient(90deg,
+            #087baf,
+            #00d5ff,
+            #087baf);
+
+    clip-path: polygon(20% 0,
+            80% 0,
+            100% 100%,
+            0 100%);
+}
+
+.computer-base {
+    width: 48px;
+    height: 4px;
+    border-radius: 5px;
+
+    background: linear-gradient(90deg,
+            #087baf,
+            #00d5ff,
+            #087baf);
+
+    box-shadow: 0 0 12px rgba(0, 213, 255, 0.3);
+}
+
+
+/* -----------------------------------------
+   8. VISUAL CAPTION
+   ----------------------------------------- */
+
+.visual-caption {
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    transform: translateX(-50%);
+
+    color: var(--muted, #c0cce2);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+}
+
+.caption-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--cyan, #00d5ff);
+    box-shadow: 0 0 10px var(--cyan, #00d5ff);
+}
+
+
+/* -----------------------------------------
+   9. SHOWCASE HEADING
+   ----------------------------------------- */
+
+.skills-showcase {
+    padding: 30px 0 65px;
+}
+
+.showcase-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 26px;
+}
+
+.section-kicker {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--cyan, #00d5ff);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+
+.showcase-heading h2 {
+    margin: 0;
+    color: var(--text, #f2f6ff);
+    font-size: clamp(23px, 3vw, 32px);
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.showcase-heading h2 span {
+    color: var(--cyan, #00d5ff);
+}
+
+.showcase-decoration {
+    display: grid;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    border: 1px solid rgba(0, 213, 255, 0.22);
+    border-radius: 12px;
+    color: var(--cyan, #00d5ff);
+    background: rgba(0, 213, 255, 0.06);
+    font-size: 17px;
+}
+
+
+/* -----------------------------------------
+   10. SKILL PANELS
+   ----------------------------------------- */
+
+.skill-panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 145, 255, 0.55);
+    border-radius: 16px;
+
+    background: linear-gradient(125deg,
+            rgba(10, 31, 61, 0.94),
+            rgba(5, 19, 43, 0.96));
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+
+    transition:
+        border-color 0.35s ease,
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.skill-panel:hover {
+    border-color: rgba(0, 213, 255, 0.75);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.18),
+        0 0 22px rgba(0, 145, 255, 0.07);
+}
+
+.panel-icon {
+    display: grid;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    border: 1px solid rgba(0, 213, 255, 0.28);
+    border-radius: 11px;
+    background: rgba(0, 213, 255, 0.07);
+    color: var(--cyan, #00d5ff);
+    font-size: 17px;
+}
+
+.panel-index {
+    color: var(--cyan, #00d5ff);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.panel-kicker {
+    display: block;
+    color: var(--cyan, #00d5ff);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.panel-info h3,
+.secondary-panel-info h3 {
+    margin: 10px 0 0;
+    color: var(--text, #f2f6ff);
+    font-size: 21px;
+    line-height: 1.25;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+.panel-info p,
+.secondary-panel-info p {
+    margin: 11px 0 0;
+    color: var(--muted, #c0cce2);
+    font-size: 10px;
+    line-height: 1.8;
+}
+
+
+/* -----------------------------------------
+   11. PROGRAMMING LANGUAGES PANEL
+   ----------------------------------------- */
+
+.programming-panel {
+    display: grid;
+    grid-template-columns: 0.78fr 1.22fr;
+    align-items: center;
+    gap: 35px;
+    min-height: 210px;
+    padding: 27px 30px;
+    margin-bottom: 15px;
+}
+
+.panel-info {
+    position: relative;
+    z-index: 1;
+}
+
+.panel-info .panel-index {
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+
+.panel-info .panel-kicker {
+    margin-top: 17px;
+}
+
+.panel-info h3 {
+    font-size: 22px;
+}
+
+.panel-info p {
+    max-width: 260px;
+}
+
+.panel-watermark {
+    position: absolute;
+    right: 0;
+    bottom: -36px;
+    color: rgba(0, 213, 255, 0.035);
+    font-size: 100px;
+    line-height: 1;
+    font-weight: 900;
+    pointer-events: none;
+}
+
+.programming-skills {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+}
+
+
+/* -----------------------------------------
+   12. TECHNOLOGY TILES
+   ----------------------------------------- */
+
+.technology-tile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 0;
+    min-height: 55px;
+    padding: 10px 12px;
+    overflow: hidden;
+    border: 1px solid rgba(140, 175, 220, 0.15);
+    border-radius: 10px;
+    background: rgba(2, 11, 32, 0.34);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.technology-tile::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(0, 213, 255, 0.06),
+            transparent);
+
+    transform: skewX(-20deg);
+    transition: left 0.55s ease;
+}
+
+.technology-tile:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 213, 255, 0.45);
+    background: rgba(0, 145, 255, 0.07);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.technology-tile:hover::after {
+    left: 140%;
+}
+
+.technology-logo {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    place-items: center;
+
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.java-logo {
+    color: #ff956e;
+    font-family: Georgia, serif;
+    font-size: 21px;
+}
+
+.php-logo {
+    color: #b3c2ff;
+    font-size: 10px;
+    font-style: italic;
+}
+
+.python-logo {
+    color: #ffd46b;
+}
+
+.c-logo {
+    color: #8bc6ff;
+    font-size: 18px;
+}
+
+.html-logo {
+    color: #ff956e;
+    font-size: 19px;
+}
+
+.css-logo {
+    color: #79baff;
+}
+
+.mysql-logo {
+    color: #75d4ff;
+}
+
+.technology-details {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.technology-details strong {
+    color: var(--text, #f2f6ff);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.technology-details small {
+    margin-top: 2px;
+    color: var(--muted, #c0cce2);
+    font-size: 7px;
+}
+
+.tile-arrow {
+    position: relative;
+    z-index: 1;
+    margin-left: auto;
+    color: var(--cyan, #00d5ff);
+    opacity: 0.55;
+    font-size: 11px;
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.technology-tile:hover .tile-arrow {
+    opacity: 1;
+    transform: translate(2px, -2px);
+}
+
+
+/* -----------------------------------------
+   13. SECONDARY PANELS
+   ----------------------------------------- */
+
+.secondary-panels {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.secondary-panel {
+    min-height: 200px;
+    padding: 20px 22px;
+}
+
+.secondary-panel-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.secondary-panel-top .panel-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+}
+
+.secondary-panel-info {
+    position: relative;
+    z-index: 1;
+    margin-top: 15px;
+}
+
+.secondary-panel-info h3 {
+    margin-top: 7px;
+    font-size: 17px;
+}
+
+.secondary-panel-info p {
+    margin-top: 7px;
+    font-size: 9px;
+}
+
+.secondary-skills {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.secondary-skills .technology-tile {
+    min-height: 46px;
+    padding: 7px 9px;
+    gap: 8px;
+}
+
+.secondary-skills .technology-logo {
+    flex-basis: 25px;
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+}
+
+.secondary-skills .technology-details strong {
+    font-size: 9px;
+}
+
+.secondary-watermark {
+    position: absolute;
+    right: 10px;
+    bottom: -28px;
+    color: rgba(0, 213, 255, 0.035);
+    font-size: 75px;
+    font-weight: 900;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.database-panel .secondary-skills {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.database-panel .secondary-skills .technology-tile {
+    max-width: 220px;
+}
+
+
+/* -----------------------------------------
+   14. CLOSING NOTE
+   ----------------------------------------- */
+
+.skills-bottom-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    margin-top: 34px;
+}
+
+.skills-bottom-note p {
+    margin: 0;
+    color: var(--muted, #c0cce2);
+    font-size: 9px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.note-line {
+    width: 27px;
+    height: 1px;
+    background: rgba(0, 213, 255, 0.4);
+}
+
+.note-bulb {
+    color: var(--cyan, #00d5ff);
+    font-size: 13px;
+}
+
+
+/* -----------------------------------------
+   15. ANIMATIONS
+   ----------------------------------------- */
+
+@keyframes computerFloat {
+
+    0%,
+    100% {
+        margin-top: 0;
+    }
+
+    50% {
+        margin-top: -7px;
+    }
+}
+
+@keyframes solarGlow {
+
+    0%,
+    100% {
+        opacity: 0.55;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.12);
+    }
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    45% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* -----------------------------------------
+   16. LIGHT THEME
+   ----------------------------------------- */
+
+body.light-theme .skills-hero-content h1,
+body.light-theme .showcase-heading h2,
+body.light-theme .panel-info h3,
+body.light-theme .secondary-panel-info h3,
+body.light-theme .technology-details strong,
+body.light-theme .explore-link {
+    color: #172744;
+}
+
+body.light-theme .skills-hero-content>p,
+body.light-theme .panel-info p,
+body.light-theme .secondary-panel-info p,
+body.light-theme .skills-bottom-note p {
+    color: #64748b;
+}
+
+body.light-theme .skill-panel {
+    border-color: rgba(65, 91, 140, 0.2);
+
+    background: linear-gradient(125deg,
+            rgba(255, 255, 255, 0.97),
+            rgba(237, 245, 255, 0.97));
+
+    box-shadow: 0 12px 35px rgba(37, 65, 115, 0.07);
+}
+
+body.light-theme .skill-panel:hover {
+    border-color: rgba(0, 145, 205, 0.48);
+    box-shadow: 0 16px 35px rgba(37, 65, 115, 0.12);
+}
+
+body.light-theme .technology-tile {
+    border-color: rgba(65, 91, 140, 0.13);
+    background: rgba(225, 237, 252, 0.58);
+}
+
+body.light-theme .technology-tile:hover {
+    border-color: rgba(0, 145, 205, 0.4);
+    background: rgba(0, 165, 210, 0.07);
+}
+
+body.light-theme .technology-details small {
+    color: #64748b;
+}
+
+body.light-theme .technology-logo {
+    background: rgba(50, 80, 125, 0.07);
+}
+
+body.light-theme .orbit-ring {
+    border-color: rgba(0, 145, 205, 0.22);
+}
+
+body.light-theme .orbit-planet {
+    border-color: rgba(0, 145, 205, 0.3);
+
+    background: linear-gradient(145deg,
+            #ffffff,
+            #eaf4ff);
+
+    box-shadow: 0 5px 18px rgba(37, 65, 115, 0.1);
+}
+
+body.light-theme .planet-name {
+    color: #172744;
+}
+
+body.light-theme .planet-symbol {
+    background: rgba(45, 75, 120, 0.07);
+}
+
+body.light-theme .computer-screen {
+    background: linear-gradient(145deg,
+            #153e63,
+            #071c38);
+}
+
+
+/* -----------------------------------------
+   17. TABLET RESPONSIVENESS
+   ----------------------------------------- */
+
+@media (max-width: 991.98px) {
+
+    .skills-container {
+        width: min(860px, calc(100% - 42px));
+    }
+
+    .skills-hero {
+        padding: 65px 0 48px;
+    }
+
+    .skills-hero-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.85fr);
+        gap: 25px;
+    }
+
+    .skills-hero-content h1 {
+        font-size: clamp(42px, 6vw, 58px);
+    }
+
+    .skills-visual {
+        max-width: 350px;
+    }
+
+    .tech-solar-system {
+        --inner-radius: 72px;
+        --middle-radius: 105px;
+        --outer-radius: 145px;
+    }
+
+    .orbit-node {
+        width: 60px;
+        height: 58px;
+    }
+
+    .computer-core {
+        transform: translate(-50%, -50%) scale(0.88);
+    }
+
+    .programming-panel {
+        grid-template-columns: 0.72fr 1.28fr;
+        gap: 22px;
+        padding: 24px;
+    }
+
+    .secondary-panel {
+        padding: 18px;
+    }
+}
+
+
+/* -----------------------------------------
+   18. MOBILE RESPONSIVENESS
+   ----------------------------------------- */
+
+@media (max-width: 767.98px) {
+
+    .skills-container {
+        width: min(540px, calc(100% - 36px));
+    }
+
+    .skills-hero {
+        padding: 48px 0 35px;
+    }
+
+    .skills-hero-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+
+    .skills-hero-content {
+        text-align: center;
+    }
+
+    .skills-eyebrow {
+        justify-content: center;
+        margin-bottom: 15px;
+        font-size: 9px;
+    }
+
+    .skills-hero-content h1 {
+        font-size: clamp(43px, 11vw, 58px);
+        letter-spacing: -2.5px;
+    }
+
+    .skills-hero-content>p {
+        max-width: 390px;
+        margin: 15px auto 0;
+        font-size: 11px;
+    }
+
+    .explore-link {
+        margin-top: 20px;
+        font-size: 10px;
+    }
+
+    .skills-visual {
+        width: min(310px, 86vw);
+        max-width: 310px;
+        margin: 7px auto 0;
+    }
+
+    .tech-solar-system {
+        --inner-radius: 72px;
+        --middle-radius: 94px;
+        --outer-radius: 117px;
+    }
+
+    .orbit-node {
+        width: 58px;
+        height: 56px;
+    }
+
+    .orbit-planet {
+        border-radius: 12px;
+    }
+
+    .planet-symbol {
+        width: 25px;
+        height: 25px;
+        font-size: 13px;
+    }
+
+    .planet-name {
+        font-size: 7px;
+    }
+
+    .computer-core {
+        width: 110px;
+        height: 100px;
+        transform: translate(-50%, -50%) scale(0.86);
+    }
+
+    .visual-caption {
+        bottom: -5px;
+        font-size: 7px;
+    }
+
+
+    /* Showcase */
+
+    .skills-showcase {
+        padding: 25px 0 48px;
+    }
+
+    .showcase-heading {
+        margin-bottom: 19px;
+    }
+
+    .showcase-heading h2 {
+        font-size: 23px;
+    }
+
+    .section-kicker {
+        font-size: 8px;
+    }
+
+    .showcase-decoration {
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+    }
+
+
+    /* Programming panel */
+
+    .programming-panel {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+        padding: 21px 19px;
+        margin-bottom: 13px;
+    }
+
+    .panel-info .panel-index {
+        right: 0;
+    }
+
+    .panel-info .panel-kicker {
+        margin-top: 14px;
+    }
+
+    .panel-info h3 {
+        font-size: 20px;
+    }
+
+    .panel-info p {
+        max-width: 350px;
+        font-size: 10px;
+    }
+
+    .panel-watermark {
+        right: 0;
+        bottom: -27px;
+        font-size: 75px;
+    }
+
+    .programming-skills {
+        gap: 8px;
+    }
+
+    .technology-tile {
+        min-height: 50px;
+        padding: 8px 10px;
+        gap: 9px;
+    }
+
+    .technology-logo {
+        flex-basis: 28px;
+        width: 28px;
+        height: 28px;
+    }
+
+    .technology-details strong {
+        font-size: 10px;
+    }
+
+
+    /* Secondary panels */
+
+    .secondary-panels {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 13px;
+    }
+
+    .secondary-panel {
+        min-height: auto;
+        padding: 19px;
+    }
+
+    .secondary-panel-info {
+        margin-top: 13px;
+    }
+
+    .secondary-panel-info h3 {
+        font-size: 17px;
+    }
+
+    .secondary-panel-info p {
+        font-size: 10px;
+    }
+
+    .secondary-skills {
+        margin-top: 13px;
+    }
+
+    .secondary-skills .technology-tile {
+        min-height: 47px;
+    }
+
+    .database-panel .secondary-skills .technology-tile {
+        max-width: 100%;
+    }
+
+    .secondary-watermark {
+        font-size: 60px;
+    }
+
+
+    /* Closing note */
+
+    .skills-bottom-note {
+        gap: 9px;
+        margin-top: 27px;
+    }
+
+    .skills-bottom-note p {
+        max-width: 250px;
+        font-size: 8px;
+    }
+
+    .note-line {
+        width: 17px;
+    }
+
+}
+
+
+/* -----------------------------------------
+   19. SMALL MOBILE DEVICES
+   ----------------------------------------- */
+
+@media (max-width: 380px) {
+
+    .skills-container {
+        width: calc(100% - 28px);
+    }
+
+    .skills-hero {
+        padding-top: 40px;
+    }
+
+    .skills-hero-content h1 {
+        font-size: 41px;
+    }
+
+    .skills-visual {
+        width: 270px;
+    }
+
+    .tech-solar-system {
+        --inner-radius: 66px;
+        --middle-radius: 84px;
+        --outer-radius: 105px;
+    }
+
+    .orbit-node {
+        width: 54px;
+        height: 52px;
+    }
+
+    .computer-core {
+        transform: translate(-50%, -50%) scale(0.78);
+    }
+
+    .programming-panel {
+        padding: 18px 15px;
+    }
+
+    .programming-skills {
+        gap: 7px;
+    }
+
+    .technology-tile {
+        padding: 7px 8px;
+        gap: 7px;
+    }
+
+    .technology-details strong {
+        font-size: 9px;
+    }
+
+    .secondary-panel {
+        padding: 17px 15px;
+    }
+
+}
+
+
+/* -----------------------------------------
+   20. SCROLL REVEAL
+   ----------------------------------------- */
+
+/*
+   Content remains visible when JavaScript is
+   unavailable. The hidden state is enabled
+   only after the JS adds the .js class.
+*/
+
+.js .skills-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.js .skills-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.programming-panel.skills-reveal {
+    transition-delay: 0.08s;
+}
+
+.secondary-panels .skills-reveal:nth-child(2) {
+    transition-delay: 0.12s;
+}
+
+.skills-bottom-note.skills-reveal {
+    transition-delay: 0.08s;
+}
+
+
+/* -----------------------------------------
+   21. REDUCED MOTION ACCESSIBILITY
+   ----------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .solar-glow,
+    .computer-core,
+    .computer-cursor {
+        animation: none !important;
+    }
+
+    .js .skills-reveal,
+    .js .skills-reveal.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .skill-panel,
+    .technology-tile,
+    .technology-tile::after,
+    .explore-icon,
+    .orbit-planet {
+        transition: none !important;
+    }
+
+}
+
+
+/* =========================================
+   SKILLS PAGE - ROUND SOLAR SYSTEM PLANETS
+   Append this at the very bottom of skills.css
+   ========================================= */
+
+
+/* -----------------------------------------
+   1. ORBIT SIZING
+   ----------------------------------------- */
+
+.tech-solar-system {
+    --inner-radius: 92px;
+    --middle-radius: 135px;
+    --outer-radius: 180px;
+}
+
+
+/* -----------------------------------------
+   2. PLANET POSITIONING
+   ----------------------------------------- */
+
+.orbit-node {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 60px;
+    height: 60px;
+
+    /*
+       JavaScript changes these two variables
+       to move each planet around the computer.
+    */
+    transform:
+        translate(-50%, -50%) translate3d(var(--planet-x, 0px),
+            var(--planet-y, 0px),
+            0);
+
+    will-change: transform;
+    pointer-events: auto;
+}
+
+
+/* -----------------------------------------
+   3. ROUND PLANET DESIGN
+   ----------------------------------------- */
+
+.orbit-planet {
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    border-radius: 50%;
+
+    border: 1px solid rgba(87, 210, 255, 0.7);
+
+    background:
+        radial-gradient(circle at 30% 24%,
+            rgba(123, 225, 255, 0.85) 0%,
+            rgba(30, 125, 190, 0.78) 12%,
+            rgba(12, 65, 112, 0.98) 38%,
+            rgba(4, 28, 57, 1) 76%,
+            rgba(2, 14, 34, 1) 100%);
+
+    box-shadow:
+        inset -9px -10px 16px rgba(0, 0, 0, 0.45),
+        inset 4px 4px 10px rgba(125, 220, 255, 0.14),
+        0 0 0 3px rgba(0, 174, 255, 0.055),
+        0 0 17px rgba(0, 174, 255, 0.17);
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Planet surface reflection */
+
+.orbit-planet::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    top: 8%;
+    left: 13%;
+
+    width: 52%;
+    height: 25%;
+
+    border-radius: 50%;
+
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.28),
+            rgba(255, 255, 255, 0.015));
+
+    filter: blur(3px);
+    transform: rotate(-27deg);
+}
+
+
+/* Subtle planet surface texture */
+
+.orbit-planet::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    right: -17%;
+    bottom: 5%;
+
+    width: 78%;
+    height: 42%;
+
+    border: 1px solid rgba(126, 215, 255, 0.12);
+    border-radius: 50%;
+
+    transform: rotate(-30deg);
+}
+
+
+/* Hover highlight */
+
+.orbit-planet:hover {
+    border-color: #8ceaff;
+
+    box-shadow:
+        inset -9px -10px 16px rgba(0, 0, 0, 0.4),
+        inset 4px 4px 10px rgba(125, 220, 255, 0.2),
+        0 0 0 4px rgba(0, 213, 255, 0.09),
+        0 0 25px rgba(0, 213, 255, 0.35);
+}
+
+
+/* -----------------------------------------
+   4. TECHNOLOGY SYMBOLS
+   ----------------------------------------- */
+
+.planet-symbol {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    place-items: center;
+
+    width: auto;
+    height: auto;
+
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 900;
+}
+
+
+/* Technology-specific colours */
+
+.java-planet {
+    color: #ff9b77;
+    font-family: Georgia, serif;
+    font-size: 25px;
+
+    text-shadow: 0 0 10px rgba(255, 149, 110, 0.5);
+}
+
+.php-planet {
+    color: #c0caff;
+    font-size: 12px;
+    font-style: italic;
+
+    text-shadow: 0 0 9px rgba(174, 190, 255, 0.4);
+}
+
+.python-planet {
+    color: #ffdf83;
+
+    text-shadow: 0 0 10px rgba(255, 212, 107, 0.4);
+}
+
+.html-planet {
+    color: #ff9a7a;
+    font-size: 24px;
+
+    text-shadow: 0 0 10px rgba(255, 149, 110, 0.4);
+}
+
+.css-planet {
+    color: #8ccaff;
+
+    text-shadow: 0 0 10px rgba(121, 186, 255, 0.4);
+}
+
+.mysql-planet {
+    color: #85e3ff;
+
+    text-shadow: 0 0 10px rgba(117, 212, 255, 0.4);
+}
+
+.c-planet {
+    color: #a1d3ff;
+    font-size: 23px;
+
+    text-shadow: 0 0 10px rgba(139, 198, 255, 0.4);
+}
+
+
+/* -----------------------------------------
+   5. TECHNOLOGY NAME INSIDE THE PLANET
+   ----------------------------------------- */
+
+.planet-name {
+    position: relative;
+    z-index: 2;
+
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 8px;
+    line-height: 1;
+
+    font-weight: 800;
+    letter-spacing: 0.25px;
+
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    white-space: nowrap;
+}
+
+
+/* -----------------------------------------
+   6. LIGHT THEME
+   ----------------------------------------- */
+
+body.light-theme .orbit-planet {
+    border-color: rgba(0, 165, 220, 0.7);
+
+    background:
+        radial-gradient(circle at 30% 24%,
+            #c8f3ff 0%,
+            #69c7ed 17%,
+            #2185bb 48%,
+            #10517d 78%,
+            #073052 100%);
+
+    box-shadow:
+        inset -9px -10px 16px rgba(0, 0, 0, 0.3),
+        inset 4px 4px 10px rgba(255, 255, 255, 0.18),
+        0 0 0 3px rgba(0, 145, 205, 0.06),
+        0 0 17px rgba(0, 145, 205, 0.15);
+}
+
+body.light-theme .planet-name {
+    color: #ffffff;
+}
+
+
+/* -----------------------------------------
+   7. TABLET
+   ----------------------------------------- */
+
+@media (max-width: 991.98px) {
+
+    .tech-solar-system {
+        --inner-radius: 82px;
+        --middle-radius: 114px;
+        --outer-radius: 146px;
+    }
+
+    .orbit-node {
+        width: 54px;
+        height: 54px;
+    }
+
+    .planet-symbol {
+        font-size: 18px;
+    }
+
+    .java-planet,
+    .c-planet {
+        font-size: 22px;
+    }
+
+    .html-planet {
+        font-size: 21px;
+    }
+
+}
+
+
+/* -----------------------------------------
+   8. MOBILE
+   ----------------------------------------- */
+
+@media (max-width: 767.98px) {
+
+    .tech-solar-system {
+        --inner-radius: 72px;
+        --middle-radius: 98px;
+        --outer-radius: 124px;
+
+        width: min(310px, 86vw);
+        max-width: 310px;
+    }
+
+    .orbit-node {
+        width: 44px;
+        height: 44px;
+    }
+
+    .planet-symbol {
+        font-size: 16px;
+    }
+
+    .java-planet,
+    .c-planet {
+        font-size: 19px;
+    }
+
+    .html-planet {
+        font-size: 18px;
+    }
+
+    .php-planet {
+        font-size: 10px;
+    }
+
+    .planet-name {
+        font-size: 6.5px;
+    }
+
+    .computer-core {
+        transform: translate(-50%, -50%) scale(0.78);
+    }
+
+}
+
+
+/* -----------------------------------------
+   9. SMALL MOBILE
+   ----------------------------------------- */
+
+@media (max-width: 380px) {
+
+    .tech-solar-system {
+        --inner-radius: 64px;
+        --middle-radius: 84px;
+        --outer-radius: 105px;
+
+        width: 270px;
+    }
+
+    .orbit-node {
+        width: 42px;
+        height: 42px;
+    }
+
+    .planet-symbol {
+        font-size: 15px;
+    }
+
+    .java-planet,
+    .c-planet {
+        font-size: 18px;
+    }
+
+    .planet-name {
+        font-size: 6px;
+    }
+
+    .computer-core {
+        transform: translate(-50%, -50%) scale(0.70);
+    }
+
+}
