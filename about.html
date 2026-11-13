@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="About Nithin Laiju — MCA student, BCA graduate and computer science enthusiast.">
+    <meta name="theme-color" content="#020b20">
+    <title>About Me | CARVE — Nithin Laiju</title>
+
+    <!-- Shared libraries and typography used by the CARVE homepage -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Keep the existing homepage stylesheet unchanged. -->
+    <link rel="stylesheet" href="Assets/css/style.css">
+    <!-- Complete About page stylesheet. -->
+    <link rel="stylesheet" href="Assets/css/about.css">
+    <script src="Assets/js/about.js" defer></script>
+</head>
+
+<body>
+    <!-- Shared CARVE header; About Me is the active page. -->
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid site-container">
+                <a class="navbar-brand brand-lockup" href="index.html" aria-label="CARVE home">
+                    <span class="brand-mark">C</span><span class="brand-name">CARVE</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation"
+                    aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNavigation">
+                    <ul class="navbar-nav mx-auto align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="about.html" aria-current="page">About
+                                Me</a></li>
+                        <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
+                        <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="certificates.html">Certificates</a></li>
+                        <li class="nav-item"><a class="nav-link" href="achievements.html">Achievements</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact Me</a></li>
+                    </ul>
+
+                    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme"
+                        title="Switch colour theme" aria-pressed="false">
+                        <i class="bi bi-sun-fill sun-icon" aria-hidden="true"></i>
+                        <i class="bi bi-moon-stars-fill moon-icon" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="about-page-main">
+        <section class="about-page-section" aria-labelledby="about-title">
+            <div class="about-page-glow about-page-glow-one" aria-hidden="true"></div>
+            <div class="about-page-glow about-page-glow-two" aria-hidden="true"></div>
+
+            <div class="container-fluid site-container about-page-container">
+                <div class="about-page-layout">
+                    <div class="about-page-copy about-reveal">
+                        <div class="about-eyebrow">
+                            <span class="about-eyebrow-line" aria-hidden="true"></span>
+                            <span>GET TO KNOW ME</span>
+                        </div>
+
+                        <h1 id="about-title">A Little About <span>Me.</span></h1>
+                        <p class="about-lead">Hello, I'm <strong>Nithin Laiju.</strong></p>
+                        <p class="about-role">
+                            MCA Student <span aria-hidden="true"></span>
+                            BCA Graduate <span aria-hidden="true"></span>
+                            Computer Science Enthusiast
+                        </p>
+
+                        <div class="about-summary">
+                            <p>
+                                I'm a computer science student with a genuine interest in technology and the ideas
+                                behind it.
+                                I enjoy exploring how things work, learning new concepts and finding thoughtful ways to
+                                solve problems.
+                            </p>
+                            <p>
+                                My journey from BCA to MCA has encouraged me to keep learning, experiment with different
+                                areas of
+                                computing and grow through every experience. I'm always curious about what I can
+                                discover and create next.
+                            </p>
+                        </div>
+
+                        <div class="about-signature-row">
+                            <span class="about-signature-mark">NL</span>
+                            <span class="about-signature-caption">Curious by nature. Always learning.</span>
+                        </div>
+                    </div>
+
+                    <!-- Simple rounded-rectangle portrait; no arch or floating label. -->
+                    <div class="about-page-portrait about-reveal about-reveal-delay">
+                        <div class="portrait-aura" aria-hidden="true"></div>
+                        <div class="portrait-frame">
+                            <div class="portrait-frame-inner">
+                                <img src="Assets/images/profilephoto.jpg" alt="Portrait of Nithin Laiju"
+                                    class="about-profile-photo" loading="eager" decoding="async">
+                            </div>
+                        </div>
+                        <span class="portrait-spark portrait-spark-one" aria-hidden="true">✦</span>
+                        <span class="portrait-spark portrait-spark-two" aria-hidden="true">✧</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-bottom-line" aria-hidden="true"></div>
+        </section>
+    </main>
+
+    <!-- Shared CARVE footer. Keep its markup consistent with index.html. -->
+    <footer class="site-footer">
+        <div class="container-fluid site-container footer-inner">
+            <a class="footer-brand" href="index.html">
+                <span class="brand-mark">C</span>
+                <span><strong>CARVE</strong><small>Dream&nbsp; • &nbsp;Design&nbsp; • &nbsp;Develop</small></span>
+            </a>
+
+            <div class="footer-connect">
+                <p>Let's Connect</p>
+                <div class="social-links">
+                    <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub"><i
+                            class="bi bi-github"></i></a>
+                    <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i
+                            class="bi bi-linkedin"></i></a>
+                    <a href="mailto:your.email@example.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                <p>© <span id="currentYear">2026</span> Carve. All rights reserved.</p>
+                <p>Crafted with <i class="bi bi-heart-fill"></i> by Nithin Laiju</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

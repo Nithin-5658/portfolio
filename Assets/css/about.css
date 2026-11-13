@@ -1,0 +1,551 @@
+/* =====================================================
+   CARVE | ABOUT ME PAGE
+   Page-specific stylesheet.
+   Shared header, footer and theme variables come from
+   Assets/css/style.css. Keep that homepage file unchanged.
+   ===================================================== */
+
+:root {
+    --about-cyan: #00d5ff;
+    --about-blue: #087bff;
+    --about-text: #f2f6ff;
+    --about-muted: #c0cce2;
+    --about-bg: #020b20;
+}
+
+.about-page-main {
+    min-height: calc(100vh - 190px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    background:
+        radial-gradient(ellipse at 78% 48%, rgba(0, 91, 220, .14), transparent 40%),
+        radial-gradient(ellipse at 12% 12%, rgba(0, 183, 255, .06), transparent 32%),
+        var(--bg, var(--about-bg));
+}
+
+.about-page-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 690px;
+    padding: clamp(58px, 7vw, 88px) 0;
+    overflow: hidden;
+}
+
+.about-page-container {
+    position: relative;
+    z-index: 2;
+}
+
+.about-page-layout {
+    width: min(100%, 1210px);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(300px, .78fr);
+    align-items: center;
+    gap: clamp(42px, 7vw, 105px);
+}
+
+/* -------------------- TEXT CONTENT -------------------- */
+.about-page-copy {
+    width: 100%;
+    max-width: 660px;
+    padding: 8px 0;
+}
+
+.about-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 20px;
+    color: var(--about-cyan);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .23em;
+}
+
+.about-eyebrow-line {
+    width: 30px;
+    height: 2px;
+    display: inline-block;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--about-blue), var(--about-cyan));
+    box-shadow: 0 0 13px rgba(0, 191, 255, .55);
+}
+
+.about-page-copy h1 {
+    margin: 0 0 23px;
+    color: var(--text, var(--about-text));
+    font-size: clamp(43px, 5.2vw, 68px);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -.065em;
+}
+
+.about-page-copy h1 span {
+    display: inline-block;
+    color: transparent;
+    background: linear-gradient(105deg, #139cff 0%, var(--about-cyan) 75%, #62e7ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.about-lead {
+    margin: 0 0 7px;
+    color: var(--text, var(--about-text));
+    font-size: clamp(20px, 2vw, 25px);
+    font-weight: 650;
+    letter-spacing: -.025em;
+}
+
+.about-lead strong {
+    color: #31baff;
+    font-weight: 800;
+}
+
+.about-role {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 27px;
+    color: var(--about-cyan);
+    font-size: 12px;
+    font-weight: 650;
+    line-height: 1.8;
+}
+
+.about-role span {
+    width: 4px;
+    height: 4px;
+    flex: 0 0 4px;
+    border-radius: 50%;
+    background: var(--about-blue);
+    box-shadow: 0 0 8px rgba(0, 184, 255, .8);
+}
+
+.about-summary {
+    max-width: 600px;
+    padding-left: 19px;
+    border-left: 2px solid rgba(0, 176, 255, .68);
+}
+
+.about-summary p {
+    margin: 0 0 14px;
+    color: var(--muted, var(--about-muted));
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.about-summary p:last-child {
+    margin-bottom: 0;
+}
+
+.about-signature-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.about-signature-mark {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(0, 175, 255, .58);
+    border-radius: 12px;
+    color: #8eeaff;
+    background: linear-gradient(145deg, rgba(0, 119, 255, .2), rgba(0, 205, 255, .07));
+    box-shadow: 0 0 17px rgba(0, 132, 255, .12);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.about-signature-caption {
+    color: var(--muted, var(--about-muted));
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .025em;
+}
+
+/* -------------------- PORTRAIT -------------------- */
+.about-page-portrait {
+    position: relative;
+    isolation: isolate;
+    justify-self: center;
+    width: min(100%, 405px);
+    padding: 12px;
+    perspective: 1000px;
+}
+
+.portrait-aura {
+    position: absolute;
+    z-index: -1;
+    inset: 9% 5% 4%;
+    border-radius: 30px;
+    background: radial-gradient(ellipse, rgba(0, 112, 255, .35), rgba(0, 184, 255, .11) 55%, transparent 78%);
+    filter: blur(34px);
+    animation: portraitAura 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.portrait-frame {
+    position: relative;
+    width: 100%;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 27px;
+    background: linear-gradient(135deg, #00d5ff, #087bff 42%, #5968dc 72%, #00d5ff);
+    background-size: 250% 250%;
+    box-shadow:
+        0 0 0 1px rgba(0, 190, 255, .2),
+        0 20px 52px rgba(0, 0, 0, .32),
+        0 0 36px rgba(0, 122, 255, .2);
+    animation: portraitBorderFlow 9s ease infinite;
+    transition: transform .45s ease, box-shadow .45s ease;
+}
+
+.portrait-frame-inner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 22px;
+    background: #07172f;
+}
+
+.about-profile-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 12%;
+    filter: saturate(.98) contrast(1.03);
+    transform: scale(1.001);
+    transition: transform .85s cubic-bezier(.2, .7, .2, 1), filter .85s ease;
+}
+
+.about-page-portrait:hover .portrait-frame {
+    transform: translateY(-5px) rotateX(1deg);
+    box-shadow:
+        0 0 0 1px rgba(0, 190, 255, .28),
+        0 25px 58px rgba(0, 0, 0, .35),
+        0 0 48px rgba(0, 155, 255, .28);
+}
+
+.about-page-portrait:hover .about-profile-photo {
+    transform: scale(1.055);
+    filter: saturate(1.08) contrast(1.04);
+}
+
+.portrait-spark {
+    position: absolute;
+    z-index: 2;
+    color: #59dfff;
+    text-shadow: 0 0 13px rgba(0, 174, 255, .85);
+    pointer-events: none;
+    animation: portraitSpark 3.4s ease-in-out infinite;
+}
+
+.portrait-spark-one {
+    top: 5%;
+    right: -1%;
+    font-size: 19px;
+}
+
+.portrait-spark-two {
+    bottom: 13%;
+    left: -1%;
+    font-size: 17px;
+    animation-delay: .9s;
+}
+
+/* Background decoration */
+.about-page-glow {
+    position: absolute;
+    z-index: 0;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    filter: blur(78px);
+    pointer-events: none;
+}
+
+.about-page-glow-one {
+    top: 5%;
+    right: -160px;
+    background: rgba(0, 88, 255, .13);
+}
+
+.about-page-glow-two {
+    bottom: -220px;
+    left: 12%;
+    background: rgba(0, 194, 255, .07);
+}
+
+.about-bottom-line {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 125, 255, .55), rgba(0, 213, 255, .75), transparent);
+    box-shadow: 0 0 16px rgba(0, 129, 255, .2);
+}
+
+/* -------------------- ENTRANCE ANIMATIONS -------------------- */
+.about-reveal {
+    opacity: 0;
+    animation: aboutEnter .8s cubic-bezier(.2, .7, .2, 1) .08s both;
+}
+
+.about-reveal-delay {
+    animation-delay: .25s;
+}
+
+.about-page-copy>.about-eyebrow {
+    animation-delay: .12s;
+}
+
+.about-page-copy>h1 {
+    animation-delay: .24s;
+}
+
+.about-page-copy>.about-lead {
+    animation-delay: .36s;
+}
+
+.about-page-copy>.about-role {
+    animation-delay: .46s;
+}
+
+.about-page-copy>.about-summary {
+    animation-delay: .58s;
+}
+
+.about-page-copy>.about-signature-row {
+    animation-delay: .7s;
+}
+
+@keyframes aboutEnter {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes portraitAura {
+
+    0%,
+    100% {
+        opacity: .68;
+        transform: scale(.96);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.04);
+    }
+}
+
+@keyframes portraitBorderFlow {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes portraitSpark {
+
+    0%,
+    100% {
+        opacity: .42;
+        transform: scale(.86) translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.12) translateY(-5px);
+    }
+}
+
+/* -------------------- LIGHT THEME -------------------- */
+body.light-theme .about-page-main {
+    background:
+        radial-gradient(ellipse at 78% 48%, rgba(0, 91, 220, .1), transparent 40%),
+        radial-gradient(ellipse at 12% 12%, rgba(0, 183, 255, .07), transparent 32%),
+        #edf4ff;
+}
+
+body.light-theme .about-page-copy h1,
+body.light-theme .about-lead {
+    color: #102342;
+}
+
+body.light-theme .about-summary p,
+body.light-theme .about-signature-caption {
+    color: #52647e;
+}
+
+body.light-theme .portrait-frame {
+    box-shadow:
+        0 0 0 1px rgba(0, 120, 255, .15),
+        0 20px 48px rgba(35, 75, 130, .16),
+        0 0 30px rgba(0, 122, 255, .12);
+}
+
+/* -------------------- TABLET -------------------- */
+@media (max-width: 991.98px) {
+    .about-page-section {
+        min-height: 0;
+        padding: 68px 0 74px;
+    }
+
+    .about-page-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(260px, .78fr);
+        gap: clamp(28px, 4vw, 48px);
+    }
+
+    .about-page-copy h1 {
+        font-size: clamp(39px, 5.2vw, 55px);
+    }
+
+    .about-page-portrait {
+        width: min(100%, 340px);
+    }
+
+    .about-summary p {
+        font-size: 13px;
+        line-height: 1.85;
+    }
+}
+
+/* -------------------- MOBILE -------------------- */
+@media (max-width: 767.98px) {
+    .about-page-main {
+        min-height: auto;
+    }
+
+    .about-page-section {
+        min-height: 0;
+        padding: 42px 0 58px;
+    }
+
+    .about-page-layout {
+        width: min(100%, 560px);
+        grid-template-columns: minmax(0, 1fr);
+        gap: 30px;
+    }
+
+    .about-page-portrait {
+        grid-row: 1;
+        width: min(76%, 310px);
+        padding: 8px;
+    }
+
+    .about-page-copy {
+        grid-row: 2;
+        max-width: none;
+        padding: 0;
+    }
+
+    .about-eyebrow {
+        margin-bottom: 15px;
+        font-size: 10px;
+    }
+
+    .about-page-copy h1 {
+        margin-bottom: 17px;
+        font-size: clamp(38px, 8.5vw, 52px);
+    }
+
+    .about-lead {
+        font-size: 21px;
+    }
+
+    .about-role {
+        margin-bottom: 20px;
+        font-size: 11px;
+    }
+
+    .about-summary {
+        padding-left: 15px;
+    }
+
+    .about-summary p {
+        font-size: 13px;
+        line-height: 1.85;
+    }
+
+    .about-signature-row {
+        margin-top: 22px;
+    }
+}
+
+@media (max-width: 420px) {
+    .about-page-section {
+        padding: 34px 0 48px;
+    }
+
+    .about-page-layout {
+        gap: 25px;
+    }
+
+    .about-page-portrait {
+        width: min(82%, 275px);
+    }
+
+    .about-page-copy h1 {
+        font-size: 37px;
+    }
+
+    .about-lead {
+        font-size: 19px;
+    }
+
+    .about-role {
+        gap: 7px;
+        font-size: 10px;
+    }
+
+    .about-summary p {
+        font-size: 12.5px;
+    }
+
+    .about-signature-caption {
+        font-size: 10px;
+    }
+}
+
+/* Accessibility: disable decorative movement when requested. */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    .about-reveal {
+        opacity: 1;
+    }
+}
