@@ -1,0 +1,2808 @@
+/* ==========================================================
+   CARVE - CERTIFICATES PAGE
+
+   Restored hero + corrected PDF rendering.
+   Three-column desktop gallery.
+   Responsive document viewer.
+
+   Shared header/footer remain in style.css.
+   ========================================================== */
+
+:root {
+    --credential-cyan: #00d5ff;
+    --credential-blue: #087bff;
+    --credential-text: #f2f6ff;
+    --credential-muted: #bdcbe1;
+    --credential-bg: #020b20;
+}
+
+
+/* ==========================================================
+   1. MAIN BACKGROUND
+   ========================================================== */
+
+.credentials-main {
+    position: relative;
+    min-height: calc(100vh - 190px);
+    overflow: hidden;
+    background: var(--credential-bg);
+}
+
+.credentials-section {
+    position: relative;
+    isolation: isolate;
+
+    min-height: 650px;
+
+    padding: 0 0 65px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(ellipse at 84% 5%,
+            rgba(0, 91, 220, .15),
+            transparent 34%),
+        radial-gradient(ellipse at 5% 45%,
+            rgba(0, 190, 255, .05),
+            transparent 35%),
+        linear-gradient(180deg,
+            #020b20,
+            #03112b 55%,
+            #020b20);
+}
+
+.credentials-container {
+    position: relative;
+    z-index: 2;
+
+    width: min(calc(100% - 100px), 1440px);
+    max-width: 1440px;
+
+    margin-inline: auto;
+}
+
+.credentials-glow {
+    position: absolute;
+    z-index: -1;
+
+    width: 390px;
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+    filter: blur(105px);
+
+    pointer-events: none;
+}
+
+.credentials-glow-one {
+    top: -200px;
+    right: -180px;
+
+    background: rgba(0, 105, 255, .17);
+}
+
+.credentials-glow-two {
+    bottom: 5%;
+    left: -260px;
+
+    background: rgba(0, 196, 255, .08);
+}
+
+.credentials-grid-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    opacity: .07;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(rgba(65, 148, 255, .07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(65, 148, 255, .07) 1px, transparent 1px);
+
+    background-size: 61px 61px;
+
+    mask-image: linear-gradient(180deg,
+            #000,
+            transparent 85%);
+}
+
+
+/* ==========================================================
+   2. RESTORED HERO SECTION
+   Original design and artwork retained.
+   ========================================================== */
+
+.credentials-hero {
+    position: relative;
+
+    width: min(100%, 1290px);
+    min-height: 355px;
+
+    margin: 0 auto 18px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.5fr) minmax(285px, .65fr);
+
+    align-items: center;
+
+    gap: clamp(30px, 5vw, 75px);
+
+    padding: 35px 0 39px;
+}
+
+.credentials-hero-copy {
+    position: relative;
+    z-index: 3;
+    min-width: 0;
+}
+
+.credentials-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+
+    margin-bottom: 20px;
+
+    color: var(--credential-cyan);
+
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: .19em;
+}
+
+.credentials-eyebrow-line {
+    width: 29px;
+    height: 2px;
+    flex: 0 0 29px;
+
+    border-radius: 5px;
+
+    background: linear-gradient(90deg,
+            var(--credential-blue),
+            var(--credential-cyan));
+
+    box-shadow: 0 0 12px rgba(0, 191, 255, .5);
+}
+
+.credentials-hero h1 {
+    margin: 0;
+
+    color: var(--credential-text);
+
+    font-size: clamp(43px, 5vw, 72px);
+    font-weight: 900;
+    line-height: 1.07;
+    letter-spacing: -.065em;
+}
+
+.credentials-hero h1 span {
+    color: transparent;
+
+    background: linear-gradient(105deg,
+            #139cff,
+            #00d5ff 76%,
+            #62e7ff);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.credentials-intro {
+    max-width: 720px;
+
+    margin: 21px 0 0;
+
+    color: var(--credential-muted);
+
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.credentials-hero-details {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+.credentials-hero-details>span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    min-height: 37px;
+
+    padding: 8px 13px;
+
+    border: 1px solid rgba(0, 174, 255, .23);
+    border-radius: 30px;
+
+    color: #c5d9f3;
+
+    background: rgba(0, 115, 220, .075);
+
+    font-size: 9px;
+    font-weight: 750;
+}
+
+.credentials-hero-details i {
+    color: var(--credential-cyan);
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   3. HERO ARTWORK
+   Original floating document and orbit animations.
+   ========================================================== */
+
+.credentials-art {
+    position: relative;
+
+    justify-self: center;
+
+    width: min(100%, 330px);
+    height: 285px;
+
+    display: grid;
+    place-items: center;
+
+    perspective: 950px;
+    isolation: isolate;
+}
+
+.credentials-art-orbit {
+    position: absolute;
+
+    border: 1px solid rgba(0, 174, 255, .19);
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.orbit-one {
+    width: 225px;
+    height: 225px;
+
+    box-shadow:
+        0 0 0 16px rgba(0, 145, 255, .025),
+        0 0 0 32px rgba(0, 145, 255, .017);
+
+    animation: credentialOrbit 20s linear infinite;
+}
+
+.orbit-two {
+    width: 165px;
+    height: 165px;
+
+    border-style: dashed;
+    border-color: rgba(0, 213, 255, .22);
+
+    animation: credentialOrbitReverse 26s linear infinite;
+}
+
+.credentials-art-document {
+    position: absolute;
+
+    width: 232px;
+    height: 178px;
+
+    border: 1px solid rgba(0, 169, 255, .35);
+    border-radius: 13px;
+
+    background: linear-gradient(145deg,
+            #102d53,
+            #07182f);
+
+    box-shadow: 0 18px 42px rgba(0, 0, 0, .27);
+}
+
+.credentials-art-document>span {
+    display: block;
+
+    width: 60%;
+    height: 3px;
+
+    margin: 12px auto;
+
+    border-radius: 5px;
+
+    background: rgba(140, 189, 232, .22);
+}
+
+.document-back {
+    transform: translate(23px, -9px) rotate(10deg);
+    opacity: .42;
+}
+
+.document-middle {
+    transform: translate(-17px, 7px) rotate(-8deg);
+    opacity: .68;
+}
+
+.document-front {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 15px 16px;
+
+    transform: rotate(-2deg);
+
+    background:
+        radial-gradient(circle at 50% 45%,
+            rgba(0, 151, 255, .15),
+            transparent 62%),
+        linear-gradient(145deg,
+            #102c53,
+            #06172f);
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease;
+}
+
+.credentials-art:hover .document-front {
+    transform: translateY(-7px) rotate(0deg);
+
+    box-shadow:
+        0 24px 55px rgba(0, 0, 0, .38),
+        0 0 28px rgba(0, 155, 255, .16);
+}
+
+.art-document-heading {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 9px;
+
+    color: #abc6e4;
+
+    font-size: 6px;
+    font-weight: 850;
+    letter-spacing: .12em;
+}
+
+.art-emblem {
+    display: grid;
+    place-items: center;
+
+    width: 27px;
+    height: 27px;
+
+    border: 1px solid rgba(0, 213, 255, .35);
+    border-radius: 8px;
+
+    color: var(--credential-cyan);
+    background: rgba(0, 135, 255, .13);
+
+    font-size: 13px;
+}
+
+.art-document-seal {
+    display: grid;
+    place-items: center;
+
+    width: 46px;
+    height: 46px;
+
+    margin-top: 12px;
+
+    border: 1px solid rgba(0, 213, 255, .45);
+    border-radius: 50%;
+
+    color: #67eaff;
+    background: rgba(0, 137, 255, .12);
+
+    font-size: 23px;
+
+    box-shadow: 0 0 21px rgba(0, 155, 255, .14);
+
+    animation: credentialSeal 4s ease-in-out infinite;
+}
+
+.document-front>strong {
+    margin-top: 9px;
+
+    color: #f3f8ff;
+
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: .02em;
+}
+
+.art-document-line {
+    width: 43px;
+    height: 2px;
+
+    margin-top: 5px;
+
+    border-radius: 5px;
+
+    background: var(--credential-cyan);
+}
+
+.document-front>small {
+    margin-top: 6px;
+
+    color: #90abc9;
+
+    font-size: 6px;
+    font-weight: 800;
+    letter-spacing: .14em;
+}
+
+.art-document-footer {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: auto;
+    padding-top: 8px;
+
+    border-top: 1px solid rgba(0, 155, 255, .16);
+
+    color: #7fa8d0;
+
+    font-size: 6px;
+    font-weight: 800;
+    letter-spacing: .1em;
+}
+
+.art-document-footer i {
+    color: var(--credential-cyan);
+    font-size: 12px;
+}
+
+.art-floating-icon {
+    position: absolute;
+    z-index: 3;
+
+    display: grid;
+    place-items: center;
+
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid rgba(0, 178, 255, .35);
+    border-radius: 12px;
+
+    color: #66e5ff;
+    background: #092448;
+
+    font-size: 15px;
+
+    box-shadow: 0 9px 25px rgba(0, 0, 0, .25);
+
+    animation: credentialFloat 4s ease-in-out infinite;
+}
+
+.art-icon-one {
+    top: 29px;
+    right: 17px;
+}
+
+.art-icon-two {
+    bottom: 26px;
+    left: 9px;
+
+    animation-delay: 1.1s;
+}
+
+
+/* ==========================================================
+   4. COLLECTION HEADING
+   Extra space above and wider side margins.
+   ========================================================== */
+
+.credentials-collection-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 22px;
+
+    padding-top: 4px;
+
+    margin-top: 43px;
+    margin-bottom: 23px;
+
+    border-top: 0;
+}
+
+.credentials-section-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--credential-cyan);
+
+    font-size: 8px;
+    font-weight: 850;
+    letter-spacing: .18em;
+}
+
+.credentials-collection-heading h2 {
+    margin: 0;
+
+    color: var(--credential-text);
+
+    font-size: clamp(26px, 3vw, 35px);
+    font-weight: 850;
+    letter-spacing: -.045em;
+}
+
+.credentials-collection-heading h2 span {
+    color: transparent;
+
+    background: linear-gradient(105deg,
+            #139cff,
+            var(--credential-cyan));
+
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.credentials-collection-heading p {
+    margin: 8px 0 0;
+
+    color: #92aeca;
+
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.credentials-total {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 9px 13px;
+
+    border: 1px solid rgba(0, 162, 255, .23);
+    border-radius: 12px;
+
+    background: rgba(0, 105, 210, .07);
+}
+
+.credentials-total>span {
+    color: #93aecb;
+
+    font-size: 7px;
+    font-weight: 850;
+    letter-spacing: .12em;
+}
+
+.credentials-total strong {
+    color: var(--credential-cyan);
+
+    font-size: 22px;
+    font-weight: 850;
+    line-height: 1;
+}
+
+.credentials-total i {
+    color: #48bfff;
+    font-size: 15px;
+}
+
+
+/* ==========================================================
+   5. FILTER BAR
+   Existing filter styling retained.
+   ========================================================== */
+
+.credentials-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 24px;
+    padding: 9px;
+
+    border: 1px solid rgba(75, 133, 190, .18);
+    border-radius: 12px;
+
+    background: rgba(5, 22, 48, .62);
+}
+
+.credential-filter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 34px;
+    padding: 6px 12px;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    color: #b1c6e0;
+    background: transparent;
+
+    font-family: inherit;
+    font-size: 9px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        color .25s ease,
+        background .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
+}
+
+.credential-filter>span {
+    display: grid;
+    place-items: center;
+
+    min-width: 19px;
+    height: 19px;
+
+    padding: 0 4px;
+
+    border-radius: 6px;
+
+    color: #92adcc;
+    background: rgba(110, 162, 216, .1);
+
+    font-size: 7px;
+    font-weight: 850;
+}
+
+.credential-filter:hover {
+    color: #fff;
+
+    background: rgba(0, 125, 255, .09);
+
+    border-color: rgba(0, 184, 255, .23);
+}
+
+.credential-filter.active {
+    color: #fff;
+
+    border-color: rgba(0, 195, 255, .4);
+
+    background: linear-gradient(105deg,
+            rgba(0, 97, 218, .48),
+            rgba(0, 167, 211, .18));
+
+    box-shadow: inset 0 0 14px rgba(0, 153, 255, .07);
+}
+
+.credential-filter.active>span {
+    color: #fff;
+    background: rgba(0, 178, 255, .23);
+}
+
+.credential-filter:focus-visible {
+    outline: 2px solid var(--credential-cyan);
+    outline-offset: 3px;
+}
+
+
+/* ==========================================================
+   6. DOCUMENT COLLECTION HEADING
+   ========================================================== */
+
+.credentials-gallery-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+}
+
+.gallery-heading-title {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    color: #91accb;
+
+    font-size: 8px;
+    font-weight: 850;
+    letter-spacing: .17em;
+}
+
+.gallery-heading-accent {
+    width: 22px;
+    height: 2px;
+
+    border-radius: 4px;
+
+    background: linear-gradient(90deg,
+            var(--credential-blue),
+            var(--credential-cyan));
+
+    box-shadow: 0 0 9px rgba(0, 213, 255, .4);
+}
+
+.gallery-heading-note {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: #7e9cbd;
+
+    font-size: 8px;
+    font-weight: 600;
+}
+
+.gallery-heading-note i {
+    color: var(--credential-cyan);
+}
+
+
+/* ==========================================================
+   7. CERTIFICATE GALLERY
+   THREE DESKTOP COLUMNS
+   ========================================================== */
+
+.credentials-gallery {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    align-items: start;
+
+    gap: 30px 25px;
+}
+
+.credential-item {
+    --provider-accent: #00d5ff;
+    --provider-soft: rgba(0, 213, 255, .1);
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+
+    opacity: 1;
+    transform: translateY(0);
+
+    transition:
+        transform .38s cubic-bezier(.2, .7, .2, 1);
+}
+
+.credential-item[hidden] {
+    display: none !important;
+}
+
+.credential-item:hover {
+    transform: translateY(-6px);
+}
+
+.provider-nptel {
+    --provider-accent: #43c9ff;
+    --provider-soft: rgba(0, 177, 255, .11);
+}
+
+.provider-ibm {
+    --provider-accent: #75baff;
+    --provider-soft: rgba(80, 169, 255, .12);
+}
+
+.provider-cognitive {
+    --provider-accent: #4de2bb;
+    --provider-soft: rgba(77, 226, 187, .12);
+}
+
+.provider-simplilearn {
+    --provider-accent: #b49aff;
+    --provider-soft: rgba(180, 154, 255, .12);
+}
+
+
+/* ==========================================================
+   8. DOCUMENT FRAME
+   ========================================================== */
+
+.credential-paper-shell {
+    position: relative;
+
+    min-width: 0;
+
+    padding: 10px;
+
+    border: 1px solid rgba(86, 145, 205, .26);
+    border-radius: 13px;
+
+    background:
+        radial-gradient(circle at 50% 0%,
+            var(--provider-soft),
+            transparent 68%),
+        linear-gradient(145deg,
+            #0d2547,
+            #05142b);
+
+    box-shadow:
+        0 13px 30px rgba(0, 0, 0, .2),
+        inset 0 1px 0 rgba(255, 255, 255, .035);
+
+    transition:
+        border-color .35s ease,
+        box-shadow .35s ease,
+        background .35s ease;
+}
+
+.credential-item:hover .credential-paper-shell {
+    border-color: color-mix(in srgb,
+            var(--provider-accent) 65%,
+            transparent);
+
+    box-shadow:
+        0 21px 42px rgba(0, 0, 0, .28),
+        0 0 28px var(--provider-soft);
+}
+
+
+/* ==========================================================
+   9. PDF PREVIEW STAGE
+   The actual PDF page dimensions are applied by JavaScript.
+   ========================================================== */
+
+.credential-document-stage {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 4 / 3;
+
+    min-height: 0;
+
+    display: grid;
+    place-items: center;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, .88);
+    border-radius: 3px;
+
+    background: #fff;
+
+    box-shadow:
+        0 5px 16px rgba(0, 0, 0, .2),
+        inset 0 0 0 2px rgba(0, 0, 0, .02);
+
+    isolation: isolate;
+}
+
+.credential-preview-canvas {
+    position: relative;
+    z-index: 1;
+
+    display: block;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    width: auto;
+    height: auto;
+
+    background: #fff;
+
+    opacity: 0;
+
+    transition: opacity .4s ease;
+}
+
+.credential-document-stage.is-rendered .credential-preview-canvas {
+    opacity: 1;
+}
+
+
+/* ==========================================================
+   10. THUMBNAIL LOADING STATE
+   ========================================================== */
+
+.credential-preview-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    color: #7388a2;
+
+    background: #f6f8fb;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+
+    pointer-events: none;
+}
+
+.credential-preview-loading>i {
+    color: #e43d61;
+    font-size: 26px;
+}
+
+.credential-preview-loading>span {
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: .1em;
+}
+
+.preview-loading-line {
+    position: relative;
+
+    width: 43px;
+    height: 3px;
+
+    overflow: hidden;
+
+    border-radius: 5px;
+
+    background: #d7e3ed;
+}
+
+.preview-loading-line::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    width: 40%;
+
+    border-radius: inherit;
+
+    background: var(--credential-blue);
+
+    animation: credentialLoading 1.2s ease-in-out infinite;
+}
+
+.credential-document-stage.is-rendered .credential-preview-loading,
+.credential-document-stage.has-error .credential-preview-loading {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+/* ==========================================================
+   11. PREVIEW ERROR STATE
+   ========================================================== */
+
+.credential-preview-error {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+
+    display: none;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 12px;
+
+    color: #526b89;
+
+    background: #f3f6fa;
+
+    text-align: center;
+}
+
+.credential-document-stage.has-error .credential-preview-error {
+    display: flex;
+}
+
+.credential-preview-error i {
+    color: #e43d61;
+    font-size: 25px;
+}
+
+.credential-preview-error strong {
+    font-size: 9px;
+}
+
+.credential-preview-error small {
+    font-size: 7px;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   12. DOCUMENT OPEN CONTROL
+   ========================================================== */
+
+.credential-open-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition: background .3s ease;
+}
+
+.credential-expand-icon {
+    display: grid;
+    place-items: center;
+
+    width: 37px;
+    height: 37px;
+
+    border: 1px solid rgba(0, 213, 255, .52);
+    border-radius: 50%;
+
+    color: #eafaff;
+
+    background: rgba(2, 20, 43, .88);
+
+    box-shadow: 0 0 22px rgba(0, 157, 255, .3);
+
+    font-size: 13px;
+
+    opacity: 0;
+    transform: scale(.8);
+
+    transition:
+        opacity .3s ease,
+        transform .3s ease;
+}
+
+.credential-open-overlay:hover {
+    background: rgba(1, 10, 27, .11);
+}
+
+.credential-open-overlay:hover .credential-expand-icon,
+.credential-open-overlay:focus-visible .credential-expand-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.credential-open-overlay:focus-visible {
+    outline: 2px solid var(--credential-cyan);
+    outline-offset: -4px;
+}
+
+
+/* ==========================================================
+   13. CERTIFICATE INFORMATION
+   ========================================================== */
+
+.credential-information {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+
+    padding: 12px 3px 0;
+}
+
+.credential-information-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin-bottom: 8px;
+}
+
+.credential-provider-label {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: var(--provider-accent);
+
+    font-size: 7px;
+    font-weight: 850;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.provider-dot {
+    width: 6px;
+    height: 6px;
+
+    flex: 0 0 6px;
+
+    border-radius: 50%;
+
+    background: var(--provider-accent);
+
+    box-shadow: 0 0 9px var(--provider-accent);
+}
+
+.credential-issue-date {
+    color: #8ea9c8;
+
+    font-size: 8px;
+    font-weight: 750;
+
+    white-space: nowrap;
+}
+
+.credential-information h3 {
+    min-height: 43px;
+
+    margin: 0;
+
+    color: #edf5ff;
+
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.5;
+
+    letter-spacing: -.01em;
+}
+
+
+/* ==========================================================
+   14. EMPTY STATE
+   ========================================================== */
+
+.credentials-empty {
+    padding: 55px 15px;
+
+    color: var(--credential-muted);
+
+    text-align: center;
+}
+
+.credentials-empty[hidden] {
+    display: none !important;
+}
+
+.credentials-empty>i {
+    color: var(--credential-cyan);
+    font-size: 34px;
+}
+
+.credentials-empty h3 {
+    margin: 12px 0 6px;
+
+    color: var(--credential-text);
+
+    font-size: 17px;
+    font-weight: 750;
+}
+
+.credentials-empty p {
+    margin: 0;
+
+    color: #8da8c8;
+
+    font-size: 10px;
+}
+
+
+/* ==========================================================
+   15. CLOSING MESSAGE
+   ========================================================== */
+
+.credentials-closing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 11px;
+
+    max-width: 750px;
+
+    margin: 47px auto 0;
+
+    color: var(--credential-muted);
+
+    text-align: center;
+}
+
+.closing-emblem {
+    display: grid;
+    place-items: center;
+
+    width: 32px;
+    height: 32px;
+
+    flex: 0 0 32px;
+
+    border: 1px solid rgba(0, 173, 255, .25);
+    border-radius: 10px;
+
+    color: #56dcff;
+
+    background: rgba(0, 135, 255, .09);
+
+    font-size: 13px;
+}
+
+.credentials-closing p {
+    margin: 0;
+
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.7;
+}
+
+
+/* ==========================================================
+   16. PDF VIEWER MODAL
+   Dynamic width and height are set through JavaScript.
+   ========================================================== */
+
+.credential-viewer-modal {
+    z-index: 1090;
+
+    padding: 12px !important;
+
+    background: rgba(0, 5, 16, .76);
+
+    backdrop-filter: blur(7px);
+}
+
+.credential-viewer-dialog {
+    width: auto;
+    max-width: none;
+
+    height: auto;
+
+    margin: auto;
+}
+
+.credential-viewer-content {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 0;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(0, 165, 255, .4);
+
+    border-radius: 15px;
+
+    background: #06162e;
+
+    box-shadow:
+        0 28px 80px rgba(0, 0, 0, .55),
+        0 0 32px rgba(0, 125, 255, .12);
+}
+
+.credential-viewer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    flex: 0 0 auto;
+
+    padding: 12px 16px;
+
+    border-bottom: 1px solid rgba(0, 145, 255, .18);
+
+    background: linear-gradient(110deg,
+            #0b264b,
+            #06162e);
+}
+
+.viewer-heading {
+    min-width: 0;
+}
+
+.viewer-heading>span {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 4px;
+
+    color: var(--credential-cyan);
+
+    font-size: 7px;
+    font-weight: 850;
+    letter-spacing: .15em;
+}
+
+.viewer-heading>span i {
+    font-size: 11px;
+}
+
+.credential-viewer-header h2 {
+    overflow: hidden;
+
+    max-width: 650px;
+
+    margin: 0;
+
+    color: #f2f7ff;
+
+    font-size: 13px;
+    font-weight: 750;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.viewer-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    flex: 0 0 auto;
+}
+
+.viewer-new-tab {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    min-height: 31px;
+
+    padding: 6px 11px;
+
+    border: 1px solid rgba(0, 180, 255, .33);
+    border-radius: 20px;
+
+    color: #bce9ff;
+    background: rgba(0, 120, 255, .09);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: background .25s ease;
+}
+
+.viewer-new-tab:hover {
+    color: #fff;
+    background: rgba(0, 120, 255, .22);
+}
+
+.viewer-close {
+    display: grid;
+    place-items: center;
+
+    width: 32px;
+    height: 32px;
+
+    flex: 0 0 32px;
+
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 50%;
+
+    color: #d4e6fb;
+    background: rgba(255, 255, 255, .06);
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        background .25s ease;
+}
+
+.viewer-close:hover {
+    color: #fff;
+
+    background: rgba(226, 60, 85, .24);
+
+    transform: rotate(90deg);
+}
+
+
+/* PDF toolbar */
+
+.credential-viewer-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    flex: 0 0 auto;
+
+    min-height: 39px;
+
+    padding: 5px 13px;
+
+    border-bottom: 1px solid rgba(0, 145, 255, .15);
+
+    background: #091d39;
+}
+
+.viewer-page-controls,
+.viewer-zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    color: #9eb9d8;
+    font-size: 8px;
+    font-weight: 700;
+}
+
+.viewer-page-controls>span {
+    min-width: 55px;
+    text-align: center;
+}
+
+.viewer-zoom-controls>span {
+    min-width: 37px;
+    text-align: center;
+    color: #d4e8ff;
+    font-size: 7px;
+}
+
+.viewer-control {
+    display: grid;
+    place-items: center;
+
+    width: 26px;
+    height: 26px;
+
+    border: 1px solid rgba(0, 174, 255, .2);
+    border-radius: 6px;
+
+    color: #c7e7ff;
+    background: rgba(0, 124, 255, .08);
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition:
+        color .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.viewer-control:hover:not(:disabled) {
+    color: #fff;
+
+    border-color: rgba(0, 213, 255, .55);
+
+    background: rgba(0, 143, 255, .2);
+}
+
+.viewer-control:disabled {
+    opacity: .3;
+    cursor: not-allowed;
+}
+
+.viewer-fit-button {
+    min-width: 34px;
+    height: 25px;
+
+    border: 1px solid rgba(0, 174, 255, .3);
+    border-radius: 5px;
+
+    color: var(--credential-cyan);
+    background: rgba(0, 124, 255, .08);
+
+    font-size: 7px;
+    font-weight: 850;
+    letter-spacing: .06em;
+
+    cursor: pointer;
+}
+
+
+/* Viewer body */
+
+.credential-viewer-body {
+    display: flex;
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    overflow: hidden;
+
+    background: #172334;
+}
+
+.credential-full-page-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    flex: 1 1 auto;
+
+    min-width: 0;
+    min-height: 0;
+
+    padding: 8px;
+
+    overflow: auto;
+
+    background:
+        radial-gradient(ellipse at center,
+            #263b53,
+            #111e30);
+}
+
+#credentialViewerCanvas {
+    display: block;
+
+    flex: 0 0 auto;
+
+    background: #fff;
+
+    box-shadow:
+        0 8px 28px rgba(0, 0, 0, .42),
+        0 0 1px rgba(255, 255, 255, .7);
+}
+
+.viewer-loading {
+    position: absolute;
+    inset: 0;
+
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    color: #a8bfd9;
+
+    background: #172b43;
+
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .13em;
+}
+
+.viewer-loading i {
+    color: var(--credential-cyan);
+    font-size: 30px;
+}
+
+.viewer-loading.is-hidden {
+    display: none;
+}
+
+
+/* Viewer footer */
+
+.credential-viewer-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    flex: 0 0 auto;
+
+    padding: 8px 13px;
+
+    border-top: 1px solid rgba(0, 145, 255, .15);
+
+    color: #83a0c2;
+    background: #06162e;
+
+    font-size: 7px;
+    font-weight: 750;
+    letter-spacing: .08em;
+}
+
+.credential-viewer-footer span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.credential-viewer-footer i {
+    color: var(--credential-cyan);
+    font-size: 10px;
+}
+
+
+/* ==========================================================
+   17. SCROLL AND CARD ANIMATIONS
+   ========================================================== */
+
+.credential-reveal {
+    opacity: 1;
+    transform: none;
+}
+
+.js .credential-reveal {
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    transition:
+        opacity .65s ease,
+        transform .65s cubic-bezier(.2, .7, .2, 1);
+}
+
+.js .credential-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes credentialLoading {
+    from {
+        transform: translateX(-120%);
+    }
+
+    to {
+        transform: translateX(260%);
+    }
+}
+
+@keyframes credentialOrbit {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes credentialOrbitReverse {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes credentialFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+@keyframes credentialSeal {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+
+/* ==========================================================
+   18. LIGHT THEME
+   ========================================================== */
+
+body.light-theme .credentials-section {
+    background:
+        radial-gradient(ellipse at 84% 5%,
+            rgba(0, 91, 220, .07),
+            transparent 34%),
+        linear-gradient(180deg,
+            #edf4ff,
+            #e7f0ff 55%,
+            #edf4ff);
+}
+
+body.light-theme .credentials-hero h1,
+body.light-theme .credentials-collection-heading h2 {
+    color: #102342;
+}
+
+body.light-theme .credentials-intro,
+body.light-theme .credentials-closing p {
+    color: #52647e;
+}
+
+body.light-theme .credentials-hero-details>span {
+    color: #315678;
+
+    border-color: rgba(0, 116, 220, .18);
+
+    background: rgba(0, 122, 255, .045);
+}
+
+body.light-theme .credentials-collection-heading p {
+    color: #52647e;
+}
+
+body.light-theme .credentials-total {
+    border-color: rgba(0, 116, 220, .18);
+    background: rgba(0, 122, 255, .04);
+}
+
+body.light-theme .credentials-total>span {
+    color: #637995;
+}
+
+body.light-theme .credentials-filters {
+    border-color: rgba(45, 108, 181, .17);
+    background: rgba(255, 255, 255, .72);
+}
+
+body.light-theme .credential-filter {
+    color: #526b8c;
+}
+
+body.light-theme .credential-filter.active {
+    color: #fff;
+}
+
+body.light-theme .gallery-heading-title {
+    color: #637995;
+}
+
+body.light-theme .gallery-heading-note {
+    color: #637995;
+}
+
+body.light-theme .credential-paper-shell {
+    border-color: rgba(58, 112, 184, .24);
+
+    background: linear-gradient(145deg,
+            #fff,
+            #edf4ff);
+
+    box-shadow: 0 12px 27px rgba(38, 78, 130, .1);
+}
+
+body.light-theme .credential-information h3 {
+    color: #173456;
+}
+
+body.light-theme .credential-issue-date {
+    color: #637995;
+}
+
+
+/* PDF viewer light theme */
+
+body.light-theme .credential-viewer-content {
+    border-color: rgba(0, 116, 220, .25);
+    background: #f5f8ff;
+}
+
+body.light-theme .credential-viewer-header {
+    background: linear-gradient(110deg,
+            #e3efff,
+            #f4f8ff);
+
+    border-bottom-color: rgba(0, 116, 220, .16);
+}
+
+body.light-theme .credential-viewer-header h2 {
+    color: #173456;
+}
+
+body.light-theme .credential-viewer-toolbar {
+    background: #eaf2ff;
+    border-bottom-color: rgba(0, 116, 220, .15);
+}
+
+body.light-theme .viewer-page-controls {
+    color: #526b8c;
+}
+
+body.light-theme .viewer-zoom-controls>span {
+    color: #173456;
+}
+
+body.light-theme .viewer-control {
+    color: #315678;
+    background: rgba(0, 116, 220, .06);
+}
+
+body.light-theme .credential-full-page-stage {
+    background: #dfe9f5;
+}
+
+body.light-theme .credential-viewer-footer {
+    color: #637995;
+    background: #eaf2ff;
+    border-top-color: rgba(0, 116, 220, .15);
+}
+
+body.light-theme .viewer-close {
+    color: #345676;
+    border-color: rgba(0, 116, 220, .2);
+    background: rgba(0, 116, 220, .06);
+}
+
+
+/* ==========================================================
+   19. TABLET AND SMALL DESKTOP
+   ========================================================== */
+
+@media (max-width: 1199.98px) {
+
+    .credentials-container {
+        width: calc(100% - 70px);
+    }
+
+    .credentials-gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px 17px;
+    }
+
+    .credentials-art {
+        transform: scale(.9);
+    }
+
+}
+
+
+/* ==========================================================
+   20. TABLET
+   ========================================================== */
+
+@media (max-width: 991.98px) {
+
+    .credentials-hero {
+        min-height: 320px;
+
+        grid-template-columns:
+            minmax(0, 1.15fr) minmax(220px, .85fr);
+
+        gap: 16px;
+    }
+
+    .credentials-hero h1 {
+        font-size: clamp(38px, 5vw, 53px);
+    }
+
+    .credentials-intro {
+        font-size: 12px;
+    }
+
+    .credentials-art {
+        transform: scale(.82);
+    }
+
+    .credentials-collection-heading {
+        margin-top: 35px;
+    }
+
+    .credentials-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px 16px;
+    }
+
+    .credential-paper-shell {
+        padding: 9px;
+    }
+
+}
+
+
+/* ==========================================================
+   21. MOBILE
+   ========================================================== */
+
+@media (max-width: 767.98px) {
+
+    .credentials-container {
+        width: calc(100% - 30px);
+    }
+
+    .credentials-section {
+        padding: 0 0 49px;
+    }
+
+
+    /* Hero */
+
+    .credentials-hero {
+        min-height: 0;
+
+        grid-template-columns: minmax(0, 1fr);
+
+        gap: 4px;
+
+        margin-bottom: 26px;
+
+        padding: 35px 0 0;
+    }
+
+    .credentials-eyebrow {
+        margin-bottom: 14px;
+
+        font-size: 9px;
+        letter-spacing: .16em;
+    }
+
+    .credentials-hero h1 {
+        font-size: clamp(36px, 8.5vw, 48px);
+    }
+
+    .credentials-intro {
+        margin-top: 13px;
+
+        font-size: 11.5px;
+        line-height: 1.8;
+    }
+
+    .credentials-hero-details {
+        gap: 7px;
+        margin-top: 16px;
+    }
+
+    .credentials-hero-details>span {
+        min-height: 29px;
+        padding: 5px 9px;
+
+        font-size: 7.5px;
+    }
+
+
+    /* Animated hero artwork */
+
+    .credentials-art {
+        width: 100%;
+        height: 185px;
+
+        margin-top: -2px;
+
+        transform: scale(.78);
+    }
+
+    .credentials-art-document {
+        width: 210px;
+        height: 159px;
+    }
+
+    .document-front {
+        padding: 12px 14px;
+    }
+
+    .art-document-seal {
+        width: 40px;
+        height: 40px;
+
+        margin-top: 8px;
+
+        font-size: 20px;
+    }
+
+    .art-icon-one {
+        top: 10px;
+        right: 10px;
+    }
+
+    .art-icon-two {
+        bottom: 11px;
+        left: 5px;
+    }
+
+
+    /* Collection heading */
+
+    .credentials-collection-heading {
+        align-items: flex-end;
+
+        gap: 10px;
+
+        margin-top: 30px;
+        margin-bottom: 18px;
+    }
+
+    .credentials-section-label {
+        font-size: 7px;
+        margin-bottom: 7px;
+    }
+
+    .credentials-collection-heading h2 {
+        font-size: clamp(24px, 6vw, 29px);
+    }
+
+    .credentials-collection-heading p {
+        max-width: 255px;
+
+        margin-top: 6px;
+
+        font-size: 8px;
+        line-height: 1.55;
+    }
+
+    .credentials-total {
+        gap: 7px;
+        padding: 7px 8px;
+    }
+
+    .credentials-total>span {
+        max-width: 48px;
+
+        font-size: 5.5px;
+        line-height: 1.3;
+    }
+
+    .credentials-total strong {
+        font-size: 18px;
+    }
+
+    .credentials-total i {
+        font-size: 11px;
+    }
+
+
+    /* Filters */
+
+    .credentials-filters {
+        gap: 5px;
+
+        margin-bottom: 19px;
+        padding: 7px;
+
+        border-radius: 10px;
+    }
+
+    .credential-filter {
+        min-height: 30px;
+
+        padding: 5px 8px;
+
+        gap: 5px;
+
+        border-radius: 7px;
+
+        font-size: 7.5px;
+    }
+
+    .credential-filter>span {
+        min-width: 16px;
+        height: 16px;
+        font-size: 6px;
+    }
+
+
+    /* Document heading */
+
+    .credentials-gallery-heading {
+        margin-bottom: 14px;
+    }
+
+    .gallery-heading-title {
+        font-size: 7px;
+    }
+
+    .gallery-heading-note {
+        font-size: 6.5px;
+    }
+
+
+    /* Two items per mobile row */
+
+    .credentials-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px 11px;
+    }
+
+
+    /* Document preview */
+
+    .credential-paper-shell {
+        padding: 6px;
+        border-radius: 9px;
+    }
+
+    .credential-document-stage {
+        /* Actual ratio will be set by PDF.js. */
+        aspect-ratio: 4 / 3;
+    }
+
+    .credential-expand-icon {
+        width: 29px;
+        height: 29px;
+        font-size: 10px;
+    }
+
+
+    /* Information */
+
+    .credential-information {
+        padding: 9px 2px 0;
+    }
+
+    .credential-information-top {
+        gap: 4px;
+        margin-bottom: 6px;
+    }
+
+    .credential-provider-label {
+        gap: 4px;
+        font-size: 5.8px;
+        letter-spacing: .04em;
+    }
+
+    .provider-dot {
+        width: 5px;
+        height: 5px;
+        flex-basis: 5px;
+    }
+
+    .credential-issue-date {
+        font-size: 6.5px;
+    }
+
+    .credential-information h3 {
+        min-height: 58px;
+
+        font-size: 9px;
+        line-height: 1.45;
+    }
+
+
+    /* Closing note */
+
+    .credentials-closing {
+        justify-content: flex-start;
+        margin-top: 31px;
+        text-align: left;
+    }
+
+    .credentials-closing p {
+        font-size: 9px;
+    }
+
+
+    /* Responsive PDF viewer */
+
+    .credential-viewer-modal {
+        padding: 5px !important;
+    }
+
+    .credential-viewer-dialog {
+        width: auto;
+        max-width: none;
+        height: auto;
+
+        margin: auto;
+    }
+
+    .credential-viewer-content {
+        border-radius: 10px;
+    }
+
+    .credential-viewer-header {
+        gap: 7px;
+        padding: 9px 10px;
+    }
+
+    .credential-viewer-header h2 {
+        max-width: 45vw;
+        font-size: 10px;
+    }
+
+    .viewer-heading>span {
+        font-size: 6px;
+    }
+
+    .viewer-actions {
+        gap: 6px;
+    }
+
+    .viewer-new-tab {
+        min-height: 28px;
+        padding: 5px 7px;
+        gap: 4px;
+
+        font-size: 7px;
+    }
+
+    .viewer-close {
+        width: 28px;
+        height: 28px;
+        flex-basis: 28px;
+        font-size: 10px;
+    }
+
+    .credential-viewer-toolbar {
+        min-height: 34px;
+        padding: 4px 7px;
+        gap: 5px;
+    }
+
+    .viewer-control {
+        width: 24px;
+        height: 24px;
+    }
+
+    .viewer-page-controls,
+    .viewer-zoom-controls {
+        gap: 4px;
+        font-size: 7px;
+    }
+
+    .viewer-page-controls>span {
+        min-width: 45px;
+    }
+
+    .viewer-zoom-controls>span {
+        min-width: 30px;
+    }
+
+    .viewer-fit-button {
+        min-width: 29px;
+        height: 23px;
+        font-size: 6px;
+    }
+
+    .credential-viewer-footer {
+        padding: 6px 9px;
+        font-size: 6px;
+    }
+
+}
+
+
+/* ==========================================================
+   22. VERY SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 390px) {
+
+    .credentials-container {
+        width: calc(100% - 22px);
+    }
+
+    .credentials-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 17px 8px;
+    }
+
+    .credential-paper-shell {
+        padding: 5px;
+    }
+
+    .credential-information h3 {
+        min-height: 62px;
+        font-size: 8.5px;
+    }
+
+    .credential-provider-label {
+        font-size: 5px;
+    }
+
+    .credential-issue-date {
+        font-size: 5.8px;
+    }
+
+    .viewer-new-tab span {
+        display: none;
+    }
+
+}
+
+
+/* ==========================================================
+   23. REDUCED MOTION
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .credentials-art-orbit,
+    .art-floating-icon,
+    .art-document-seal {
+        animation: none !important;
+    }
+
+    .credential-item,
+    .credential-paper-shell,
+    .credential-filter,
+    .credential-open-overlay {
+        transition: none !important;
+    }
+
+    .js .credential-reveal,
+    .js .credential-reveal.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none !important;
+    }
+
+}
+
+
+/* ==========================================================
+   CARVE - CERTIFICATE IMAGE GALLERY
+   Image-based previews and large image viewer.
+   Append at the END of certificates.css.
+   ========================================================== */
+
+
+/* ==========================================================
+   1. CERTIFICATE CARD
+   ========================================================== */
+
+.credentials-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 25px;
+}
+
+.credential-item {
+    cursor: pointer;
+}
+
+.credential-item:focus-visible {
+    outline: 2px solid var(--credential-cyan);
+    outline-offset: 5px;
+    border-radius: 12px;
+}
+
+
+/* ==========================================================
+   2. IMAGE PREVIEW FRAME
+   ========================================================== */
+
+.credential-document-stage {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 4 / 3;
+
+    display: grid;
+    place-items: center;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, .85);
+    border-radius: 4px;
+
+    background: #fff;
+
+    isolation: isolate;
+
+    transition: background .3s ease;
+}
+
+
+/* Actual JPG certificate image */
+
+.credential-preview-image {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    background: #fff;
+
+    opacity: 0;
+
+    transition:
+        opacity .4s ease,
+        transform .5s ease;
+}
+
+
+/* Display the complete image after loading */
+
+.credential-document-stage.is-loaded .credential-preview-image {
+    opacity: 1;
+}
+
+
+/* Subtle image zoom on hover */
+
+.credential-item:hover .credential-preview-image {
+    transform: scale(1.025);
+}
+
+
+/* ==========================================================
+   3. LOADING STATE
+   ========================================================== */
+
+.credential-image-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    color: #7388a2;
+
+    background: #f6f8fb;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+}
+
+.credential-image-loading i {
+    color: #e43d61;
+    font-size: 27px;
+}
+
+.credential-image-loading span {
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: .1em;
+}
+
+.credential-document-stage.is-loaded .credential-image-loading,
+.credential-document-stage.has-error .credential-image-loading {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+/* ==========================================================
+   4. IMAGE ERROR STATE
+   ========================================================== */
+
+.credential-image-error {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+
+    display: none;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 12px;
+
+    color: #526b89;
+    background: #f3f6fa;
+
+    text-align: center;
+}
+
+.credential-document-stage.has-error .credential-image-error {
+    display: flex;
+}
+
+.credential-image-error i {
+    color: #e43d61;
+    font-size: 25px;
+}
+
+.credential-image-error strong {
+    font-size: 9px;
+}
+
+.credential-image-error small {
+    font-size: 7px;
+}
+
+
+/* ==========================================================
+   5. CARD HOVER INDICATOR
+   ========================================================== */
+
+.credential-image-open-indicator {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+
+    display: grid;
+    place-items: center;
+
+    background: rgba(1, 12, 29, .12);
+
+    opacity: 0;
+
+    transition: opacity .3s ease;
+
+    pointer-events: none;
+}
+
+.credential-image-open-indicator span {
+    display: grid;
+    place-items: center;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(0, 213, 255, .6);
+    border-radius: 50%;
+
+    color: #fff;
+    background: rgba(2, 20, 43, .9);
+
+    box-shadow: 0 0 22px rgba(0, 157, 255, .3);
+
+    font-size: 14px;
+}
+
+.credential-item:hover .credential-image-open-indicator,
+.credential-item:focus-visible .credential-image-open-indicator {
+    opacity: 1;
+}
+
+
+/* ==========================================================
+   6. IMAGE VIEWER MODAL
+   Natural image proportions, no fixed PDF dimensions.
+   ========================================================== */
+
+.credential-viewer-dialog {
+    width: fit-content !important;
+
+    max-width: 96vw !important;
+
+    height: auto !important;
+    max-height: 96dvh;
+
+    margin: auto;
+}
+
+.credential-viewer-content {
+    display: flex;
+    flex-direction: column;
+
+    width: fit-content;
+    max-width: 96vw;
+
+    height: auto;
+    max-height: 96dvh;
+
+    overflow: hidden;
+
+    border-radius: 13px;
+}
+
+
+/* Modal body */
+
+.credential-viewer-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 1 auto;
+
+    width: auto;
+    max-width: 96vw;
+
+    min-height: 0;
+    max-height: calc(100dvh - 145px);
+
+    padding: 12px;
+
+    overflow: auto;
+
+    background: #fff;
+}
+
+
+/* Full-size certificate image */
+
+.credential-image-viewer-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: auto;
+    max-width: 100%;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+.credential-viewer-image {
+    display: block;
+
+    width: auto;
+    height: auto;
+
+    max-width: calc(96vw - 35px);
+    max-height: calc(100dvh - 165px);
+
+    object-fit: contain;
+
+    background: #fff;
+}
+
+
+/* ==========================================================
+   7. MODAL HEADER
+   ========================================================== */
+
+.credential-viewer-header {
+    flex: 0 0 auto;
+
+    min-width: 260px;
+}
+
+.credential-viewer-header h2 {
+    max-width: min(65vw, 750px);
+}
+
+
+/* ==========================================================
+   8. MODAL FOOTER
+   ========================================================== */
+
+.credential-viewer-footer {
+    flex: 0 0 auto;
+}
+
+
+/* ==========================================================
+   9. LIGHT THEME
+   ========================================================== */
+
+body.light-theme .credential-paper-shell {
+    background: linear-gradient(145deg,
+            #fff,
+            #edf4ff);
+}
+
+body.light-theme .credential-viewer-body {
+    background: #fff;
+}
+
+
+/* ==========================================================
+   10. TABLET
+   ========================================================== */
+
+@media (max-width: 1199.98px) {
+
+    .credentials-gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px 17px;
+    }
+
+}
+
+
+/* ==========================================================
+   11. MOBILE
+   ========================================================== */
+
+@media (max-width: 767.98px) {
+
+    .credentials-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px 11px;
+    }
+
+    .credential-paper-shell {
+        padding: 6px;
+        border-radius: 9px;
+    }
+
+    .credential-document-stage {
+        aspect-ratio: 4 / 3;
+    }
+
+    .credential-viewer-dialog {
+        width: 96vw !important;
+        max-width: 96vw !important;
+        max-height: 96dvh;
+    }
+
+    .credential-viewer-content {
+        width: 100%;
+        max-width: 96vw;
+    }
+
+    .credential-viewer-header {
+        min-width: 0;
+        gap: 7px;
+        padding: 9px 10px;
+    }
+
+    .credential-viewer-header h2 {
+        max-width: 48vw;
+        font-size: 10px;
+    }
+
+    .credential-viewer-body {
+        width: 100%;
+        max-width: 96vw;
+        max-height: calc(100dvh - 125px);
+        padding: 7px;
+    }
+
+    .credential-viewer-image {
+        max-width: calc(96vw - 30px);
+        max-height: calc(100dvh - 145px);
+    }
+
+    .viewer-new-tab {
+        font-size: 7px;
+    }
+
+}
+
+
+/* ==========================================================
+   12. VERY SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 390px) {
+
+    .credentials-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 17px 8px;
+    }
+
+    .credential-paper-shell {
+        padding: 5px;
+    }
+
+    .credential-viewer-header h2 {
+        max-width: 42vw;
+    }
+
+}

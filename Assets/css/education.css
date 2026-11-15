@@ -1,86 +1,123 @@
-/* =========================================
-   CARVE - Education Page
-   Page-specific styles only.
-   Shared header and footer stay in style.css.
-   ========================================= */
+/* ==========================================================
+   CARVE - EDUCATION PAGE
+   A visual academic road map with institution photographs.
+   Page-specific styles only. Shared header/footer remain in
+   Assets/css/style.css and are not modified here.
+   ========================================================== */
+
+:root {
+    --edu-cyan: #00d5ff;
+    --edu-blue: #087bff;
+    --edu-deep: #020b20;
+    --edu-text: #f2f6ff;
+    --edu-muted: #bdcbe1;
+    --edu-road: #142b49;
+}
 
 .education-main {
+    position: relative;
     min-height: calc(100vh - 190px);
     overflow: hidden;
-    background:
-        radial-gradient(ellipse at 82% 18%, rgba(0, 92, 220, .12), transparent 34%),
-        radial-gradient(ellipse at 8% 58%, rgba(0, 190, 255, .055), transparent 35%),
-        var(--bg, #020b20);
+    background: var(--bg, var(--edu-deep));
 }
 
 .education-section {
     position: relative;
     isolation: isolate;
-    padding: clamp(64px, 8vw, 104px) 0 72px;
+    padding: 66px 0 70px;
     overflow: hidden;
+    background:
+        radial-gradient(ellipse at 86% 8%, rgba(0, 91, 220, .14), transparent 34%),
+        radial-gradient(ellipse at 8% 52%, rgba(0, 190, 255, .055), transparent 34%),
+        linear-gradient(180deg, #020b20 0%, #03112b 52%, #020b20 100%);
 }
 
 .education-container {
     position: relative;
     z-index: 2;
-    max-width: 1240px;
+    max-width: 1260px;
 }
 
 .education-bg-orb {
     position: absolute;
     z-index: -1;
-    width: 360px;
+    width: 390px;
     aspect-ratio: 1;
     border-radius: 50%;
+    filter: blur(100px);
     pointer-events: none;
-    filter: blur(95px);
 }
 
 .education-bg-orb-one {
-    top: 16%;
-    right: -230px;
-    background: rgba(0, 105, 255, .14);
+    top: 11%;
+    right: -245px;
+    background: rgba(0, 105, 255, .16);
 }
 
 .education-bg-orb-two {
-    bottom: 4%;
-    left: -260px;
-    background: rgba(0, 196, 255, .075);
+    bottom: 3%;
+    left: -270px;
+    background: rgba(0, 196, 255, .09);
 }
 
-/* Page heading */
-.education-heading {
-    max-width: 760px;
-    margin: 0 auto clamp(52px, 6vw, 78px);
-    text-align: center;
+.education-map-grid {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: .105;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(65, 148, 255, .07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(65, 148, 255, .07) 1px, transparent 1px);
+    background-size: 58px 58px;
+    mask-image: linear-gradient(180deg, #000, transparent 80%);
+}
+
+
+/* ==========================================================
+   1. PAGE INTRO / ROUTE OVERVIEW
+   ========================================================== */
+
+.education-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+    align-items: center;
+    gap: clamp(30px, 5vw, 76px);
+    max-width: 1120px;
+    margin: 0 auto 65px;
+}
+
+.education-hero-copy {
+    min-width: 0;
 }
 
 .education-eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 11px;
-    margin-bottom: 18px;
-    color: var(--cyan, #00d5ff);
-    font-size: 11px;
+    margin-bottom: 17px;
+    color: var(--edu-cyan);
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: .23em;
+    letter-spacing: .2em;
 }
 
 .education-eyebrow-line {
-    width: 30px;
+    width: 29px;
     height: 2px;
+    flex: 0 0 29px;
     border-radius: 5px;
-    background: linear-gradient(90deg, #087bff, #00d5ff);
-    box-shadow: 0 0 12px rgba(0, 191, 255, .62);
+    background: linear-gradient(90deg, var(--edu-blue), var(--edu-cyan));
+    box-shadow: 0 0 12px rgba(0, 191, 255, .55);
 }
 
 .education-heading h1 {
     margin: 0;
-    color: var(--text, #f2f6ff);
-    font-size: clamp(40px, 5.6vw, 68px);
-    font-weight: 800;
+    color: var(--text, var(--edu-text));
+    font-size: clamp(43px, 5.5vw, 68px);
+    font-weight: 850;
+    line-height: 1.04;
     letter-spacing: -.065em;
-    line-height: 1.06;
 }
 
 .education-heading h1 span {
@@ -91,229 +128,505 @@
 }
 
 .education-intro {
-    max-width: 620px;
-    margin: 20px auto 0;
-    color: var(--muted, #c0cce2);
-    font-size: 14px;
-    line-height: 1.85;
+    max-width: 650px;
+    margin: 19px 0 0;
+    color: var(--muted, var(--edu-muted));
+    font-size: 13px;
+    line-height: 1.9;
 }
 
-.education-heading-note {
+.education-hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 23px;
+}
+
+.education-hero-tags>span {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 24px;
-    padding: 9px 15px 9px 9px;
-    border: 1px solid rgba(0, 174, 255, .2);
-    border-radius: 999px;
-    color: var(--muted, #c0cce2);
-    background: rgba(0, 122, 255, .055);
-    font-size: 11px;
-    font-weight: 600;
+    gap: 8px;
+    min-height: 33px;
+    padding: 7px 12px;
+    border: 1px solid rgba(0, 174, 255, .22);
+    border-radius: 30px;
+    color: #c5d9f3;
+    background: rgba(0, 115, 220, .075);
+    font-size: 9px;
+    font-weight: 700;
 }
 
-.education-note-icon {
-    display: grid;
-    width: 27px;
-    height: 27px;
-    place-items: center;
-    border-radius: 50%;
-    color: #8beaff;
-    background: rgba(0, 174, 255, .13);
+.education-hero-tags i {
+    color: var(--edu-cyan);
     font-size: 12px;
 }
 
-/* Timeline structure */
-.education-timeline {
+.education-route-summary {
     position: relative;
-    width: min(100%, 1080px);
-    margin: 0 auto;
+    min-width: 0;
+    padding: 23px 22px 21px;
+    border: 1px solid rgba(0, 153, 255, .33);
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(0, 126, 255, .16), transparent 50%),
+        linear-gradient(145deg, rgba(8, 31, 70, .89), rgba(3, 15, 39, .94));
+    box-shadow: 0 15px 38px rgba(0, 0, 0, .14), inset 0 1px 0 rgba(255, 255, 255, .035);
+    overflow: hidden;
 }
 
-.education-timeline::before {
+.education-route-summary::after {
+    content: "";
     position: absolute;
-    top: 34px;
-    bottom: 42px;
+    right: -36px;
+    bottom: -70px;
+    width: 170px;
+    aspect-ratio: 1;
+    border: 1px solid rgba(0, 190, 255, .1);
+    border-radius: 50%;
+    box-shadow: 0 0 0 16px rgba(0, 145, 255, .025), 0 0 0 34px rgba(0, 145, 255, .02);
+    pointer-events: none;
+}
+
+.route-summary-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.route-summary-label {
+    color: #9db8d9;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .17em;
+}
+
+.route-summary-icon {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(0, 188, 255, .27);
+    border-radius: 11px;
+    color: var(--edu-cyan);
+    background: rgba(0, 145, 255, .11);
+    font-size: 15px;
+}
+
+.route-summary-years {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: auto minmax(45px, 1fr) auto;
+    align-items: center;
+    gap: 15px;
+    margin-top: 22px;
+}
+
+.route-summary-years>div:not(.route-summary-line) {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.route-summary-years small {
+    color: #87a4c8;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .12em;
+}
+
+.route-summary-years strong {
+    color: #f1f7ff;
+    font-size: 27px;
+    font-weight: 850;
+    letter-spacing: -.045em;
+}
+
+.route-summary-line {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 7px;
+    height: 2px;
+    background: linear-gradient(90deg, #087bff, #00d5ff);
+    box-shadow: 0 0 10px rgba(0, 174, 255, .3);
+}
+
+.route-summary-line span {
+    width: 7px;
+    height: 7px;
+    border: 1px solid #67e9ff;
+    border-radius: 50%;
+    background: #07325c;
+    box-shadow: 0 0 8px rgba(0, 213, 255, .55);
+}
+
+.education-route-summary>p {
+    position: relative;
+    z-index: 1;
+    margin: 17px 0 0;
+    color: #a9bdd8;
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+
+/* ==========================================================
+   2. ROADMAP TRACK
+   ========================================================== */
+
+.education-roadmap {
+    position: relative;
+    width: min(100%, 1160px);
+    margin: 0 auto;
+    padding: 0 0 10px;
+}
+
+.education-road-track {
+    position: absolute;
+    z-index: 0;
+    top: 26px;
+    bottom: 40px;
+    left: 50%;
+    width: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(115, 158, 201, .24);
+    border-radius: 20px;
+    background: linear-gradient(90deg, #0b1b32, #162d4a 48%, #0b1b32);
+    box-shadow: 0 0 0 5px rgba(0, 121, 255, .035), inset 0 0 12px rgba(0, 0, 0, .35);
+    transform: translateX(-50%);
+}
+
+.education-road-progress {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 3px;
+    right: 3px;
+    height: 0;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #087bff, #00d5ff, #42e8ff);
+    box-shadow: 0 0 12px rgba(0, 191, 255, .55), 0 0 25px rgba(0, 125, 255, .22);
+    transition: height .12s linear;
+}
+
+.education-road-dashes {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
     left: 50%;
     width: 2px;
-    content: "";
+    opacity: .68;
     transform: translateX(-50%);
-    background: linear-gradient(180deg,
-            rgba(0, 213, 255, .12),
-            rgba(0, 165, 255, .78) 12%,
-            rgba(0, 165, 255, .36) 88%,
-            rgba(0, 213, 255, .08));
-    box-shadow: 0 0 14px rgba(0, 155, 255, .18);
+    background: repeating-linear-gradient(to bottom,
+            rgba(220, 239, 255, .78) 0 13px,
+            transparent 13px 25px);
+    pointer-events: none;
 }
 
-.education-entry {
+.education-route-start {
     position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 76px minmax(0, 1fr);
+    z-index: 3;
+    display: flex;
     align-items: center;
-    margin-bottom: clamp(28px, 4vw, 48px);
+    justify-content: center;
+    gap: 10px;
+    width: fit-content;
+    margin: 0 auto 35px;
+    padding: 7px 14px 7px 8px;
+    border: 1px solid rgba(0, 190, 255, .25);
+    border-radius: 30px;
+    color: #b5cce9;
+    background: #061a38;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .16em;
 }
 
-.education-entry:last-child {
-    margin-bottom: 0;
+.route-end-icon,
+.route-finish-icon {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    color: var(--edu-cyan);
+    background: rgba(0, 159, 255, .15);
+    font-size: 11px;
 }
 
-.education-entry-left .education-card {
+.education-stop {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 82px minmax(0, 1fr);
+    align-items: center;
+    margin-bottom: 34px;
+}
+
+.education-stop:last-of-type {
+    margin-bottom: 24px;
+}
+
+.education-stop-left .education-card {
     grid-column: 1;
     grid-row: 1;
 }
 
-.education-entry-left .education-marker {
+.education-stop-left .education-marker {
     grid-column: 2;
     grid-row: 1;
 }
 
-.education-entry-left .education-empty {
+.education-stop-left .education-empty {
     grid-column: 3;
     grid-row: 1;
 }
 
-.education-entry-right .education-empty {
+.education-stop-right .education-empty {
     grid-column: 1;
     grid-row: 1;
 }
 
-.education-entry-right .education-marker {
+.education-stop-right .education-marker {
     grid-column: 2;
     grid-row: 1;
 }
 
-.education-entry-right .education-card {
+.education-stop-right .education-card {
     grid-column: 3;
     grid-row: 1;
 }
 
 .education-marker {
     position: relative;
-    z-index: 2;
-    display: grid;
-    place-items: center;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
 }
 
 .education-marker-core {
+    position: relative;
     display: grid;
-    width: 48px;
-    height: 48px;
     place-items: center;
-    border: 1px solid rgba(0, 197, 255, .55);
-    border-radius: 16px;
-    color: #8ceaff;
-    background: linear-gradient(145deg, #092347, #06152e 72%);
+    width: 53px;
+    height: 53px;
+    border: 2px solid rgba(0, 206, 255, .58);
+    border-radius: 50%;
+    color: #a0edff;
+    background: radial-gradient(circle at 35% 25%, #174b78, #071c3a 72%);
     box-shadow:
-        0 0 0 6px rgba(0, 153, 255, .07),
-        0 0 24px rgba(0, 153, 255, .2);
+        0 0 0 6px rgba(0, 153, 255, .075),
+        0 0 23px rgba(0, 153, 255, .23);
     font-size: 17px;
     transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
 }
 
-.education-entry:hover .education-marker-core {
-    transform: rotate(-7deg) scale(1.08);
-    border-color: rgba(0, 220, 255, .95);
-    box-shadow:
-        0 0 0 7px rgba(0, 153, 255, .09),
-        0 0 30px rgba(0, 190, 255, .33);
+.education-marker-core::after {
+    content: "";
+    position: absolute;
+    inset: -7px;
+    border: 1px solid rgba(0, 213, 255, .2);
+    border-radius: 50%;
+    transition: inset .35s ease, border-color .35s ease;
 }
 
-/* Education cards */
+.education-marker small {
+    color: #7fa2cb;
+    font-size: 8px;
+    font-weight: 850;
+    letter-spacing: .12em;
+}
+
+.education-stop:hover .education-marker-core {
+    transform: scale(1.1);
+    border-color: var(--edu-cyan);
+    box-shadow: 0 0 0 7px rgba(0, 153, 255, .1), 0 0 30px rgba(0, 190, 255, .38);
+}
+
+.education-stop:hover .education-marker-core::after {
+    inset: -10px;
+    border-color: rgba(0, 213, 255, .42);
+}
+
+
+/* ==========================================================
+   3. EDUCATION IMAGE + DETAIL CARDS
+   ========================================================== */
+
 .education-card {
     position: relative;
+    display: flex;
     min-width: 0;
-    padding: clamp(21px, 2.7vw, 29px);
+    min-height: 226px;
     overflow: hidden;
-    border: 1px solid rgba(110, 157, 218, .19);
+    border: 1px solid rgba(90, 151, 220, .23);
     border-radius: 18px;
-    background: linear-gradient(145deg, rgba(11, 30, 60, .93), rgba(5, 18, 40, .95));
-    box-shadow: 0 15px 38px rgba(0, 0, 0, .16);
-    transition:
-        transform .38s cubic-bezier(.2, .7, .2, 1),
-        border-color .38s ease,
-        box-shadow .38s ease;
+    background: linear-gradient(145deg, rgba(9, 30, 63, .97), rgba(4, 17, 40, .98));
+    box-shadow: 0 14px 36px rgba(0, 0, 0, .17), inset 0 1px 0 rgba(255, 255, 255, .025);
+    transition: transform .36s cubic-bezier(.2, .7, .2, 1), border-color .36s ease, box-shadow .36s ease;
 }
 
 .education-card::before {
-    position: absolute;
-    top: 0;
-    right: 18px;
-    left: 18px;
-    height: 2px;
     content: "";
-    opacity: .65;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 18px;
+    right: 18px;
+    height: 2px;
+    opacity: .75;
     background: linear-gradient(90deg, transparent, #087bff, #00d5ff, transparent);
     transform: scaleX(.45);
-    transform-origin: center;
-    transition: transform .45s ease, opacity .45s ease;
-}
-
-.education-card::after {
-    position: absolute;
-    top: -70px;
-    right: -70px;
-    width: 150px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    content: "";
+    transition: transform .4s ease, opacity .4s ease;
     pointer-events: none;
-    background: radial-gradient(circle, rgba(0, 164, 255, .11), transparent 70%);
 }
 
-.education-entry:hover .education-card {
+.education-stop:hover .education-card {
     transform: translateY(-5px);
-    border-color: rgba(0, 190, 255, .42);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, .24), 0 0 24px rgba(0, 125, 255, .08);
+    border-color: rgba(0, 190, 255, .55);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, .23), 0 0 25px rgba(0, 125, 255, .09);
 }
 
-.education-entry:hover .education-card::before {
+.education-stop:hover .education-card::before {
     opacity: 1;
     transform: scaleX(1);
 }
 
-.education-current .education-card {
-    border-color: rgba(0, 190, 255, .4);
-    background: linear-gradient(145deg, rgba(10, 39, 75, .98), rgba(5, 20, 45, .98));
-    box-shadow: 0 16px 42px rgba(0, 0, 0, .2), 0 0 30px rgba(0, 141, 255, .09);
+.education-card-media {
+    position: relative;
+    flex: 0 0 39%;
+    min-width: 0;
+    min-height: 226px;
+    overflow: hidden;
+    isolation: isolate;
+    background: #0b2549;
 }
 
-.education-current .education-card::before {
-    opacity: 1;
-    transform: scaleX(1);
+.education-card-media img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.001);
+    transition: transform .8s cubic-bezier(.2, .7, .2, 1), filter .8s ease;
+}
+
+.education-stop:hover .education-card-media img {
+    transform: scale(1.075);
+    filter: saturate(1.1) contrast(1.04);
+}
+
+.education-image-shade {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(0, 9, 28, .04) 25%, rgba(0, 9, 28, .68) 100%);
+    pointer-events: none;
+}
+
+.education-photo-label {
+    position: absolute;
+    z-index: 2;
+    left: 13px;
+    bottom: 43px;
+    max-width: calc(100% - 26px);
+    color: rgba(238, 248, 255, .92);
+    font-size: 7px;
+    font-weight: 850;
+    letter-spacing: .13em;
+    line-height: 1.4;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .7);
+}
+
+.education-photo-year {
+    position: absolute;
+    z-index: 2;
+    left: 11px;
+    bottom: 11px;
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 5px 9px;
+    border: 1px solid rgba(0, 213, 255, .45);
+    border-radius: 18px;
+    color: #fff;
+    background: rgba(2, 16, 39, .75);
+    backdrop-filter: blur(8px);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    white-space: nowrap;
+}
+
+.education-card-content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+    padding: 18px 17px 16px;
+}
+
+/* On right-side stops, image faces outward and text faces the road. */
+.education-stop-right .education-card-media {
+    order: 2;
+}
+
+.education-stop-right .education-card-content {
+    order: 1;
 }
 
 .education-card-topline {
-    position: relative;
-    z-index: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 7px 10px;
+    margin-bottom: 13px;
 }
 
 .education-level {
-    color: #48d9ff;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: .16em;
-    line-height: 1.5;
+    color: #4bdcff;
+    font-size: 8px;
+    font-weight: 850;
+    letter-spacing: .13em;
+    line-height: 1.55;
 }
 
 .education-status {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
+    gap: 5px;
     flex: 0 0 auto;
-    padding: 6px 9px;
-    border: 1px solid rgba(0, 201, 255, .27);
-    border-radius: 999px;
-    color: #75e7ff;
+    min-height: 22px;
+    padding: 4px 7px;
+    border: 1px solid rgba(129, 164, 202, .2);
+    border-radius: 20px;
+    color: #a9bdd9;
+    background: rgba(120, 157, 202, .07);
+    font-size: 7px;
+    font-weight: 850;
+    letter-spacing: .07em;
+}
+
+.education-status-complete i {
+    color: #8faed0;
+    font-size: 10px;
+}
+
+.education-status-current {
+    border-color: rgba(0, 213, 255, .29);
+    color: #7feaff;
     background: rgba(0, 178, 255, .09);
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: .09em;
 }
 
 .education-status-dot {
@@ -322,140 +635,224 @@
     height: 6px;
     border-radius: 50%;
     background: #00d5ff;
-    box-shadow: 0 0 9px #00d5ff;
+    box-shadow: 0 0 8px #00d5ff;
 }
 
 .education-status-dot::after {
+    content: "";
     position: absolute;
     inset: -4px;
-    border: 1px solid rgba(0, 213, 255, .65);
+    border: 1px solid rgba(0, 213, 255, .6);
     border-radius: 50%;
-    content: "";
     animation: educationPulse 2s ease-out infinite;
 }
 
-.education-status-complete {
-    border-color: rgba(119, 163, 208, .2);
-    color: #a7bdd9;
-    background: rgba(120, 157, 202, .07);
-}
-
 .education-card h2 {
-    position: relative;
-    z-index: 1;
-    margin: 0 0 21px;
-    color: var(--text, #f2f6ff);
-    font-size: clamp(18px, 1.8vw, 22px);
-    font-weight: 750;
+    margin: 0 0 12px;
+    color: var(--text, var(--edu-text));
+    font-size: clamp(15px, 1.35vw, 18px);
+    font-weight: 800;
     letter-spacing: -.035em;
-    line-height: 1.35;
+    line-height: 1.3;
 }
 
 .education-card h2 span {
-    color: #54cfff;
-    font-size: .82em;
-    font-weight: 700;
-    white-space: nowrap;
+    color: #50ccf4;
 }
 
-.education-institution {
-    position: relative;
-    z-index: 1;
+.education-institution-name {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
+    gap: 8px;
     min-width: 0;
+    margin-top: 3px;
 }
 
-.education-institution-icon {
-    display: grid;
-    width: 36px;
-    height: 36px;
-    flex: 0 0 36px;
-    place-items: center;
-    border: 1px solid rgba(0, 174, 255, .2);
-    border-radius: 11px;
-    color: #67dfff;
-    background: rgba(0, 142, 255, .1);
-    font-size: 15px;
-}
-
-.education-institution h3 {
-    margin: 1px 0 6px;
-    color: #eaf3ff;
-    font-size: 13px;
-    font-weight: 700;
-    line-height: 1.55;
-}
-
-.education-institution p {
-    display: flex;
-    align-items: flex-start;
-    gap: 6px;
-    margin: 0;
-    color: #91a8c7;
-    font-size: 11px;
-    line-height: 1.65;
-}
-
-.education-institution p i {
+.education-institution-name>i {
+    flex: 0 0 auto;
     margin-top: 2px;
-    color: #35c9f7;
+    color: var(--edu-cyan);
+    font-size: 12px;
 }
 
-.education-card-footer {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px 14px;
-    margin-top: 22px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(126, 164, 207, .13);
-}
-
-.education-duration,
-.education-result {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    color: #a9bdd7;
+.education-institution-name h3 {
+    margin: 0;
+    color: #eaf3ff;
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 750;
     line-height: 1.5;
 }
 
-.education-duration i,
-.education-result i {
-    color: #42cfff;
-    font-size: 12px;
+.education-location {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin: 7px 0 13px;
+    color: #91a8c7;
+    font-size: 9px;
+    line-height: 1.55;
+}
+
+.education-location i {
+    flex: 0 0 auto;
+    margin-top: 1px;
+    color: #35c9f7;
+    font-size: 10px;
+}
+
+.education-result {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+    margin-top: auto;
+    padding: 9px 10px;
+    border: 1px solid rgba(0, 145, 255, .19);
+    border-radius: 11px;
+    background: rgba(0, 105, 210, .075);
+}
+
+.result-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 29px;
+    width: 29px;
+    height: 29px;
+    border-radius: 9px;
+    color: var(--edu-cyan);
+    background: rgba(0, 165, 255, .13);
+    font-size: 13px;
+}
+
+.education-result>span:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.education-result small {
+    color: #8daacb;
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: .12em;
 }
 
 .education-result strong {
     color: #f1f7ff;
-    font-size: 11px;
-    font-weight: 800;
+    font-size: 14px;
+    font-weight: 850;
+    line-height: 1.2;
 }
 
-/* Closing note */
-.education-closing {
+.education-result strong em {
+    color: #8ba9ca;
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 650;
+}
+
+.education-result-current {
+    border-color: rgba(0, 213, 255, .35);
+    background: linear-gradient(100deg, rgba(0, 115, 255, .16), rgba(0, 204, 255, .06));
+    box-shadow: inset 0 0 15px rgba(0, 159, 255, .045);
+}
+
+.education-result-current .result-icon {
+    color: #fff;
+    background: linear-gradient(135deg, #087bff, #00c9ef);
+}
+
+/* Current MCA milestone gets an understated highlight. */
+.education-stop-current .education-card {
+    border-color: rgba(0, 194, 255, .53);
+    background: linear-gradient(145deg, rgba(9, 38, 78, .98), rgba(3, 18, 44, .99));
+    box-shadow: 0 16px 43px rgba(0, 0, 0, .2), 0 0 28px rgba(0, 141, 255, .1);
+}
+
+.education-stop-current .education-marker-core {
+    border-color: #00e0ff;
+    color: #fff;
+    background: linear-gradient(145deg, #087bff, #07416e);
+    box-shadow: 0 0 0 7px rgba(0, 153, 255, .1), 0 0 30px rgba(0, 190, 255, .35);
+}
+
+
+/* ==========================================================
+   4. ROUTE END / CLOSING NOTE
+   ========================================================== */
+
+.education-route-finish {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin: clamp(48px, 6vw, 70px) auto 0;
-    color: var(--muted, #c0cce2);
+    width: fit-content;
+    max-width: 100%;
+    margin: 34px auto 0;
+    padding: 11px 16px 11px 11px;
+    border: 1px solid rgba(0, 190, 255, .32);
+    border-radius: 15px;
+    background: linear-gradient(110deg, rgba(7, 36, 75, .95), rgba(3, 17, 41, .96));
+    box-shadow: 0 10px 27px rgba(0, 0, 0, .14), 0 0 20px rgba(0, 145, 255, .07);
+}
+
+.route-finish-icon {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    color: #fff;
+    background: linear-gradient(135deg, #087bff, #00cce9);
+    font-size: 13px;
+}
+
+.education-route-finish>div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.education-route-finish small {
+    color: var(--edu-cyan);
+    font-size: 7px;
+    font-weight: 850;
+    letter-spacing: .15em;
+}
+
+.education-route-finish strong {
+    color: #eef6ff;
+    font-size: 10px;
+    font-weight: 750;
+    line-height: 1.4;
+}
+
+.route-finish-year {
+    margin-left: 12px;
+    color: #8fb4dc;
+    font-size: 17px;
+    font-weight: 850;
+}
+
+.education-closing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    max-width: 780px;
+    margin: 45px auto 0;
+    color: var(--muted, var(--edu-muted));
     text-align: center;
 }
 
-.education-closing-mark {
+.education-closing-icon {
     display: grid;
-    width: 32px;
-    height: 32px;
-    flex: 0 0 32px;
     place-items: center;
+    flex: 0 0 31px;
+    width: 31px;
+    height: 31px;
     border: 1px solid rgba(0, 173, 255, .25);
     border-radius: 10px;
     color: #56dcff;
@@ -465,9 +862,8 @@
 
 .education-closing p {
     margin: 0;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    letter-spacing: .01em;
     line-height: 1.7;
 }
 
@@ -481,11 +877,20 @@
     box-shadow: 0 0 16px rgba(0, 129, 255, .2);
 }
 
-/* Scroll entrance: JS adds .js to the root and .is-visible to each item. */
+
+/* ==========================================================
+   5. ENTRANCE ANIMATIONS
+   ========================================================== */
+
+.education-reveal {
+    opacity: 1;
+    transform: none;
+}
+
 .js .education-reveal {
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity .75s ease, transform .75s cubic-bezier(.2, .7, .2, 1);
+    transition: opacity .72s ease, transform .72s cubic-bezier(.2, .7, .2, 1);
 }
 
 .js .education-reveal.is-visible {
@@ -493,16 +898,20 @@
     transform: translateY(0);
 }
 
-.education-entry:nth-child(2) {
-    transition-delay: .08s;
+.education-stop:nth-of-type(2) {
+    transition-delay: .06s;
 }
 
-.education-entry:nth-child(3) {
-    transition-delay: .14s;
+.education-stop:nth-of-type(3) {
+    transition-delay: .12s;
 }
 
-.education-entry:nth-child(4) {
-    transition-delay: .2s;
+.education-stop:nth-of-type(4) {
+    transition-delay: .18s;
+}
+
+.education-stop:nth-of-type(5) {
+    transition-delay: .24s;
 }
 
 @keyframes educationPulse {
@@ -517,514 +926,2233 @@
     }
 }
 
-/* Light theme */
-body.light-theme .education-main {
+
+/* ==========================================================
+   6. LIGHT THEME
+   ========================================================== */
+
+body.light-theme .education-section {
     background:
-        radial-gradient(ellipse at 82% 18%, rgba(0, 92, 220, .09), transparent 34%),
-        radial-gradient(ellipse at 8% 58%, rgba(0, 190, 255, .06), transparent 35%),
-        #edf4ff;
+        radial-gradient(ellipse at 86% 8%, rgba(0, 91, 220, .08), transparent 34%),
+        radial-gradient(ellipse at 8% 52%, rgba(0, 190, 255, .06), transparent 34%),
+        linear-gradient(180deg, #edf4ff 0%, #e8f1ff 52%, #edf4ff 100%);
 }
 
-body.light-theme .education-heading h1,
-body.light-theme .education-card h2 {
+body.light-theme .education-heading h1 {
     color: #102342;
 }
 
 body.light-theme .education-intro,
-body.light-theme .education-heading-note,
 body.light-theme .education-closing {
     color: #52647e;
 }
 
-body.light-theme .education-heading-note {
+body.light-theme .education-hero-tags>span {
+    color: #315678;
     border-color: rgba(0, 116, 220, .17);
     background: rgba(0, 122, 255, .045);
 }
 
+body.light-theme .education-route-summary {
+    border-color: rgba(0, 116, 220, .22);
+    background: linear-gradient(145deg, #fff, #e8f2ff);
+    box-shadow: 0 15px 35px rgba(38, 78, 130, .08);
+}
+
+body.light-theme .route-summary-label,
+body.light-theme .route-summary-years small,
+body.light-theme .education-route-summary>p {
+    color: #637995;
+}
+
+body.light-theme .route-summary-years strong {
+    color: #173456;
+}
+
+body.light-theme .education-road-track {
+    background: #d2e1f2;
+}
+
+body.light-theme .education-route-start {
+    color: #526c8e;
+    border-color: rgba(0, 116, 220, .2);
+    background: #e6f1ff;
+}
+
+body.light-theme .education-marker-core {
+    border-color: rgba(0, 129, 220, .43);
+    color: #087bc8;
+    background: linear-gradient(145deg, #fff, #e1f0ff);
+    box-shadow: 0 0 0 6px rgba(0, 124, 220, .07), 0 0 22px rgba(0, 124, 220, .12);
+}
+
+body.light-theme .education-marker small {
+    color: #6685a8;
+}
+
 body.light-theme .education-card,
-body.light-theme .education-current .education-card {
-    border-color: rgba(58, 112, 184, .2);
-    background: linear-gradient(145deg, rgba(255, 255, 255, .97), rgba(239, 246, 255, .98));
+body.light-theme .education-stop-current .education-card {
+    border-color: rgba(58, 112, 184, .22);
+    background: linear-gradient(145deg, rgba(255, 255, 255, .98), rgba(239, 246, 255, .99));
     box-shadow: 0 15px 36px rgba(38, 78, 130, .09);
 }
 
-body.light-theme .education-institution h3 {
+body.light-theme .education-card h2,
+body.light-theme .education-institution-name h3 {
     color: #183252;
 }
 
-body.light-theme .education-institution p,
-body.light-theme .education-duration {
+body.light-theme .education-location {
     color: #637995;
 }
 
 body.light-theme .education-result {
-    color: #516b8b;
+    border-color: rgba(0, 116, 220, .15);
+    background: rgba(0, 122, 255, .045);
 }
 
 body.light-theme .education-result strong {
     color: #173456;
 }
 
-body.light-theme .education-card-footer {
-    border-top-color: rgba(70, 112, 164, .15);
+body.light-theme .education-result small {
+    color: #637995;
 }
 
-body.light-theme .education-marker-core {
-    border-color: rgba(0, 129, 220, .3);
-    color: #087bc8;
-    background: linear-gradient(145deg, #ffffff, #e7f2ff);
-    box-shadow: 0 0 0 6px rgba(0, 124, 220, .055), 0 0 22px rgba(0, 124, 220, .1);
+body.light-theme .education-route-finish {
+    border-color: rgba(0, 116, 220, .22);
+    background: linear-gradient(110deg, #fff, #e8f2ff);
 }
 
-body.light-theme .education-status-complete {
-    color: #58708e;
-    background: rgba(80, 119, 165, .07);
+body.light-theme .education-route-finish strong {
+    color: #173456;
 }
 
-/* Tablet and compact desktop */
-@media (max-width: 900px) {
-    .education-section {
-        padding-top: 68px;
+
+/* ==========================================================
+   7. TABLET / COMPACT DESKTOP
+   Convert the alternating route into a left-side road so
+   the cards and photographs keep useful width.
+   ========================================================== */
+
+@media (max-width: 1050px) {
+
+    .education-hero {
+        grid-template-columns: minmax(0, 1fr) minmax(235px, .65fr);
+        gap: 30px;
+        margin-bottom: 54px;
     }
 
-    .education-heading {
-        margin-bottom: 56px;
+    .education-heading h1 {
+        font-size: clamp(40px, 5.3vw, 58px);
     }
 
-    .education-timeline {
-        width: min(100%, 760px);
+    .education-stop {
+        grid-template-columns: 62px minmax(0, 1fr);
+        column-gap: 16px;
+        margin-bottom: 27px;
     }
 
-    .education-entry {
-        grid-template-columns: 58px minmax(0, 1fr);
-        column-gap: 17px;
-        margin-bottom: 25px;
+    .education-road-track {
+        left: 30px;
+        width: 18px;
     }
 
-    .education-timeline::before {
-        top: 24px;
-        bottom: 25px;
-        left: 28px;
-    }
-
-    .education-entry-left .education-card,
-    .education-entry-right .education-card {
+    .education-stop-left .education-card,
+    .education-stop-right .education-card {
         grid-column: 2;
         grid-row: 1;
     }
 
-    .education-entry-left .education-marker,
-    .education-entry-right .education-marker {
+    .education-stop-left .education-marker,
+    .education-stop-right .education-marker {
         grid-column: 1;
         grid-row: 1;
     }
 
-    .education-empty {
+    .education-stop .education-empty {
         display: none;
     }
 
     .education-marker-core {
-        width: 43px;
-        height: 43px;
-        border-radius: 14px;
-        font-size: 16px;
+        width: 46px;
+        height: 46px;
+        font-size: 15px;
+    }
+
+    .education-stop-right .education-card-media {
+        order: 0;
+    }
+
+    .education-stop-right .education-card-content {
+        order: 1;
     }
 }
 
-/* Mobile */
-@media (max-width: 575.98px) {
+
+/* ==========================================================
+   8. MOBILE
+   One clear vertical road with image-first cards.
+   ========================================================== */
+
+@media (max-width: 767.98px) {
+
     .education-section {
-        padding: 47px 0 55px;
+        padding: 43px 0 52px;
     }
 
-    .education-heading {
-        margin: 0 auto 42px;
-        padding: 0 5px;
-        text-align: left;
+    .education-hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+        margin-bottom: 42px;
     }
 
     .education-eyebrow {
         margin-bottom: 14px;
-        font-size: 10px;
+        font-size: 9px;
+        letter-spacing: .16em;
     }
 
     .education-heading h1 {
-        font-size: clamp(37px, 10vw, 49px);
+        font-size: clamp(37px, 9.3vw, 48px);
         line-height: 1.08;
     }
 
     .education-intro {
-        margin: 14px 0 0;
-        font-size: 13px;
+        margin-top: 13px;
+        font-size: 12px;
         line-height: 1.8;
     }
 
-    .education-heading-note {
-        margin-top: 19px;
-        padding-right: 12px;
-        font-size: 10px;
+    .education-hero-tags {
+        gap: 7px;
+        margin-top: 17px;
     }
 
-    .education-timeline {
+    .education-hero-tags>span {
+        min-height: 30px;
+        padding: 6px 10px;
+        font-size: 8px;
+    }
+
+    .education-route-summary {
+        width: min(100%, 420px);
+        padding: 16px 17px;
+        border-radius: 15px;
+    }
+
+    .route-summary-years {
+        margin-top: 13px;
+    }
+
+    .route-summary-years strong {
+        font-size: 23px;
+    }
+
+    .education-route-summary>p {
+        margin-top: 10px;
+        font-size: 9px;
+    }
+
+    .education-roadmap {
         width: 100%;
     }
 
-    .education-timeline::before {
-        top: 22px;
-        bottom: 23px;
-        left: 17px;
-        width: 1px;
+    .education-road-track {
+        top: 17px;
+        bottom: 30px;
+        left: 18px;
+        width: 14px;
+        transform: none;
     }
 
-    .education-entry {
-        grid-template-columns: 35px minmax(0, 1fr);
+    .education-road-progress {
+        left: 2px;
+        right: 2px;
+    }
+
+    .education-route-start {
+        justify-content: flex-start;
+        margin: 0 0 24px 0;
+        margin-left: 0;
+        padding: 6px 12px 6px 6px;
+        font-size: 7px;
+    }
+
+    .route-end-icon {
+        width: 23px;
+        height: 23px;
+    }
+
+    .education-stop {
+        grid-template-columns: 38px minmax(0, 1fr);
         column-gap: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 21px;
     }
 
-    .education-entry-left .education-card,
-    .education-entry-right .education-card {
+    .education-stop-left .education-card,
+    .education-stop-right .education-card {
         grid-column: 2;
+        grid-row: 1;
     }
 
-    .education-entry-left .education-marker,
-    .education-entry-right .education-marker {
+    .education-stop-left .education-marker,
+    .education-stop-right .education-marker {
         grid-column: 1;
+        grid-row: 1;
+        align-self: start;
+        padding-top: 17px;
+    }
+
+    .education-marker {
+        gap: 4px;
     }
 
     .education-marker-core {
         width: 34px;
         height: 34px;
-        border-radius: 11px;
-        font-size: 13px;
+        border-width: 1px;
+        font-size: 12px;
+        box-shadow: 0 0 0 4px rgba(0, 153, 255, .075), 0 0 15px rgba(0, 153, 255, .18);
+    }
+
+    .education-marker-core::after {
+        inset: -5px;
+    }
+
+    .education-marker small {
+        font-size: 7px;
     }
 
     .education-card {
-        padding: 18px 16px;
+        flex-direction: column;
+        min-height: 0;
         border-radius: 15px;
     }
 
-    .education-card-topline {
-        align-items: flex-start;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 14px;
+    .education-card-media {
+        flex: 0 0 auto;
+        width: 100%;
+        height: clamp(150px, 43vw, 205px);
+        min-height: 0;
     }
 
-    .education-level {
-        font-size: 9px;
-        letter-spacing: .12em;
+    .education-stop-right .education-card-media {
+        order: 0;
     }
 
-    .education-status {
-        padding: 5px 8px;
+    .education-stop-right .education-card-content {
+        order: 1;
+    }
+
+    .education-photo-label {
+        left: 13px;
+        bottom: 42px;
+        font-size: 7px;
+    }
+
+    .education-photo-year {
+        left: 12px;
+        bottom: 11px;
+        min-height: 22px;
         font-size: 8px;
     }
 
+    .education-card-content {
+        padding: 16px 15px 15px;
+    }
+
+    .education-card-topline {
+        margin-bottom: 11px;
+    }
+
+    .education-level {
+        font-size: 8px;
+    }
+
+    .education-status {
+        min-height: 20px;
+        padding: 4px 7px;
+        font-size: 7px;
+    }
+
     .education-card h2 {
-        margin-bottom: 17px;
+        margin-bottom: 11px;
         font-size: 17px;
-        line-height: 1.4;
     }
 
-    .education-institution {
-        gap: 10px;
+    .education-institution-name h3 {
+        font-size: 11px;
     }
 
-    .education-institution-icon {
-        width: 32px;
-        height: 32px;
-        flex-basis: 32px;
-        border-radius: 9px;
-        font-size: 13px;
+    .education-location {
+        margin: 6px 0 12px;
+        font-size: 9px;
     }
 
-    .education-institution h3 {
-        font-size: 12px;
-    }
-
-    .education-institution p {
-        font-size: 10px;
-    }
-
-    .education-card-footer {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 8px;
-        margin-top: 16px;
-        padding-top: 13px;
-    }
-
-    .education-duration,
     .education-result {
-        font-size: 10px;
+        padding: 8px 9px;
+    }
+
+    .education-route-finish {
+        justify-content: flex-start;
+        width: calc(100% - 48px);
+        margin: 25px 0 0 48px;
+        padding: 10px;
+        gap: 9px;
+    }
+
+    .route-finish-icon {
+        width: 30px;
+        height: 30px;
+        flex-basis: 30px;
+    }
+
+    .education-route-finish strong {
+        font-size: 9px;
+    }
+
+    .route-finish-year {
+        margin-left: auto;
+        font-size: 15px;
     }
 
     .education-closing {
         justify-content: flex-start;
-        margin-top: 35px;
+        margin: 32px 0 0 48px;
         text-align: left;
     }
 
     .education-closing p {
-        font-size: 11px;
+        font-size: 10px;
     }
 }
 
-@media (max-width: 360px) {
-    .education-entry {
-        grid-template-columns: 30px minmax(0, 1fr);
+
+/* ==========================================================
+   9. SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 390px) {
+
+    .education-section {
+        padding-top: 36px;
+    }
+
+    .education-heading h1 {
+        font-size: 36px;
+    }
+
+    .education-hero-tags>span {
+        font-size: 7px;
+    }
+
+    .education-stop {
+        grid-template-columns: 33px minmax(0, 1fr);
         column-gap: 8px;
     }
 
-    .education-timeline::before {
+    .education-road-track {
         left: 15px;
+        width: 13px;
     }
 
     .education-marker-core {
         width: 30px;
         height: 30px;
-        border-radius: 9px;
-        font-size: 12px;
+        font-size: 11px;
     }
 
-    .education-card {
-        padding: 16px 13px;
+    .education-card-content {
+        padding: 14px 12px 13px;
     }
 
     .education-card h2 {
-        font-size: 16px;
+        font-size: 15px;
+    }
+
+    .education-route-finish,
+    .education-closing {
+        margin-left: 41px;
+        width: calc(100% - 41px);
+    }
+
+    .education-closing {
+        width: auto;
     }
 }
 
+
+/* ==========================================================
+   10. ACCESSIBILITY / REDUCED MOTION
+   ========================================================== */
+
 @media (prefers-reduced-motion: reduce) {
+
+    .education-status-dot::after {
+        animation: none !important;
+    }
+
+    .education-card,
+    .education-card-media img,
+    .education-marker-core,
+    .education-marker-core::after {
+        transition: none !important;
+    }
 
     .js .education-reveal,
     .js .education-reveal.is-visible {
         opacity: 1;
         transform: none;
-        transition: none;
-    }
-
-    .education-status-dot::after {
-        animation: none;
-    }
-
-    .education-card,
-    .education-marker-core,
-    .education-card::before {
-        transition: none;
+        transition: none !important;
     }
 }
 
 
-/* =========================================
-   EDUCATION PAGE - COMPACT SIZE ADJUSTMENT
-   ========================================= */
+/* ==========================================================
+   CARVE EDUCATION - REFINED ROADMAP CARDS
+   ========================================================== */
 
-/* Reduce section spacing */
-.education-section {
-    padding-top: 55px;
-    padding-bottom: 55px;
+/* One spacious heading instead of a summary panel. */
+.education-hero {
+    display: block;
+    width: min(100%, 900px);
+    max-width: 900px;
+    margin: 0 auto 58px;
+    text-align: center;
 }
 
-/* Heading */
+.education-hero-copy {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 .education-heading {
-    margin-bottom: 48px;
-}
-
-.education-heading h1 {
-    font-size: clamp(36px, 4.8vw, 59px);
-}
-
-.education-intro {
-    font-size: 13px;
-    margin-top: 15px;
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .education-eyebrow {
-    font-size: 10px;
-    margin-bottom: 14px;
+    justify-content: center;
 }
 
-/* Timeline width and spacing */
-.education-timeline {
-    max-width: 1000px;
+.education-hero-tags {
+    justify-content: center;
 }
 
-.education-entry {
-    grid-template-columns: minmax(0, 1fr) 66px minmax(0, 1fr);
-    margin-bottom: 30px;
-}
-
-/* Timeline markers */
-.education-marker-core {
-    width: 42px;
-    height: 42px;
-    border-radius: 14px;
-    font-size: 15px;
-}
-
-/* Education cards */
+/* Wide landscape photos across each milestone card. */
 .education-card {
-    padding: 21px;
-    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: 19px;
 }
 
-.education-card-topline {
-    margin-bottom: 14px;
+.education-card-media {
+    position: relative;
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1.85 / 1;
+    overflow: hidden;
+    background: #0b2549;
+}
+
+.education-card-media img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 48%;
+    transition: transform .8s cubic-bezier(.2, .7, .2, 1), filter .8s ease;
+}
+
+.education-image-shade {
+    background: linear-gradient(180deg,
+            rgba(0, 9, 28, .03) 0%,
+            rgba(0, 9, 28, .02) 48%,
+            rgba(0, 9, 28, .60) 100%);
+}
+
+.education-photo-label {
+    left: 15px;
+    bottom: 42px;
+    padding: 5px 9px;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 18px;
+    background: rgba(2, 16, 39, .48);
+    backdrop-filter: blur(7px);
+    font-size: 8px;
+    letter-spacing: .11em;
+}
+
+.education-photo-year {
+    left: 14px;
+    bottom: 12px;
+    min-height: 25px;
+    padding: 5px 10px;
+    border-color: rgba(0, 213, 255, .52);
+    font-size: 9px;
+}
+
+.education-card-content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    padding: 19px 21px 20px;
+    background: linear-gradient(145deg, rgba(9, 30, 63, .98), rgba(4, 17, 40, .99));
 }
 
 .education-card h2 {
-    font-size: clamp(16px, 1.5vw, 19px);
-    margin-bottom: 17px;
+    margin-bottom: 13px;
+    font-size: clamp(17px, 1.5vw, 20px);
+    line-height: 1.34;
 }
 
-.education-level {
-    font-size: 9px;
-}
-
-.education-status {
-    font-size: 8px;
-    padding: 5px 8px;
-}
-
-.education-institution-icon {
-    width: 32px;
-    height: 32px;
-    flex-basis: 32px;
-    font-size: 13px;
-}
-
-.education-institution h3 {
-    font-size: 12px;
-}
-
-.education-institution p {
-    font-size: 10px;
-}
-
-.education-card-footer {
-    margin-top: 17px;
-    padding-top: 13px;
-}
-
-.education-duration,
-.education-result {
-    font-size: 9px;
-}
-
-.education-result strong {
-    font-size: 10px;
-}
-
-/* Closing text */
-.education-closing {
-    margin-top: 45px;
-}
-
-.education-closing p {
+.education-institution-name h3 {
     font-size: 11px;
 }
 
-/* Tablet */
-@media (max-width: 991.98px) {
-    .education-section {
-        padding-top: 48px;
-        padding-bottom: 48px;
-    }
-
-    .education-entry {
-        grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1fr);
-    }
-
-    .education-card {
-        padding: 18px;
-    }
+.education-location {
+    margin-bottom: 10px;
+    font-size: 9.5px;
 }
 
-/* Mobile */
-@media (max-width: 767.98px) {
-    .education-section {
-        padding: 40px 0 45px;
+.education-study-period {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 12px;
+    color: #91a8c7;
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+.education-study-period i {
+    color: #35c9f7;
+    font-size: 10px;
+}
+
+.education-result {
+    margin-top: auto;
+}
+
+/* The former L-shaped connectors are replaced by a curved SVG road. */
+.education-stop::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: calc(50% - 13px);
+    width: 30px;
+    height: 26px;
+    border-top: 2px solid rgba(0, 174, 255, .42);
+    pointer-events: none;
+    filter: drop-shadow(0 0 4px rgba(0, 173, 255, .16));
+}
+
+.education-stop-left::before {
+    left: calc(50% - 41px);
+    border-right: 2px solid rgba(0, 174, 255, .42);
+    border-top-right-radius: 22px;
+}
+
+.education-stop-right::before {
+    right: calc(50% - 41px);
+    border-left: 2px solid rgba(0, 174, 255, .42);
+    border-top-left-radius: 22px;
+}
+
+.education-stop-current .education-card {
+    border-color: rgba(0, 194, 255, .55);
+    box-shadow: 0 16px 43px rgba(0, 0, 0, .2), 0 0 28px rgba(0, 141, 255, .11);
+}
+
+.education-stop-right .education-card-media,
+.education-stop-right .education-card-content {
+    order: initial;
+}
+
+@media (max-width: 1050px) {
+    .education-hero {
+        width: min(100%, 850px);
+        margin-bottom: 48px;
     }
 
-    .education-heading {
-        margin-bottom: 35px;
-    }
-
-    .education-heading h1 {
-        font-size: clamp(34px, 8vw, 44px);
-    }
-
-    .education-timeline {
-        width: 100%;
-    }
-
-    .education-entry {
-        grid-template-columns: 42px minmax(0, 1fr);
-        gap: 12px;
-        margin-bottom: 22px;
-    }
-
-    .education-entry-left .education-card,
-    .education-entry-right .education-card {
-        grid-column: 2;
-        grid-row: 1;
-    }
-
-    .education-entry-left .education-marker,
-    .education-entry-right .education-marker {
-        grid-column: 1;
-        grid-row: 1;
-    }
-
-    .education-entry .education-empty {
+    .education-stop::before {
         display: none;
     }
 
-    .education-timeline::before {
-        left: 21px;
+    .education-card-media {
+        aspect-ratio: 1.85 / 1;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .education-hero {
+        margin-bottom: 39px;
+        text-align: left;
     }
 
-    .education-marker-core {
-        width: 36px;
-        height: 36px;
-        border-radius: 12px;
-        font-size: 13px;
+    .education-hero-copy,
+    .education-heading {
+        text-align: left;
+    }
+
+    .education-eyebrow {
+        justify-content: flex-start;
+    }
+
+    .education-hero-tags {
+        justify-content: flex-start;
     }
 
     .education-card {
-        padding: 17px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .education-card-media {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+    }
+
+    .education-card-content {
+        padding: 16px 15px 16px;
     }
 
     .education-card h2 {
         font-size: 17px;
     }
 
-    .education-institution h3 {
-        font-size: 11px;
+    .education-photo-label {
+        bottom: 39px;
+        font-size: 7px;
     }
 
-    .education-closing {
-        margin-top: 32px;
+    .education-photo-year {
+        bottom: 10px;
+        font-size: 8px;
     }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 390px) {
+    .education-card-media {
+        aspect-ratio: 16 / 9;
+    }
+
+    .education-card-content {
+        padding: 14px 12px 14px;
+    }
+}
+
+body.light-theme .education-card-content {
+    background: linear-gradient(145deg, rgba(255, 255, 255, .99), rgba(239, 246, 255, .99));
+}
+
+body.light-theme .education-study-period {
+    color: #637995;
+}
+
+body.light-theme .education-stop::before {
+    border-top-color: rgba(0, 116, 220, .35);
+}
+
+body.light-theme .education-stop-left::before {
+    border-right-color: rgba(0, 116, 220, .35);
+}
+
+body.light-theme .education-stop-right::before {
+    border-left-color: rgba(0, 116, 220, .35);
+}
+
+
+/* ==========================================================
+   CARVE EDUCATION - FINAL REFINEMENT
+   - Slightly more compact milestone cards and content.
+   - Replace the straight road body with a gentle winding SVG route.
+   - Preserve the glowing scroll-progress effect and all other design.
+   ========================================================== */
+
+.education-roadmap {
+    width: min(100%, 1080px);
+}
+
+.education-stop {
+    grid-template-columns: minmax(0, 1fr) 76px minmax(0, 1fr);
+    margin-bottom: 28px;
+}
+
+.education-card {
+    border-radius: 17px;
+}
+
+.education-card-media {
+    aspect-ratio: 2 / 1;
+}
+
+.education-card-content {
+    padding: 16px 17px 17px;
+}
+
+.education-card-topline {
+    margin-bottom: 11px;
+}
+
+.education-level {
+    font-size: 7.5px;
+}
+
+.education-status {
+    min-height: 20px;
+    padding: 4px 7px;
+    font-size: 7px;
+}
+
+.education-card h2 {
+    margin-bottom: 10px;
+    font-size: clamp(16px, 1.35vw, 18px);
+    line-height: 1.3;
+}
+
+.education-institution-name h3 {
+    font-size: 10.5px;
+    line-height: 1.45;
+}
+
+.education-location {
+    margin: 6px 0 8px;
+    font-size: 9px;
+}
+
+.education-study-period {
+    margin-bottom: 9px;
+    font-size: 8.5px;
+}
+
+.education-result {
+    gap: 8px;
+    padding: 8px 9px;
+    border-radius: 10px;
+}
+
+.result-icon {
+    width: 27px;
+    height: 27px;
+    flex-basis: 27px;
+    font-size: 12px;
+}
+
+.education-result small {
+    font-size: 6.5px;
+}
+
+.education-result strong {
+    font-size: 13px;
+}
+
+.education-stop::before {
+    content: none !important;
+    display: none !important;
+}
+
+.education-road-track {
+    position: absolute;
+    z-index: 0;
+    top: 26px;
+    right: 0;
+    bottom: 40px;
+    left: 0;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    transform: none;
+    pointer-events: none;
+}
+
+.education-road-svg {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.education-road-svg path {
+    position: static !important;
+    inset: auto !important;
+    width: auto !important;
+    height: auto !important;
+    transform: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: none !important;
+}
+
+.education-road-edge,
+.education-road-base,
+.education-road-progress,
+.education-road-dashes {
+    position: static;
+    display: block;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+}
+
+.education-road-edge {
+    stroke: rgba(89, 127, 165, .48);
+    stroke-width: 31px;
+    filter: drop-shadow(0 0 5px rgba(0, 121, 255, .12));
+}
+
+.education-road-base {
+    stroke: #142b49;
+    stroke-width: 25px;
+}
+
+.education-road-progress {
+    stroke: url(#educationRoadGlow);
+    stroke-width: 14px;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    filter: drop-shadow(0 0 6px rgba(0, 191, 255, .56)) drop-shadow(0 0 15px rgba(0, 125, 255, .23));
+    transition: stroke-dashoffset .12s linear;
+}
+
+.education-road-dashes {
+    stroke: rgba(220, 239, 255, .82);
+    stroke-width: 2px;
+    stroke-dasharray: 13 17;
+    opacity: .78;
+}
+
+.education-stop-current .education-card {
+    border-color: rgba(0, 194, 255, .55);
+}
+
+@media (max-width: 1050px) {
+    .education-roadmap {
+        width: min(100%, 980px);
+    }
+
+    .education-stop {
+        grid-template-columns: 62px minmax(0, 1fr);
+        column-gap: 16px;
+        margin-bottom: 24px;
+    }
+
+    .education-road-track {
+        top: 26px;
+        right: 0;
+        bottom: 40px;
+        left: 0;
+        width: auto;
+    }
+
+    .education-card-media {
+        aspect-ratio: 2 / 1;
+    }
+
+    .education-card-content {
+        padding: 15px 16px 16px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .education-roadmap {
+        width: 100%;
+    }
+
+    .education-stop {
+        grid-template-columns: 38px minmax(0, 1fr);
+        column-gap: 10px;
+        margin-bottom: 19px;
+    }
+
+    .education-road-track {
+        top: 17px;
+        right: 0;
+        bottom: 30px;
+        left: 0;
+        width: auto;
+    }
+
+    .education-road-edge {
+        stroke-width: 20px;
+    }
+
+    .education-road-base {
+        stroke-width: 16px;
+    }
+
+    .education-road-progress {
+        stroke-width: 9px;
+    }
+
+    .education-road-dashes {
+        stroke-width: 1.5px;
+        stroke-dasharray: 10 14;
+    }
+
     .education-card {
-        padding: 14px;
+        border-radius: 14px;
+    }
+
+    .education-card-media {
+        aspect-ratio: 16 / 9;
+    }
+
+    .education-card-content {
+        padding: 13px 13px 14px;
     }
 
     .education-card-topline {
-        gap: 6px;
+        margin-bottom: 9px;
     }
 
-    .education-status {
-        font-size: 7px;
+    .education-card h2 {
+        margin-bottom: 9px;
+        font-size: 16px;
+    }
+
+    .education-institution-name h3 {
+        font-size: 10px;
+    }
+
+    .education-location {
+        font-size: 8.5px;
+    }
+
+    .education-study-period {
+        margin-bottom: 8px;
+        font-size: 8px;
+    }
+
+    .education-result {
+        padding: 7px 8px;
+    }
+
+    .result-icon {
+        width: 25px;
+        height: 25px;
+        flex-basis: 25px;
+    }
+
+    .education-route-finish {
+        margin-top: 22px;
+    }
+}
+
+@media (max-width: 390px) {
+    .education-stop {
+        grid-template-columns: 33px minmax(0, 1fr);
+        column-gap: 8px;
+    }
+
+    .education-card-content {
+        padding: 12px 11px 13px;
     }
 
     .education-card h2 {
         font-size: 15px;
     }
+}
+
+body.light-theme .education-road-edge {
+    stroke: rgba(91, 126, 163, .5);
+}
+
+body.light-theme .education-road-base {
+    stroke: #c5d8ec;
+}
+
+body.light-theme .education-road-dashes {
+    stroke: rgba(45, 91, 137, .8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .education-road-progress {
+        transition: none !important;
+    }
+}
+
+
+/* ==========================================================
+   CARVE EDUCATION - COMPACT CARDS + TRAVELLING VEHICLE
+   Append this block at the VERY END of education.css.
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   1. REDUCE EDUCATION CARD HEIGHT
+   Preserve all content while tightening vertical spacing.
+   ---------------------------------------------------------- */
+
+.education-card {
+    min-height: 0;
+    height: auto;
+    border-radius: 16px;
+}
+
+/* Slightly shorter landscape institution photos. */
+.education-card-media {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 2.15 / 1;
+}
+
+/* Keep the entire photo area responsive. */
+.education-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Compact card content. */
+.education-card-content {
+    padding: 12px 15px 14px;
+    gap: 0;
+}
+
+.education-card-topline {
+    gap: 6px 8px;
+    margin-bottom: 8px;
+}
+
+.education-level {
+    font-size: 7px;
+    line-height: 1.45;
+}
+
+.education-status {
+    min-height: 19px;
+    padding: 3px 7px;
+    font-size: 6.5px;
+}
+
+.education-card h2 {
+    margin: 0 0 8px;
+    font-size: clamp(15px, 1.3vw, 17px);
+    line-height: 1.25;
+}
+
+.education-institution-name {
+    gap: 7px;
+    margin-top: 1px;
+}
+
+.education-institution-name>i {
+    font-size: 11px;
+}
+
+.education-institution-name h3 {
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.education-location {
+    gap: 5px;
+    margin: 5px 0 7px;
+    font-size: 8.5px;
+    line-height: 1.45;
+}
+
+.education-study-period {
+    gap: 5px;
+    margin: 0 0 7px;
+    font-size: 8px;
+    line-height: 1.4;
+}
+
+.education-result {
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: 9px;
+}
+
+.result-icon {
+    width: 25px;
+    height: 25px;
+    flex-basis: 25px;
+    font-size: 11px;
+}
+
+.education-result small {
+    font-size: 6px;
+}
+
+.education-result strong {
+    font-size: 12px;
+}
+
+.education-result strong em {
+    font-size: 8px;
+}
+
+
+/* ----------------------------------------------------------
+   2. STRAIGHT CENTRAL ROAD
+   Keep the original straight roadmap appearance.
+   ---------------------------------------------------------- */
+
+.education-road-track {
+    position: absolute;
+    z-index: 0;
+    top: 26px;
+    right: 0;
+    bottom: 40px;
+    left: 0;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    transform: none;
+    pointer-events: none;
+}
+
+.education-road-svg {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.education-road-svg path {
+    fill: none;
+    vector-effect: non-scaling-stroke;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.education-road-edge {
+    stroke: rgba(89, 127, 165, .48);
+    stroke-width: 31px;
+    filter: drop-shadow(0 0 5px rgba(0, 121, 255, .12));
+}
+
+.education-road-base {
+    stroke: #142b49;
+    stroke-width: 25px;
+}
+
+.education-road-progress {
+    stroke: url(#educationRoadGlow);
+    stroke-width: 14px;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    filter:
+        drop-shadow(0 0 6px rgba(0, 191, 255, .56)) drop-shadow(0 0 15px rgba(0, 125, 255, .23));
+    transition: none;
+}
+
+.education-road-dashes {
+    stroke: rgba(220, 239, 255, .82);
+    stroke-width: 2px;
+    stroke-dasharray: 13 17;
+    opacity: .78;
+}
+
+
+/* ----------------------------------------------------------
+   3. TRAVELLING VEHICLE
+   The JS positions this vehicle on the same road path.
+   ---------------------------------------------------------- */
+
+.education-road-vehicle {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    width: 36px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    opacity: 1;
+    pointer-events: none;
+
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+
+    transition: transform .07s linear;
+}
+
+/* Soft glow surrounding the vehicle. */
+.education-vehicle-glow {
+    position: absolute;
+    inset: -5px;
+
+    border-radius: 50%;
+
+    background: rgba(0, 175, 255, .22);
+    filter: blur(8px);
+}
+
+/* Vehicle body. */
+.education-vehicle-body {
+    position: relative;
+    z-index: 1;
+
+    width: 28px;
+    height: 37px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(89, 230, 255, .92);
+    border-radius: 10px 10px 8px 8px;
+
+    color: #dffaff;
+
+    background: linear-gradient(150deg,
+            #078bff,
+            #034a91 55%,
+            #032b58);
+
+    box-shadow:
+        0 0 0 3px rgba(0, 153, 255, .12),
+        0 0 13px rgba(0, 190, 255, .45),
+        inset 0 1px 5px rgba(255, 255, 255, .2);
+}
+
+/* Front-view car icon. */
+.education-vehicle-body i {
+    font-size: 17px;
+    line-height: 1;
+    filter: drop-shadow(0 0 3px rgba(0, 213, 255, .6));
+}
+
+/* Small headlights. */
+.education-vehicle-body::before,
+.education-vehicle-body::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+
+    width: 4px;
+    height: 3px;
+
+    border-radius: 3px;
+    background: #a9f5ff;
+    box-shadow: 0 0 6px #00d5ff;
+}
+
+.education-vehicle-body::before {
+    left: 4px;
+}
+
+.education-vehicle-body::after {
+    right: 4px;
+}
+
+/*
+   Road and vehicle layer order:
+   road = 0
+   vehicle = 1
+   milestone cards and markers = 2
+   This allows the milestone marker to remain visible
+   when the car reaches it.
+*/
+
+.education-stop {
+    z-index: 2;
+}
+
+.education-marker {
+    z-index: 4;
+}
+
+.education-route-start,
+.education-route-finish {
+    z-index: 3;
+}
+
+
+/* ----------------------------------------------------------
+   4. LIGHT THEME VEHICLE
+   ---------------------------------------------------------- */
+
+body.light-theme .education-vehicle-body {
+    border-color: rgba(0, 115, 210, .75);
+    background: linear-gradient(150deg, #168df4, #07509c);
+    color: #fff;
+}
+
+
+/* ----------------------------------------------------------
+   5. TABLET
+   ---------------------------------------------------------- */
+
+@media (max-width: 1050px) {
+
+    .education-card-media {
+        aspect-ratio: 2.1 / 1;
+    }
+
+    .education-card-content {
+        padding: 12px 14px 13px;
+    }
+
+    .education-road-edge {
+        stroke-width: 28px;
+    }
+
+    .education-road-base {
+        stroke-width: 22px;
+    }
+
+    .education-road-progress {
+        stroke-width: 13px;
+    }
+
+    .education-road-vehicle {
+        width: 33px;
+        height: 39px;
+    }
+
+    .education-vehicle-body {
+        width: 26px;
+        height: 34px;
+    }
+}
+
+
+/* ----------------------------------------------------------
+   6. MOBILE
+   Preserve the left-side road and vertical card arrangement.
+   ---------------------------------------------------------- */
+
+@media (max-width: 767.98px) {
+
+    .education-road-track {
+        top: 17px;
+        right: 0;
+        bottom: 30px;
+        left: 0;
+        width: auto;
+    }
+
+    .education-road-edge {
+        stroke-width: 20px;
+    }
+
+    .education-road-base {
+        stroke-width: 16px;
+    }
+
+    .education-road-progress {
+        stroke-width: 9px;
+    }
+
+    .education-road-dashes {
+        stroke-width: 1.5px;
+        stroke-dasharray: 10 14;
+    }
+
+    .education-road-vehicle {
+        width: 30px;
+        height: 36px;
+        transition: transform .05s linear;
+    }
+
+    .education-vehicle-body {
+        width: 24px;
+        height: 31px;
+        border-radius: 8px;
+    }
+
+    .education-vehicle-body i {
+        font-size: 15px;
+    }
+
+    /* More compact landscape images on phones. */
+    .education-card-media {
+        aspect-ratio: 1.95 / 1;
+    }
+
+    .education-card-content {
+        padding: 11px 12px 12px;
+    }
+
+    .education-card-topline {
+        margin-bottom: 7px;
+    }
+
+    .education-card h2 {
+        margin-bottom: 7px;
+        font-size: 15px;
+    }
+
+    .education-institution-name h3 {
+        font-size: 9.5px;
+    }
+
+    .education-location {
+        margin: 4px 0 6px;
+        font-size: 8px;
+    }
+
+    .education-study-period {
+        margin-bottom: 6px;
+        font-size: 7.5px;
+    }
+
+    .education-result {
+        padding: 6px 7px;
+    }
+
+    .result-icon {
+        width: 23px;
+        height: 23px;
+        flex-basis: 23px;
+    }
+}
+
+
+/* ----------------------------------------------------------
+   7. VERY SMALL PHONES
+   ---------------------------------------------------------- */
+
+@media (max-width: 390px) {
+
+    .education-road-vehicle {
+        width: 28px;
+        height: 34px;
+    }
+
+    .education-vehicle-body {
+        width: 22px;
+        height: 29px;
+    }
+
+    .education-card-media {
+        aspect-ratio: 1.9 / 1;
+    }
+
+    .education-card-content {
+        padding: 10px 11px 11px;
+    }
+
+    .education-card h2 {
+        font-size: 14px;
+    }
+
+    .education-institution-name h3 {
+        font-size: 9px;
+    }
+
+}
+
+
+/* ----------------------------------------------------------
+   8. REDUCED MOTION
+   ---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .education-road-vehicle {
+        transition: none !important;
+    }
+
+    .education-vehicle-glow {
+        animation: none !important;
+    }
+
+    .education-road-progress,
+    .education-card,
+    .education-card-media img {
+        transition: none !important;
+    }
+
+}
+
+
+/* ==========================================================
+   CARVE EDUCATION - CARD LAYOUT + ROAD PROGRESS FIX
+   Append at the very bottom of education.css.
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   1. CENTRE THE MAIN HEADING AND DESCRIPTION
+   ---------------------------------------------------------- */
+
+.education-hero {
+    display: block;
+    width: min(100%, 920px);
+    max-width: 920px;
+    margin: 0 auto 54px;
+    text-align: center;
+}
+
+.education-hero-copy,
+.education-heading {
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.education-eyebrow {
+    justify-content: center;
+}
+
+.education-heading h1 {
+    margin-inline: auto;
+}
+
+.education-intro {
+    width: min(100%, 790px);
+    max-width: 790px;
+    margin: 20px auto 0;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.education-hero-tags {
+    justify-content: center;
+    margin-top: 24px;
+}
+
+
+/* ----------------------------------------------------------
+   2. SLIGHTLY REDUCE CARD WIDTH
+   ---------------------------------------------------------- */
+
+.education-stop .education-card {
+    width: 100%;
+    max-width: 560px;
+    min-width: 0;
+    justify-self: start;
+    align-self: center;
+    height: auto;
+    min-height: 0;
+    border-radius: 16px;
+}
+
+
+/* ----------------------------------------------------------
+   3. LANDSCAPE INSTITUTION IMAGE
+   Slightly shorter than the existing image area.
+   ---------------------------------------------------------- */
+
+.education-card-media {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 2.25 / 1;
+    overflow: hidden;
+}
+
+.education-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* ----------------------------------------------------------
+   4. PUT THE RESULT ON THE RIGHT SIDE OF THE CARD
+   Uses the existing HTML elements - no markup changes.
+   ---------------------------------------------------------- */
+
+.education-card-content {
+    display: grid !important;
+
+    grid-template-columns: minmax(0, 1fr) 108px;
+    grid-template-rows: auto auto auto auto auto;
+
+    column-gap: 12px;
+    row-gap: 5px;
+
+    align-items: center;
+
+    padding: 13px 15px 14px;
+}
+
+/* Top row spans the full card content. */
+
+.education-card-content>.education-card-topline {
+    grid-column: 1 / -1;
+    grid-row: 1;
+
+    margin: 0 0 3px;
+    align-self: center;
+}
+
+/* Main academic details stay on the left. */
+
+.education-card-content>h2 {
+    grid-column: 1;
+    grid-row: 2;
+
+    margin: 0;
+    font-size: clamp(15px, 1.3vw, 17px);
+    line-height: 1.3;
+}
+
+.education-card-content>.education-institution-name {
+    grid-column: 1;
+    grid-row: 3;
+
+    min-width: 0;
+    margin: 0;
+}
+
+.education-card-content>.education-location {
+    grid-column: 1;
+    grid-row: 4;
+
+    margin: 0;
+    font-size: 8.5px;
+    line-height: 1.5;
+}
+
+.education-card-content>.education-study-period {
+    grid-column: 1;
+    grid-row: 5;
+
+    margin: 0;
+    font-size: 8px;
+    line-height: 1.45;
+}
+
+/* Result becomes a small vertical panel on the right. */
+
+.education-card-content>.education-result {
+    grid-column: 2;
+    grid-row: 2 / 6;
+
+    align-self: stretch;
+    justify-self: stretch;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 78px;
+
+    gap: 6px;
+    margin: 0;
+    padding: 9px 6px;
+
+    border: 1px solid rgba(0, 145, 255, .25);
+    border-radius: 12px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(circle at 50% 0%,
+            rgba(0, 145, 255, .13),
+            transparent 75%),
+        rgba(0, 105, 210, .075);
+
+    transition:
+        border-color .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+.education-stop:hover .education-result {
+    border-color: rgba(0, 190, 255, .5);
+    box-shadow: 0 0 17px rgba(0, 145, 255, .1);
+}
+
+/* Smaller result icon. */
+
+.education-card-content>.education-result .result-icon {
+    width: 25px;
+    height: 25px;
+    flex: 0 0 25px;
+    border-radius: 8px;
+    font-size: 11px;
+}
+
+/* Result text. */
+
+.education-card-content>.education-result>span:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.education-card-content>.education-result small {
+    font-size: 6px;
+    line-height: 1.35;
+    letter-spacing: .09em;
+    text-align: center;
+}
+
+.education-card-content>.education-result strong {
+    font-size: 15px;
+    line-height: 1.15;
+}
+
+.education-card-content>.education-result strong em {
+    font-size: 8px;
+}
+
+/* Slightly distinguish the current MCA result. */
+
+.education-card-content>.education-result-current {
+    border-color: rgba(0, 213, 255, .4);
+    background:
+        linear-gradient(145deg,
+            rgba(0, 115, 255, .17),
+            rgba(0, 204, 255, .06));
+}
+
+
+/* ----------------------------------------------------------
+   5. STRAIGHT ROAD AND VISIBLE CYAN PROGRESS
+   ---------------------------------------------------------- */
+
+.education-road-track {
+    position: absolute;
+    z-index: 0;
+
+    top: 26px;
+    right: 0;
+    bottom: 40px;
+    left: 0;
+
+    width: auto;
+    height: auto;
+
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    transform: none;
+
+    pointer-events: none;
+}
+
+.education-road-svg {
+    position: absolute;
+    inset: 0;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+    pointer-events: none;
+}
+
+.education-road-svg path {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+}
+
+.education-road-edge {
+    stroke: rgba(89, 127, 165, .48);
+    stroke-width: 31px;
+}
+
+.education-road-base {
+    stroke: #142b49;
+    stroke-width: 25px;
+}
+
+/*
+   JS controls stroke-dasharray to reveal the exact
+   travelled portion. Do not give this path a fixed
+   dash pattern with !important.
+*/
+
+.education-road-progress {
+    fill: none;
+    stroke: url(#educationRoadGlow);
+    stroke-width: 14px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    opacity: 1;
+
+    filter:
+        drop-shadow(0 0 6px rgba(0, 191, 255, .65)) drop-shadow(0 0 15px rgba(0, 125, 255, .28));
+}
+
+.education-road-dashes {
+    stroke: rgba(220, 239, 255, .85);
+    stroke-width: 2px;
+    stroke-dasharray: 13 17;
+    opacity: .82;
+}
+
+
+/* ----------------------------------------------------------
+   6. VEHICLE LAYER
+   ---------------------------------------------------------- */
+
+.education-road-vehicle {
+    position: absolute;
+    z-index: 3;
+
+    top: 0;
+    left: 0;
+
+    width: 36px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    opacity: 1;
+    pointer-events: none;
+
+    transform: translate(-50%, -50%);
+    will-change: left, top;
+}
+
+.education-vehicle-glow {
+    position: absolute;
+    inset: -5px;
+
+    border-radius: 50%;
+
+    background: rgba(0, 175, 255, .24);
+    filter: blur(8px);
+}
+
+.education-vehicle-body {
+    position: relative;
+    z-index: 1;
+
+    width: 28px;
+    height: 37px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(89, 230, 255, .95);
+    border-radius: 10px 10px 8px 8px;
+
+    color: #dffaff;
+
+    background: linear-gradient(150deg,
+            #078bff,
+            #034a91 55%,
+            #032b58);
+
+    box-shadow:
+        0 0 0 3px rgba(0, 153, 255, .12),
+        0 0 13px rgba(0, 190, 255, .45),
+        inset 0 1px 5px rgba(255, 255, 255, .2);
+}
+
+.education-vehicle-body i {
+    font-size: 17px;
+    line-height: 1;
+}
+
+.education-vehicle-body::before,
+.education-vehicle-body::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+
+    width: 4px;
+    height: 3px;
+
+    border-radius: 3px;
+    background: #a9f5ff;
+    box-shadow: 0 0 6px #00d5ff;
+}
+
+.education-vehicle-body::before {
+    left: 4px;
+}
+
+.education-vehicle-body::after {
+    right: 4px;
+}
+
+/* Keep markers above the vehicle when it reaches them. */
+
+.education-stop {
+    position: relative;
+    z-index: 2;
+}
+
+.education-marker {
+    position: relative;
+    z-index: 4;
+}
+
+
+/* ----------------------------------------------------------
+   7. LIGHT THEME
+   ---------------------------------------------------------- */
+
+body.light-theme .education-card-content {
+    background: linear-gradient(145deg,
+            rgba(255, 255, 255, .99),
+            rgba(239, 246, 255, .99));
+}
+
+body.light-theme .education-card-content>.education-result {
+    border-color: rgba(0, 116, 220, .2);
+    background: rgba(0, 122, 255, .045);
+}
+
+body.light-theme .education-road-edge {
+    stroke: rgba(91, 126, 163, .5);
+}
+
+body.light-theme .education-road-base {
+    stroke: #c5d8ec;
+}
+
+body.light-theme .education-road-dashes {
+    stroke: rgba(45, 91, 137, .8);
+}
+
+
+/* ----------------------------------------------------------
+   8. TABLET
+   ---------------------------------------------------------- */
+
+@media (max-width: 1050px) {
+
+    .education-card {
+        max-width: 560px;
+    }
+
+    .education-intro {
+        max-width: 740px;
+        font-size: 13px;
+    }
+
+    .education-road-edge {
+        stroke-width: 28px;
+    }
+
+    .education-road-base {
+        stroke-width: 22px;
+    }
+
+    .education-road-progress {
+        stroke-width: 13px;
+    }
+
+    .education-card-media {
+        aspect-ratio: 2.15 / 1;
+    }
+
+}
+
+
+/* ----------------------------------------------------------
+   9. MOBILE
+   ---------------------------------------------------------- */
+
+@media (max-width: 767.98px) {
+
+    .education-hero {
+        margin-bottom: 39px;
+    }
+
+    .education-hero-copy,
+    .education-heading {
+        text-align: center;
+    }
+
+    .education-eyebrow {
+        justify-content: center;
+    }
+
+    .education-intro {
+        width: min(100%, 520px);
+        margin: 14px auto 0;
+        font-size: 12px;
+        line-height: 1.8;
+        text-align: center;
+    }
+
+    .education-hero-tags {
+        justify-content: center;
+        margin-top: 17px;
+    }
+
+    .education-stop .education-card {
+        width: 100%;
+        max-width: none;
+    }
+
+    .education-card-media {
+        aspect-ratio: 1.95 / 1;
+    }
+
+    .education-card-content {
+        grid-template-columns: minmax(0, 1fr) 96px;
+        grid-template-rows: auto auto auto auto auto;
+
+        column-gap: 9px;
+        row-gap: 5px;
+
+        padding: 11px 12px 12px;
+    }
+
+    .education-card-content>.education-card-topline {
+        margin-bottom: 2px;
+    }
+
+    .education-card-content>h2 {
+        font-size: 15px;
+        line-height: 1.3;
+    }
+
+    .education-card-content>.education-institution-name h3 {
+        font-size: 9px;
+        line-height: 1.4;
+    }
+
+    .education-card-content>.education-location {
+        font-size: 8px;
+    }
+
+    .education-card-content>.education-study-period {
+        font-size: 7.5px;
+    }
+
+    .education-card-content>.education-result {
+        min-height: 70px;
+        padding: 7px 4px;
+        gap: 5px;
+    }
+
+    .education-card-content>.education-result small {
+        font-size: 5.8px;
+    }
+
+    .education-card-content>.education-result strong {
+        font-size: 14px;
+    }
+
+    .education-road-track {
+        top: 17px;
+        bottom: 30px;
+    }
+
+    .education-road-edge {
+        stroke-width: 20px;
+    }
+
+    .education-road-base {
+        stroke-width: 16px;
+    }
+
+    .education-road-progress {
+        stroke-width: 9px;
+    }
+
+    .education-road-dashes {
+        stroke-width: 1.5px;
+        stroke-dasharray: 10 14;
+    }
+
+    .education-road-vehicle {
+        width: 30px;
+        height: 36px;
+    }
+
+    .education-vehicle-body {
+        width: 24px;
+        height: 31px;
+        border-radius: 8px;
+    }
+
+    .education-vehicle-body i {
+        font-size: 15px;
+    }
+
+}
+
+
+/* ----------------------------------------------------------
+   10. VERY SMALL PHONES
+   ---------------------------------------------------------- */
+
+@media (max-width: 390px) {
+
+    .education-card-content {
+        grid-template-columns: minmax(0, 1fr) 84px;
+        column-gap: 7px;
+        padding: 10px 10px 11px;
+    }
+
+    .education-card-content>h2 {
+        font-size: 14px;
+    }
+
+    .education-card-content>.education-institution-name h3 {
+        font-size: 8.5px;
+    }
+
+    .education-card-content>.education-result {
+        min-height: 66px;
+    }
+
+    .education-road-vehicle {
+        width: 28px;
+        height: 34px;
+    }
+
+    .education-vehicle-body {
+        width: 22px;
+        height: 29px;
+    }
+
+}
+
+
+/* ----------------------------------------------------------
+   11. REDUCED MOTION
+   ---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .education-card,
+    .education-card-media img,
+    .education-marker-core {
+        transition: none !important;
+    }
+
 }
