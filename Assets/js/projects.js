@@ -1,460 +1,259 @@
 
 /* =========================================
    CARVE - Projects Page JavaScript
-
-   1. Automatic footer year
-   2. Shared light / dark theme
-   3. Mobile Bootstrap navigation
-   4. Project category filtering
-   5. Scroll reveal animations
+   Fixed mobile visibility and reveal issues
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     'use strict';
 
-
-    // Enable CSS reveal animations after JavaScript loads.
     document.documentElement.classList.add('js');
 
 
-
-    // =====================================
-    // 1. AUTOMATIC FOOTER YEAR
-    // =====================================
-
-    const yearNode =
-        document.getElementById('currentYear');
-
+    // 1. FOOTER YEAR
+    const yearNode = document.getElementById('currentYear');
 
     if (yearNode) {
-
-        yearNode.textContent =
-            new Date().getFullYear();
-
+        yearNode.textContent = new Date().getFullYear();
     }
 
 
+    // 2. THEME
+    const themeToggle = document.getElementById('themeToggle');
 
-    // =====================================
-    // 2. SHARED LIGHT / DARK THEME
-    // =====================================
-
-    const themeToggle =
-        document.getElementById('themeToggle');
-
-
-    // Read the saved theme safely.
-    function readSavedTheme() {
-
-        try {
-
-            return localStorage.getItem('carve-theme');
-
-        } catch (error) {
-
-            return null;
-
-        }
-
-    }
-
-
-
-    // Update the theme button.
     function updateThemeControl() {
 
         if (!themeToggle) return;
 
+        const isLight = document.body.classList.contains('light-theme');
 
-        const isLight =
-            document.body.classList.contains('light-theme');
-
-
-        themeToggle.setAttribute(
-            'aria-pressed',
-            String(isLight)
-        );
-
+        themeToggle.setAttribute('aria-pressed', String(isLight));
 
         themeToggle.setAttribute(
             'aria-label',
-            isLight
-                ? 'Switch to dark theme'
-                : 'Switch to light theme'
+            isLight ? 'Switch to dark theme' : 'Switch to light theme'
         );
-
-
-        themeToggle.title = isLight
-            ? 'Switch to dark theme'
-            : 'Switch to light theme';
-
     }
 
-
-
-    // Restore the previously selected theme.
-    if (readSavedTheme() === 'light') {
-
-        document.body.classList.add('light-theme');
-
+    try {
+        if (localStorage.getItem('carve-theme') === 'light') {
+            document.body.classList.add('light-theme');
+        }
+    } catch (error) {
+        // Continue without saved theme.
     }
-
 
     updateThemeControl();
 
-
-
-    // Toggle between light and dark themes.
     if (themeToggle) {
 
         themeToggle.addEventListener('click', () => {
 
-
             document.body.classList.toggle('light-theme');
-
 
             const selectedTheme =
                 document.body.classList.contains('light-theme')
                     ? 'light'
                     : 'dark';
 
-
             try {
-
-                localStorage.setItem(
-                    'carve-theme',
-                    selectedTheme
-                );
-
+                localStorage.setItem('carve-theme', selectedTheme);
             } catch (error) {
-
-                // Theme switching still works for this visit.
-
+                // Theme still works for the current visit.
             }
-
 
             updateThemeControl();
 
         });
-
     }
 
 
+    // 3. MOBILE NAVIGATION
+    const navigation = document.getElementById('mainNavigation');
 
-    // =====================================
-    // 3. MOBILE BOOTSTRAP NAVIGATION
-    // =====================================
-
-    const navigation =
-        document.getElementById('mainNavigation');
-
-
-    if (navigation) {
+    if (navigation && window.bootstrap) {
 
         navigation.querySelectorAll('.nav-link').forEach(link => {
 
-
             link.addEventListener('click', () => {
-
 
                 if (
                     window.innerWidth < 992 &&
-                    navigation.classList.contains('show') &&
-                    window.bootstrap
+                    navigation.classList.contains('show')
                 ) {
 
                     window.bootstrap.Collapse
                         .getOrCreateInstance(navigation)
                         .hide();
-
                 }
-
             });
-
         });
-
     }
 
 
-
-    // Close mobile navigation using Escape.
-    document.addEventListener('keydown', event => {
-
-
-        if (
-            event.key === 'Escape' &&
-            navigation &&
-            navigation.classList.contains('show') &&
-            window.bootstrap
-        ) {
-
-            window.bootstrap.Collapse
-                .getOrCreateInstance(navigation)
-                .hide();
-
-        }
-
-    });
-
-
-
-    // =====================================
-    // 4. PROJECT CATEGORY FILTERING
-    // =====================================
-
+    // 4. PROJECT FILTERING
     const filterButtons =
         document.querySelectorAll('.project-filter');
-
 
     const projectCards =
         document.querySelectorAll('.project-card');
 
-
     const visibleProjectCount =
         document.getElementById('visibleProjectCount');
-
 
     const emptyState =
         document.getElementById('projectsEmptyState');
 
 
-    let currentFilter = 'all';
+    // 5. SCROLL REVEAL
+    const revealItems =
+        document.querySelectorAll('.project-reveal');
+
+    let revealObserver = null;
 
 
-
-    // Update the project counter.
-    function updateProjectCount(count) {
-
-        if (!visibleProjectCount) return;
+    const reduceMotion =
+        window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
-        visibleProjectCount.textContent =
-            String(count).padStart(2, '0');
+    // Define this function in the main scope.
+    // It can now safely be called by the filter function.
+    function observeVisibleProjects() {
+
+        if (!revealObserver) return;
+
+        revealItems.forEach(item => {
+
+            if (
+                item.classList.contains('is-visible') ||
+                item.hidden
+            ) {
+                return;
+            }
+
+            revealObserver.observe(item);
+
+        });
+    }
+
+
+    if (
+        !reduceMotion &&
+        'IntersectionObserver' in window
+    ) {
+
+        revealObserver = new IntersectionObserver(
+
+            (entries, observer) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add('is-visible');
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+
+            },
+
+            {
+                threshold: 0.05,
+                rootMargin: '0px 0px -20px 0px'
+            }
+
+        );
+
+    } else {
+
+        // Ensure all elements are visible when animation
+        // is disabled or IntersectionObserver is unavailable.
+        revealItems.forEach(item => {
+            item.classList.add('is-visible');
+        });
 
     }
 
 
+    function updateProjectCount(count) {
 
-    // Apply the selected category filter.
+        if (visibleProjectCount) {
+
+            visibleProjectCount.textContent =
+                String(count).padStart(2, '0');
+        }
+    }
+
+
     function applyProjectFilter(selectedFilter) {
-
-        currentFilter = selectedFilter;
-
 
         let visibleCount = 0;
 
-
         projectCards.forEach(card => {
-
-
-            const cardCategory =
-                card.dataset.category;
-
 
             const shouldShow =
                 selectedFilter === 'all' ||
-                cardCategory === selectedFilter;
-
+                card.dataset.category === selectedFilter;
 
             card.hidden = !shouldShow;
 
-
             if (shouldShow) {
-
                 visibleCount++;
-
             }
-
         });
 
 
-
-        // Update selected filter styling.
         filterButtons.forEach(button => {
-
 
             const isActive =
                 button.dataset.filter === selectedFilter;
 
-
-            button.classList.toggle(
-                'active',
-                isActive
-            );
-
+            button.classList.toggle('active', isActive);
 
             button.setAttribute(
                 'aria-pressed',
                 String(isActive)
             );
-
         });
 
 
-
-        // Update the visible project total.
         updateProjectCount(visibleCount);
 
 
-
-        // Show an empty state only when needed.
         if (emptyState) {
-
-            emptyState.hidden =
-                visibleCount !== 0;
-
+            emptyState.hidden = visibleCount !== 0;
         }
 
 
-
-        // Observe newly visible cards for animation.
+        // Re-observe visible cards after filtering.
         observeVisibleProjects();
-
     }
 
 
-
-    // Filter button click events.
     filterButtons.forEach(button => {
-
 
         button.addEventListener('click', () => {
 
+            const selectedFilter = button.dataset.filter;
 
-            const selectedFilter =
-                button.dataset.filter;
-
-
-            if (
-                !selectedFilter ||
-                selectedFilter === currentFilter
-            ) {
-
-                return;
-
-            }
-
+            if (!selectedFilter) return;
 
             applyProjectFilter(selectedFilter);
 
         });
-
     });
 
 
-
-    // Initial filter.
+    // Initial filtering.
     applyProjectFilter('all');
 
 
+    // Observe all remaining reveal elements.
+    observeVisibleProjects();
 
-    // =====================================
-    // 5. SCROLL REVEAL ANIMATIONS
-    // =====================================
-
-    const revealItems =
-        document.querySelectorAll('.project-reveal');
-
-
-    const motionPreference =
-        window.matchMedia
-            ? window.matchMedia('(prefers-reduced-motion: reduce)')
-            : null;
-
-
-    const reduceMotion =
-        motionPreference && motionPreference.matches;
-
-
-    let revealObserver = null;
-
-
-
-    // Show everything immediately if the user
-    // prefers reduced motion or the browser does
-    // not support IntersectionObserver.
-    if (
-        reduceMotion ||
-        !('IntersectionObserver' in window)
-    ) {
-
-        revealItems.forEach(item => {
-
-            item.classList.add('is-visible');
-
-        });
-
-    } else {
-
-
-        revealObserver =
-            new IntersectionObserver(
-
-                (entries, observer) => {
-
-
-                    entries.forEach(entry => {
-
-
-                        if (entry.isIntersecting) {
-
-
-                            entry.target.classList.add('is-visible');
-
-
-                            // Animate each element only once.
-                            observer.unobserve(entry.target);
-
-                        }
-
-                    });
-
-                },
-
-                {
-                    threshold: 0.08,
-                    rootMargin: '0px 0px -25px 0px'
-                }
-
-            );
-
-
-
-        // Observe items that are not yet revealed.
-        function observeVisibleProjects() {
-
-
-            revealItems.forEach(item => {
-
-
-                if (
-                    item.classList.contains('is-visible') ||
-                    item.hidden
-                ) {
-
-                    return;
-
-                }
-
-
-                revealObserver.observe(item);
-
-            });
-
-        }
-
-
-
-        observeVisibleProjects();
-
-    }
-
-
-
-    // =====================================
-    // 6. INITIAL PAGE UPDATE
-    // =====================================
 
     updateThemeControl();
 
