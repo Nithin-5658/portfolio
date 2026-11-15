@@ -1,0 +1,2104 @@
+/* ==========================================================
+   CARVE - CONTACT ME PAGE
+
+   Professional contact and social connection page.
+   Responsive desktop, tablet and mobile design.
+
+   Shared header/footer/theme:
+   Assets/css/style.css
+   ========================================================== */
+
+:root {
+    --contact-cyan: #00d5ff;
+    --contact-blue: #087bff;
+    --contact-text: #f2f6ff;
+    --contact-muted: #bdcbe1;
+    --contact-bg: #020b20;
+}
+
+
+/* ==========================================================
+   1. MAIN BACKGROUND
+   ========================================================== */
+
+.contact-main {
+    position: relative;
+    min-height: calc(100vh - 190px);
+    overflow: hidden;
+    background: var(--contact-bg);
+}
+
+.contact-section {
+    position: relative;
+    isolation: isolate;
+
+    min-height: 650px;
+
+    padding: clamp(48px, 6vw, 82px) 0 75px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(ellipse at 84% 9%,
+            rgba(0, 91, 220, .15),
+            transparent 35%),
+        radial-gradient(ellipse at 7% 48%,
+            rgba(0, 190, 255, .055),
+            transparent 35%),
+        linear-gradient(180deg,
+            #020b20,
+            #03112b 55%,
+            #020b20);
+}
+
+.contact-container {
+    position: relative;
+    z-index: 2;
+
+    width: min(calc(100% - 82px), 1440px);
+    max-width: 1440px;
+
+    margin-inline: auto;
+}
+
+.contact-bg-orb {
+    position: absolute;
+    z-index: -1;
+
+    width: 400px;
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+    filter: blur(105px);
+
+    pointer-events: none;
+}
+
+.contact-bg-orb-one {
+    top: 6%;
+    right: -220px;
+
+    background: rgba(0, 105, 255, .17);
+}
+
+.contact-bg-orb-two {
+    bottom: 4%;
+    left: -260px;
+
+    background: rgba(0, 196, 255, .085);
+}
+
+.contact-grid-background {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    opacity: .075;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(rgba(65, 148, 255, .07) 1px,
+            transparent 1px),
+        linear-gradient(90deg,
+            rgba(65, 148, 255, .07) 1px,
+            transparent 1px);
+
+    background-size: 62px 62px;
+
+    mask-image: linear-gradient(180deg,
+            #000,
+            transparent 90%);
+}
+
+
+/* ==========================================================
+   2. MAIN HERO LAYOUT
+   ========================================================== */
+
+.contact-hero {
+    width: min(100%, 1270px);
+
+    min-height: 385px;
+
+    margin: 0 auto 50px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.12fr) minmax(330px, .88fr);
+
+    align-items: center;
+
+    gap: clamp(30px, 6vw, 85px);
+}
+
+.contact-hero-copy {
+    position: relative;
+    z-index: 3;
+
+    min-width: 0;
+
+    padding: 10px 0;
+}
+
+
+/* ==========================================================
+   3. EYEBROW
+   ========================================================== */
+
+.contact-eyebrow {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 11px;
+
+    margin-bottom: 19px;
+
+    color: var(--contact-cyan);
+
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: .19em;
+}
+
+.contact-eyebrow-line {
+    width: 29px;
+    height: 2px;
+
+    flex: 0 0 29px;
+
+    border-radius: 5px;
+
+    background: linear-gradient(90deg,
+            var(--contact-blue),
+            var(--contact-cyan));
+
+    box-shadow: 0 0 12px rgba(0, 191, 255, .55);
+}
+
+
+/* ==========================================================
+   4. MAIN HEADING
+   ========================================================== */
+
+.contact-hero h1 {
+    margin: 0;
+
+    color: var(--contact-text);
+
+    font-size: clamp(45px, 6vw, 76px);
+    font-weight: 900;
+
+    line-height: 1.06;
+
+    letter-spacing: -.065em;
+}
+
+.contact-hero h1 span {
+    color: transparent;
+
+    background: linear-gradient(105deg,
+            #139cff,
+            #00d5ff 76%,
+            #62e7ff);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.contact-intro {
+    max-width: 600px;
+
+    margin: 22px 0 0;
+
+    color: var(--contact-muted);
+
+    font-size: 13px;
+    line-height: 1.95;
+}
+
+
+/* ==========================================================
+   5. AVAILABILITY STATUS
+   ========================================================== */
+
+.contact-availability {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 12px;
+
+    max-width: 100%;
+
+    margin-top: 25px;
+
+    padding: 12px 16px;
+
+    border: 1px solid rgba(0, 190, 255, .23);
+    border-radius: 12px;
+
+    background: rgba(0, 122, 255, .075);
+}
+
+.availability-indicator {
+    position: relative;
+
+    width: 9px;
+    height: 9px;
+
+    flex: 0 0 9px;
+
+    border-radius: 50%;
+
+    background: #42e7a2;
+
+    box-shadow: 0 0 10px rgba(66, 231, 162, .65);
+}
+
+.availability-indicator::after {
+    content: "";
+
+    position: absolute;
+    inset: -5px;
+
+    border: 1px solid rgba(66, 231, 162, .5);
+    border-radius: 50%;
+
+    animation: contactStatusPulse 2s ease-out infinite;
+}
+
+.contact-availability>div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.contact-availability strong {
+    color: #80edbe;
+
+    font-size: 8px;
+    font-weight: 850;
+
+    letter-spacing: .12em;
+}
+
+.contact-availability>div>span {
+    color: #a8bfd9;
+
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   6. HERO BUTTONS
+   ========================================================== */
+
+.contact-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.contact-primary-button,
+.contact-secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    min-height: 45px;
+
+    padding: 11px 18px;
+
+    border-radius: 9px;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition:
+        color .28s ease,
+        background .28s ease,
+        border-color .28s ease,
+        box-shadow .28s ease,
+        transform .28s ease;
+}
+
+.contact-primary-button {
+    color: #fff;
+
+    border: 1px solid rgba(0, 190, 255, .5);
+
+    background: linear-gradient(110deg,
+            #087bff,
+            #00aee9);
+
+    box-shadow: 0 8px 22px rgba(0, 119, 255, .19);
+}
+
+.contact-primary-button:hover {
+    color: #fff;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 28px rgba(0, 145, 255, .32);
+}
+
+.contact-primary-button i:last-child {
+    font-size: 12px;
+
+    transition: transform .25s ease;
+}
+
+.contact-primary-button:hover i:last-child {
+    transform: translate(3px, -3px);
+}
+
+.contact-secondary-button {
+    color: #d8e8fa;
+
+    border: 1px solid rgba(104, 160, 215, .28);
+
+    background: rgba(5, 24, 52, .58);
+}
+
+.contact-secondary-button:hover {
+    color: var(--contact-cyan);
+
+    border-color: rgba(0, 213, 255, .5);
+
+    background: rgba(0, 118, 255, .1);
+
+    transform: translateY(-3px);
+}
+
+.contact-primary-button:focus-visible,
+.contact-secondary-button:focus-visible {
+    outline: 2px solid var(--contact-cyan);
+    outline-offset: 4px;
+}
+
+
+/* ==========================================================
+   7. INTEREST LINE
+   ========================================================== */
+
+.contact-intro-note {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 9px;
+
+    margin-top: 26px;
+
+    color: #91aeca;
+
+    font-size: 9px;
+    font-weight: 650;
+    line-height: 1.8;
+}
+
+.contact-intro-note>i {
+    margin-top: 2px;
+
+    color: var(--contact-cyan);
+
+    font-size: 13px;
+}
+
+.contact-note-dot {
+    padding: 0 4px;
+
+    color: var(--contact-cyan);
+}
+
+
+/* ==========================================================
+   8. ANIMATED CONTACT ILLUSTRATION
+   ========================================================== */
+
+.contact-visual {
+    position: relative;
+
+    justify-self: center;
+
+    width: min(100%, 420px);
+    height: 365px;
+
+    display: grid;
+    place-items: center;
+
+    perspective: 1000px;
+    isolation: isolate;
+}
+
+.contact-central-glow {
+    position: absolute;
+
+    width: 225px;
+    height: 225px;
+
+    border-radius: 50%;
+
+    background: rgba(0, 132, 255, .16);
+
+    filter: blur(65px);
+
+    pointer-events: none;
+
+    animation: contactGlow 5s ease-in-out infinite;
+}
+
+
+/* ==========================================================
+   9. ANIMATED ORBITS
+   ========================================================== */
+
+.contact-orbit {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    border: 1px solid rgba(0, 174, 255, .2);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.contact-orbit-one {
+    width: 325px;
+    height: 325px;
+
+    margin: -162.5px 0 0 -162.5px;
+
+    animation: contactOrbit 25s linear infinite;
+}
+
+.contact-orbit-two {
+    width: 265px;
+    height: 265px;
+
+    margin: -132.5px 0 0 -132.5px;
+
+    border-style: dashed;
+
+    border-color: rgba(0, 213, 255, .24);
+
+    animation: contactOrbitReverse 32s linear infinite;
+}
+
+.contact-orbit-three {
+    width: 208px;
+    height: 208px;
+
+    margin: -104px 0 0 -104px;
+
+    border-color: rgba(0, 119, 255, .23);
+
+    box-shadow: 0 0 35px rgba(0, 136, 255, .07);
+}
+
+
+/* ==========================================================
+   10. CENTRAL ART CARD
+   ========================================================== */
+
+.contact-art-card {
+    position: relative;
+    z-index: 2;
+
+    width: 274px;
+    height: 235px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 17px 18px;
+
+    border: 1px solid rgba(0, 173, 255, .4);
+    border-radius: 17px;
+
+    background:
+        radial-gradient(circle at 50% 48%,
+            rgba(0, 151, 255, .14),
+            transparent 55%),
+        linear-gradient(145deg,
+            rgba(12, 42, 80, .98),
+            rgba(3, 16, 37, .98));
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, .35),
+        0 0 35px rgba(0, 131, 255, .1),
+        inset 0 1px 0 rgba(255, 255, 255, .05);
+
+    transform: rotate(-2deg);
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease;
+}
+
+.contact-visual:hover .contact-art-card {
+    transform: translateY(-6px) rotate(0deg);
+
+    box-shadow:
+        0 27px 60px rgba(0, 0, 0, .42),
+        0 0 39px rgba(0, 160, 255, .18);
+}
+
+
+/* Top row */
+
+.contact-art-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid rgba(0, 165, 255, .18);
+}
+
+.contact-art-brand {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: #e4f2ff;
+
+    font-size: 9px;
+    font-weight: 850;
+    letter-spacing: .17em;
+}
+
+.contact-art-brand-mark {
+    display: grid;
+    place-items: center;
+
+    width: 25px;
+    height: 25px;
+
+    border: 1px solid rgba(0, 205, 255, .5);
+    border-radius: 50%;
+
+    color: var(--contact-cyan);
+
+    font-size: 12px;
+
+    box-shadow: 0 0 12px rgba(0, 190, 255, .1);
+}
+
+.contact-art-online {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: #80dcb5;
+
+    font-size: 7px;
+    font-weight: 850;
+    letter-spacing: .12em;
+}
+
+.contact-art-online>span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #4ce0a2;
+
+    box-shadow: 0 0 8px #4ce0a2;
+}
+
+
+/* Central card message */
+
+.contact-art-center {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    flex: 1;
+}
+
+.contact-art-icon-ring {
+    display: grid;
+    place-items: center;
+
+    width: 55px;
+    height: 55px;
+
+    margin-bottom: 13px;
+
+    border: 1px solid rgba(0, 213, 255, .42);
+    border-radius: 17px;
+
+    color: #6be9ff;
+
+    background: rgba(0, 139, 255, .13);
+
+    font-size: 23px;
+
+    box-shadow: 0 0 25px rgba(0, 160, 255, .13);
+
+    animation: contactIconFloat 4s ease-in-out infinite;
+}
+
+.contact-art-center>span {
+    color: #8aafd2;
+
+    font-size: 6px;
+    font-weight: 850;
+    letter-spacing: .17em;
+}
+
+.contact-art-center>strong {
+    margin-top: 5px;
+
+    color: #f0f7ff;
+
+    font-size: 22px;
+    font-weight: 850;
+    letter-spacing: -.04em;
+}
+
+.contact-art-center>small {
+    margin-top: 5px;
+
+    color: #91adc9;
+
+    font-size: 8px;
+}
+
+
+/* Bottom row */
+
+.contact-art-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 10px;
+
+    border-top: 1px solid rgba(0, 165, 255, .18);
+
+    color: #779aba;
+
+    font-size: 7px;
+    font-weight: 750;
+    letter-spacing: .12em;
+}
+
+.contact-art-card-bottom>div {
+    display: flex;
+    gap: 6px;
+
+    color: #46c9ff;
+    font-size: 10px;
+}
+
+
+/* ==========================================================
+   11. FLOATING SOCIAL ICONS
+   ========================================================== */
+
+.contact-floating-icon {
+    position: absolute;
+    z-index: 4;
+
+    display: grid;
+    place-items: center;
+
+    width: 43px;
+    height: 43px;
+
+    border: 1px solid rgba(0, 175, 255, .37);
+    border-radius: 13px;
+
+    color: #6be4ff;
+
+    background: linear-gradient(145deg,
+            #103158,
+            #061a34);
+
+    font-size: 18px;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, .27),
+        0 0 18px rgba(0, 145, 255, .1);
+
+    animation: contactFloating 4s ease-in-out infinite;
+}
+
+.contact-float-github {
+    top: 38px;
+    left: 34px;
+}
+
+.contact-float-linkedin {
+    top: 48px;
+    right: 22px;
+
+    animation-delay: .8s;
+}
+
+.contact-float-mail {
+    bottom: 38px;
+    right: 28px;
+
+    animation-delay: 1.4s;
+}
+
+.contact-float-code {
+    bottom: 30px;
+    left: 20px;
+
+    animation-delay: 2s;
+}
+
+
+/* ==========================================================
+   12. DECORATIVE PARTICLES
+   ========================================================== */
+
+.contact-art-particle {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: var(--contact-cyan);
+
+    box-shadow: 0 0 13px var(--contact-cyan);
+
+    pointer-events: none;
+}
+
+.particle-one {
+    top: 19%;
+    right: 18%;
+}
+
+.particle-two {
+    bottom: 20%;
+    left: 17%;
+
+    width: 4px;
+    height: 4px;
+}
+
+.particle-three {
+    top: 49%;
+    left: 3%;
+
+    width: 3px;
+    height: 3px;
+}
+
+
+/* ==========================================================
+   13. CONTACT METHODS SECTION
+   ========================================================== */
+
+.contact-methods-section {
+    width: min(100%, 1270px);
+
+    margin: 0 auto;
+
+    padding-top: 18px;
+}
+
+.contact-section-heading {
+    margin-bottom: 25px;
+}
+
+.contact-section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 10px;
+
+    color: var(--contact-cyan);
+
+    font-size: 8px;
+    font-weight: 850;
+    letter-spacing: .17em;
+}
+
+.contact-section-eyebrow>span {
+    width: 20px;
+    height: 2px;
+
+    border-radius: 5px;
+
+    background: linear-gradient(90deg,
+            var(--contact-blue),
+            var(--contact-cyan));
+}
+
+.contact-section-heading h2 {
+    margin: 0;
+
+    color: var(--contact-text);
+
+    font-size: clamp(25px, 3.1vw, 36px);
+    font-weight: 850;
+    letter-spacing: -.045em;
+}
+
+.contact-section-heading h2 span {
+    color: transparent;
+
+    background: linear-gradient(105deg,
+            #139cff,
+            var(--contact-cyan));
+
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.contact-section-heading>p {
+    margin: 9px 0 0;
+
+    color: #92aeca;
+
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+
+/* ==========================================================
+   14. CONTACT CARDS GRID
+   ========================================================== */
+
+.contact-methods-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 17px;
+}
+
+.contact-method-card {
+    --method-accent: #00d5ff;
+    --method-soft: rgba(0, 213, 255, .09);
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    min-height: 190px;
+
+    padding: 19px 17px 15px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(76, 136, 191, .22);
+    border-radius: 13px;
+
+    color: inherit;
+
+    background:
+        radial-gradient(circle at 90% 8%,
+            var(--method-soft),
+            transparent 55%),
+        linear-gradient(145deg,
+            rgba(9, 33, 66, .92),
+            rgba(4, 19, 42, .95));
+
+    text-decoration: none;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease,
+        background .35s ease;
+}
+
+.contact-method-card::after {
+    content: "";
+
+    position: absolute;
+
+    right: -45px;
+    bottom: -55px;
+
+    width: 115px;
+    height: 115px;
+
+    border: 1px solid color-mix(in srgb,
+            var(--method-accent) 22%,
+            transparent);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    transition: transform .4s ease;
+}
+
+.contact-method-card:hover {
+    color: inherit;
+
+    transform: translateY(-6px);
+
+    border-color: color-mix(in srgb,
+            var(--method-accent) 58%,
+            transparent);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, .19),
+        0 0 24px var(--method-soft);
+}
+
+.contact-method-card:hover::after {
+    transform: scale(1.25);
+}
+
+
+/* Individual card accent colours */
+
+.contact-email-card {
+    --method-accent: #42caff;
+    --method-soft: rgba(0, 169, 255, .12);
+}
+
+.contact-github-card {
+    --method-accent: #e3edff;
+    --method-soft: rgba(125, 163, 220, .1);
+}
+
+.contact-linkedin-card {
+    --method-accent: #48b7ff;
+    --method-soft: rgba(0, 121, 255, .13);
+}
+
+.contact-location-card {
+    --method-accent: #55e4bc;
+    --method-soft: rgba(42, 219, 177, .1);
+}
+
+
+/* ==========================================================
+   15. CARD CONTENT
+   ========================================================== */
+
+.contact-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.contact-card-icon {
+    display: grid;
+    place-items: center;
+
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid color-mix(in srgb,
+            var(--method-accent) 35%,
+            transparent);
+
+    border-radius: 11px;
+
+    color: var(--method-accent);
+
+    background: var(--method-soft);
+
+    font-size: 17px;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.contact-method-card:hover .contact-card-icon {
+    transform: translateY(-3px) rotate(-5deg);
+
+    box-shadow: 0 0 18px var(--method-soft);
+}
+
+.contact-card-number {
+    color: #557394;
+
+    font-size: 8px;
+    font-weight: 850;
+    letter-spacing: .1em;
+}
+
+.contact-card-label {
+    color: #8faaca;
+
+    font-size: 7px;
+    font-weight: 850;
+    letter-spacing: .12em;
+}
+
+.contact-method-card h3 {
+    margin: 6px 0 8px;
+
+    color: #edf5ff;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.contact-card-value {
+    display: block;
+
+    min-width: 0;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+
+    color: var(--method-accent);
+
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.65;
+
+    text-decoration: none;
+}
+
+a.contact-card-value:hover {
+    color: #fff;
+}
+
+.contact-card-bottom {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+
+    margin-top: auto;
+    padding-top: 15px;
+
+    color: #93b3d3;
+
+    font-size: 8px;
+    font-weight: 750;
+}
+
+.contact-card-bottom>i,
+.contact-card-bottom>a>i {
+    color: var(--method-accent);
+
+    font-size: 12px;
+
+    transition: transform .25s ease;
+}
+
+.contact-method-card:hover .contact-card-bottom>i,
+.contact-method-card:hover .contact-card-bottom>a>i {
+    transform: translate(3px, -3px);
+}
+
+.contact-card-bottom>a {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: #a9d6ef;
+
+    text-decoration: none;
+}
+
+.contact-card-bottom>a:hover {
+    color: var(--contact-cyan);
+}
+
+
+/* Copy email button */
+
+.contact-copy-button {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px 8px;
+
+    border: 1px solid rgba(0, 185, 255, .23);
+    border-radius: 7px;
+
+    color: #a9d9f0;
+
+    background: rgba(0, 130, 255, .075);
+
+    font-family: inherit;
+    font-size: 7px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        color .25s ease,
+        background .25s ease,
+        border-color .25s ease;
+}
+
+.contact-copy-button:hover {
+    color: #fff;
+
+    border-color: rgba(0, 213, 255, .58);
+
+    background: rgba(0, 130, 255, .17);
+}
+
+.contact-copy-button:focus-visible {
+    outline: 2px solid var(--contact-cyan);
+    outline-offset: 3px;
+}
+
+
+/* Email card */
+
+.contact-email-value {
+    font-size: clamp(9px, .95vw, 11px);
+}
+
+
+/* Copy feedback */
+
+.contact-copy-feedback {
+    min-height: 14px;
+
+    margin: 10px 0 0;
+
+    color: #65e7b2;
+
+    font-size: 9px;
+    font-weight: 650;
+
+    text-align: right;
+}
+
+
+/* ==========================================================
+   16. FINAL INVITATION BANNER
+   ========================================================== */
+
+.contact-outro {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    width: min(100%, 1270px);
+
+    min-height: 130px;
+
+    margin: 42px auto 0;
+
+    padding: 23px 28px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(0, 175, 255, .26);
+    border-radius: 15px;
+
+    background:
+        radial-gradient(circle at 95% 50%,
+            rgba(0, 120, 255, .16),
+            transparent 38%),
+        linear-gradient(105deg,
+            rgba(7, 38, 78, .92),
+            rgba(4, 20, 44, .93));
+
+    box-shadow: 0 16px 38px rgba(0, 0, 0, .15);
+}
+
+.contact-outro::after {
+    content: "";
+
+    position: absolute;
+
+    top: -85px;
+    right: 180px;
+
+    width: 170px;
+    height: 170px;
+
+    border: 1px solid rgba(0, 180, 255, .11);
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.contact-outro-icon {
+    display: grid;
+    place-items: center;
+
+    width: 49px;
+    height: 49px;
+
+    flex: 0 0 49px;
+
+    border: 1px solid rgba(0, 213, 255, .32);
+    border-radius: 13px;
+
+    color: var(--contact-cyan);
+    background: rgba(0, 133, 255, .12);
+
+    font-size: 21px;
+}
+
+.contact-outro-copy {
+    flex: 1;
+    min-width: 0;
+}
+
+.contact-outro-copy>span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--contact-cyan);
+
+    font-size: 7px;
+    font-weight: 850;
+    letter-spacing: .15em;
+}
+
+.contact-outro-copy h2 {
+    margin: 0;
+
+    color: #eff7ff;
+
+    font-size: clamp(15px, 2vw, 20px);
+    font-weight: 800;
+    letter-spacing: -.025em;
+}
+
+.contact-outro-copy p {
+    margin: 6px 0 0;
+
+    color: #9bb6d3;
+
+    font-size: 9px;
+    line-height: 1.6;
+}
+
+.contact-outro-button {
+    position: relative;
+    z-index: 2;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    flex: 0 0 auto;
+
+    min-height: 39px;
+
+    padding: 9px 15px;
+
+    border: 1px solid rgba(0, 195, 255, .48);
+    border-radius: 8px;
+
+    color: #fff;
+
+    background: linear-gradient(110deg,
+            #087bff,
+            #00aee9);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.contact-outro-button:hover {
+    color: #fff;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 22px rgba(0, 143, 255, .24);
+}
+
+.contact-outro-button i {
+    transition: transform .25s ease;
+}
+
+.contact-outro-button:hover i {
+    transform: translate(3px, -3px);
+}
+
+
+/* ==========================================================
+   17. LIGHT THEME
+   ========================================================== */
+
+body.light-theme .contact-section {
+    background:
+        radial-gradient(ellipse at 84% 9%,
+            rgba(0, 91, 220, .075),
+            transparent 35%),
+        radial-gradient(ellipse at 7% 48%,
+            rgba(0, 190, 255, .045),
+            transparent 35%),
+        linear-gradient(180deg,
+            #edf4ff,
+            #e7f0ff 55%,
+            #edf4ff);
+}
+
+body.light-theme .contact-hero h1,
+body.light-theme .contact-section-heading h2 {
+    color: #102342;
+}
+
+body.light-theme .contact-intro {
+    color: #52647e;
+}
+
+body.light-theme .contact-availability {
+    border-color: rgba(0, 116, 220, .2);
+    background: rgba(0, 122, 255, .045);
+}
+
+body.light-theme .contact-availability>div>span {
+    color: #536c89;
+}
+
+body.light-theme .contact-secondary-button {
+    color: #294b70;
+
+    border-color: rgba(0, 116, 220, .2);
+
+    background: rgba(255, 255, 255, .6);
+}
+
+body.light-theme .contact-secondary-button:hover {
+    color: #087bdb;
+    background: rgba(0, 130, 255, .07);
+}
+
+body.light-theme .contact-intro-note {
+    color: #637995;
+}
+
+body.light-theme .contact-art-card {
+    border-color: rgba(0, 116, 220, .3);
+
+    background:
+        radial-gradient(circle at 50% 48%,
+            rgba(0, 151, 255, .11),
+            transparent 55%),
+        linear-gradient(145deg,
+            #e7f2ff,
+            #d8e9ff);
+
+    box-shadow: 0 20px 45px rgba(40, 85, 140, .13);
+}
+
+body.light-theme .contact-art-brand,
+body.light-theme .contact-art-center>strong {
+    color: #173456;
+}
+
+body.light-theme .contact-art-online {
+    color: #168b64;
+}
+
+body.light-theme .contact-art-center>span,
+body.light-theme .contact-art-center>small {
+    color: #607d9e;
+}
+
+body.light-theme .contact-floating-icon {
+    border-color: rgba(0, 116, 220, .28);
+
+    color: #087bdb;
+
+    background: linear-gradient(145deg,
+            #edf6ff,
+            #dcecff);
+}
+
+body.light-theme .contact-art-card-bottom {
+    color: #607d9e;
+}
+
+body.light-theme .contact-section-heading>p {
+    color: #52647e;
+}
+
+body.light-theme .contact-method-card {
+    border-color: rgba(58, 112, 184, .22);
+
+    background:
+        radial-gradient(circle at 90% 8%,
+            var(--method-soft),
+            transparent 55%),
+        linear-gradient(145deg,
+            #fff,
+            #edf4ff);
+
+    box-shadow: 0 10px 24px rgba(38, 78, 130, .07);
+}
+
+body.light-theme .contact-method-card h3 {
+    color: #173456;
+}
+
+body.light-theme .contact-card-label,
+body.light-theme .contact-card-number {
+    color: #657c98;
+}
+
+body.light-theme .contact-card-bottom {
+    color: #607995;
+}
+
+body.light-theme .contact-card-bottom>a {
+    color: #315b84;
+}
+
+body.light-theme .contact-copy-button {
+    color: #315b84;
+    background: rgba(0, 116, 220, .06);
+}
+
+body.light-theme .contact-copy-feedback {
+    color: #168b64;
+}
+
+body.light-theme .contact-outro {
+    border-color: rgba(0, 116, 220, .2);
+
+    background:
+        radial-gradient(circle at 95% 50%,
+            rgba(0, 120, 255, .08),
+            transparent 38%),
+        linear-gradient(105deg,
+            #e1efff,
+            #f3f8ff);
+
+    box-shadow: 0 12px 28px rgba(38, 78, 130, .07);
+}
+
+body.light-theme .contact-outro-copy h2 {
+    color: #173456;
+}
+
+body.light-theme .contact-outro-copy p {
+    color: #607995;
+}
+
+
+/* ==========================================================
+   18. PAGE REVEAL ANIMATION
+   ========================================================== */
+
+.contact-reveal {
+    opacity: 1;
+    transform: none;
+}
+
+.js .contact-reveal {
+    opacity: 0;
+
+    transform: translateY(22px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.2, .7, .2, 1);
+}
+
+.js .contact-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact-methods-grid .contact-reveal:nth-child(2) {
+    transition-delay: .08s;
+}
+
+.contact-methods-grid .contact-reveal:nth-child(3) {
+    transition-delay: .16s;
+}
+
+.contact-methods-grid .contact-reveal:nth-child(4) {
+    transition-delay: .24s;
+}
+
+
+/* ==========================================================
+   19. KEYFRAME ANIMATIONS
+   ========================================================== */
+
+@keyframes contactOrbit {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes contactOrbitReverse {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes contactFloating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-9px);
+    }
+}
+
+@keyframes contactGlow {
+
+    0%,
+    100% {
+        opacity: .65;
+        transform: scale(.92);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+@keyframes contactIconFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes contactStatusPulse {
+    0% {
+        opacity: .8;
+        transform: scale(.75);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.65);
+    }
+}
+
+
+/* ==========================================================
+   20. LARGE TABLETS / SMALL LAPTOPS
+   ========================================================== */
+
+@media (max-width: 1199.98px) {
+
+    .contact-container {
+        width: calc(100% - 65px);
+    }
+
+    .contact-hero {
+        grid-template-columns:
+            minmax(0, 1.1fr) minmax(290px, .9fr);
+
+        gap: 25px;
+    }
+
+    .contact-hero h1 {
+        font-size: clamp(43px, 5.6vw, 62px);
+    }
+
+    .contact-visual {
+        transform: scale(.9);
+    }
+
+    .contact-methods-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contact-method-card {
+        min-height: 184px;
+    }
+
+}
+
+
+/* ==========================================================
+   21. TABLET
+   ========================================================== */
+
+@media (max-width: 991.98px) {
+
+    .contact-section {
+        padding-top: 52px;
+    }
+
+    .contact-hero {
+        grid-template-columns:
+            minmax(0, 1fr) minmax(250px, .85fr);
+
+        gap: 10px;
+    }
+
+    .contact-hero h1 {
+        font-size: clamp(38px, 5.1vw, 53px);
+    }
+
+    .contact-intro {
+        font-size: 12px;
+    }
+
+    .contact-visual {
+        transform: scale(.82);
+    }
+
+    .contact-methods-section {
+        padding-top: 4px;
+    }
+
+}
+
+
+/* ==========================================================
+   22. MOBILE
+   ========================================================== */
+
+@media (max-width: 767.98px) {
+
+    .contact-container {
+        width: calc(100% - 32px);
+    }
+
+    .contact-section {
+        padding: 37px 0 48px;
+    }
+
+
+    /* Hero layout */
+
+    .contact-hero {
+        grid-template-columns: minmax(0, 1fr);
+
+        gap: 3px;
+
+        min-height: 0;
+
+        margin-bottom: 35px;
+    }
+
+    .contact-hero-copy {
+        padding: 0;
+    }
+
+    .contact-eyebrow {
+        margin-bottom: 14px;
+
+        font-size: 8px;
+        letter-spacing: .15em;
+    }
+
+    .contact-hero h1 {
+        font-size: clamp(39px, 9vw, 52px);
+    }
+
+    .contact-intro {
+        margin-top: 14px;
+
+        font-size: 11px;
+        line-height: 1.85;
+    }
+
+
+    /* Availability status */
+
+    .contact-availability {
+        margin-top: 19px;
+
+        gap: 10px;
+
+        padding: 10px 12px;
+    }
+
+    .contact-availability strong {
+        font-size: 7px;
+    }
+
+    .contact-availability>div>span {
+        font-size: 8px;
+    }
+
+
+    /* Hero buttons */
+
+    .contact-hero-actions {
+        gap: 9px;
+        margin-top: 19px;
+    }
+
+    .contact-primary-button,
+    .contact-secondary-button {
+        min-height: 40px;
+        padding: 9px 12px;
+
+        gap: 7px;
+
+        font-size: 8px;
+    }
+
+    .contact-intro-note {
+        margin-top: 17px;
+        font-size: 8px;
+    }
+
+
+    /* Animated artwork */
+
+    .contact-visual {
+        width: 100%;
+        height: 270px;
+
+        margin-top: 1px;
+
+        transform: scale(.85);
+        transform-origin: center;
+    }
+
+    .contact-orbit-one {
+        width: 280px;
+        height: 280px;
+
+        margin: -140px 0 0 -140px;
+    }
+
+    .contact-orbit-two {
+        width: 225px;
+        height: 225px;
+
+        margin: -112.5px 0 0 -112.5px;
+    }
+
+    .contact-orbit-three {
+        width: 175px;
+        height: 175px;
+
+        margin: -87.5px 0 0 -87.5px;
+    }
+
+    .contact-art-card {
+        width: 245px;
+        height: 215px;
+    }
+
+    .contact-floating-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+    }
+
+    .contact-float-github {
+        top: 19px;
+        left: 17px;
+    }
+
+    .contact-float-linkedin {
+        top: 22px;
+        right: 14px;
+    }
+
+    .contact-float-mail {
+        right: 19px;
+        bottom: 17px;
+    }
+
+    .contact-float-code {
+        left: 12px;
+        bottom: 13px;
+    }
+
+
+    /* Contact information heading */
+
+    .contact-methods-section {
+        padding-top: 0;
+    }
+
+    .contact-section-heading {
+        margin-bottom: 19px;
+    }
+
+    .contact-section-eyebrow {
+        font-size: 7px;
+    }
+
+    .contact-section-heading h2 {
+        font-size: clamp(25px, 6vw, 31px);
+    }
+
+    .contact-section-heading>p {
+        font-size: 9px;
+    }
+
+
+    /* Contact cards */
+
+    .contact-methods-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 11px;
+    }
+
+    .contact-method-card {
+        min-height: 176px;
+
+        padding: 14px 12px 12px;
+
+        border-radius: 10px;
+    }
+
+    .contact-card-top {
+        margin-bottom: 14px;
+    }
+
+    .contact-card-icon {
+        width: 34px;
+        height: 34px;
+
+        border-radius: 9px;
+
+        font-size: 15px;
+    }
+
+    .contact-card-label {
+        font-size: 6px;
+        letter-spacing: .09em;
+    }
+
+    .contact-method-card h3 {
+        font-size: 11px;
+        margin: 5px 0 6px;
+    }
+
+    .contact-card-value {
+        font-size: 8px;
+        line-height: 1.6;
+    }
+
+    .contact-email-value {
+        font-size: 8px;
+    }
+
+    .contact-card-number {
+        font-size: 7px;
+    }
+
+    .contact-card-bottom {
+        padding-top: 11px;
+        font-size: 7px;
+    }
+
+    .contact-copy-button {
+        padding: 4px 6px;
+        gap: 4px;
+        font-size: 6px;
+    }
+
+    .contact-copy-feedback {
+        min-height: 12px;
+        font-size: 8px;
+    }
+
+
+    /* Final banner */
+
+    .contact-outro {
+        display: grid;
+
+        grid-template-columns: 39px minmax(0, 1fr);
+
+        align-items: center;
+
+        gap: 12px;
+
+        margin-top: 27px;
+
+        min-height: 0;
+
+        padding: 17px 14px;
+        border-radius: 11px;
+    }
+
+    .contact-outro-icon {
+        width: 39px;
+        height: 39px;
+
+        flex-basis: 39px;
+
+        font-size: 17px;
+    }
+
+    .contact-outro-copy>span {
+        font-size: 6px;
+    }
+
+    .contact-outro-copy h2 {
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
+    .contact-outro-copy p {
+        font-size: 8px;
+    }
+
+    .contact-outro-button {
+        grid-column: 2;
+
+        justify-self: start;
+
+        min-height: 32px;
+
+        margin-top: 1px;
+
+        padding: 7px 10px;
+
+        font-size: 8px;
+    }
+
+}
+
+
+/* ==========================================================
+   23. SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 390px) {
+
+    .contact-container {
+        width: calc(100% - 24px);
+    }
+
+    .contact-hero h1 {
+        font-size: 37px;
+    }
+
+    .contact-hero-actions {
+        gap: 7px;
+    }
+
+    .contact-primary-button,
+    .contact-secondary-button {
+        padding-inline: 9px;
+        font-size: 7px;
+    }
+
+    .contact-visual {
+        height: 245px;
+        transform: scale(.77);
+    }
+
+    .contact-methods-grid {
+        gap: 9px;
+    }
+
+    .contact-method-card {
+        min-height: 171px;
+        padding: 12px 9px 10px;
+    }
+
+    .contact-card-value {
+        font-size: 7.5px;
+    }
+
+    .contact-email-value {
+        font-size: 7px;
+    }
+
+    .contact-card-bottom {
+        font-size: 6.5px;
+    }
+
+    .contact-copy-button {
+        font-size: 6px;
+    }
+
+}
+
+
+/* ==========================================================
+   24. ACCESSIBILITY - REDUCED MOTION
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .contact-orbit,
+    .contact-floating-icon,
+    .contact-art-icon-ring,
+    .contact-central-glow,
+    .availability-indicator::after {
+        animation: none !important;
+    }
+
+    .contact-method-card,
+    .contact-art-card,
+    .contact-primary-button,
+    .contact-secondary-button {
+        transition: none !important;
+    }
+
+    .js .contact-reveal,
+    .js .contact-reveal.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none !important;
+    }
+
+}
