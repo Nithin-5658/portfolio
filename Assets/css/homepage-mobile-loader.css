@@ -1,0 +1,673 @@
+
+/* ==========================================================
+   NITHIN LAIJU - CINEMATIC PORTFOLIO INTRO
+   Isolated styles. Does not modify the existing homepage.
+   ========================================================== */
+
+/* Preserve the mobile hero alignment fix */
+@media (max-width: 991.98px) {
+    .hero-content-wrap.site-container {
+        width: min(calc(100% - 42px), 850px);
+        max-width: 850px;
+        margin-inline: auto;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-content-wrap.site-container {
+        width: min(calc(100% - 34px), 540px);
+        max-width: 540px;
+    }
+}
+
+/* ==========================================================
+   INTRO OVERLAY
+   ========================================================== */
+
+.nithin-intro,
+.nithin-intro * {
+    box-sizing: border-box;
+}
+
+.nithin-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483000;
+
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    color: #f3f7ff;
+    background:
+        radial-gradient(ellipse at 50% 48%,
+            rgba(0, 85, 205, .17),
+            transparent 48%),
+        linear-gradient(135deg, #010817, #020b20 55%, #03112c);
+
+    transform: translateY(0);
+
+    transition:
+        transform .72s cubic-bezier(.76, 0, .24, 1),
+        opacity .72s ease,
+        visibility .72s ease;
+
+    animation: nithin-intro-fallback 1ms linear 5.5s forwards;
+}
+
+.nithin-intro.is-leaving {
+    transform: translateY(-105%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ==========================================================
+   ATMOSPHERIC BACKGROUND
+   ========================================================== */
+
+.nithin-intro__atmosphere {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    background:
+        radial-gradient(ellipse at 50% 48%,
+            rgba(0, 70, 180, .16),
+            transparent 43%),
+        radial-gradient(circle at 10% 20%,
+            rgba(0, 213, 255, .07),
+            transparent 23%),
+        radial-gradient(circle at 90% 85%,
+            rgba(0, 108, 255, .09),
+            transparent 26%);
+
+    animation: nithin-atmosphere-in 1.2s ease both;
+}
+
+.nithin-intro__atmosphere::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        radial-gradient(circle, rgba(0, 213, 255, .8) 1px, transparent 1.8px),
+        radial-gradient(circle, rgba(38, 119, 255, .75) 1px, transparent 1.8px),
+        radial-gradient(circle, rgba(0, 213, 255, .45) 1px, transparent 1.8px);
+
+    background-size: 137px 151px, 193px 181px, 251px 213px;
+    background-position: 12px 20px, 70px 90px, 120px 40px;
+
+    opacity: .23;
+    animation: nithin-particles 3s ease-in-out infinite alternate;
+}
+
+/* Subtle cinematic vignette */
+
+.nithin-intro__vignette {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: radial-gradient(
+        ellipse at center,
+        transparent 30%,
+        rgba(0, 3, 13, .48) 100%
+    );
+
+    pointer-events: none;
+}
+
+/* ==========================================================
+   HORIZONTAL ENERGY BEAM
+   ========================================================== */
+
+.nithin-intro__beam {
+    position: absolute;
+    top: 48%;
+    left: -55%;
+
+    width: 42%;
+    height: 2px;
+
+    z-index: 1;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 132, 255, .4),
+        #00d5ff,
+        #ffffff,
+        #00baff,
+        transparent
+    );
+
+    box-shadow: 0 0 18px rgba(0, 190, 255, .65);
+
+    opacity: 0;
+    pointer-events: none;
+
+    animation: nithin-beam-sweep 1.3s cubic-bezier(.35, 0, .2, 1) .28s both;
+}
+
+.nithin-intro__beam::after {
+    content: "";
+    position: absolute;
+    inset: -22px -8%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 132, 255, .07),
+        rgba(0, 213, 255, .3),
+        transparent
+    );
+
+    filter: blur(11px);
+}
+
+/* ==========================================================
+   CENTRED INTRO CONTENT
+   ========================================================== */
+
+.nithin-intro__content {
+    position: relative;
+    z-index: 2;
+
+    width: min(1100px, 94%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 25px 15px;
+    text-align: center;
+}
+
+/* Small introductory label */
+
+.nithin-intro__eyebrow {
+    margin: 0 0 24px;
+
+    color: #00cfff;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: .27em;
+
+    opacity: 0;
+    transform: translateY(12px);
+
+    animation: nithin-text-enter .6s ease .48s forwards;
+}
+
+/* ==========================================================
+   NAME REVEAL
+   ========================================================== */
+
+.nithin-intro__name {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: .24em;
+
+    margin: 0;
+
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(54px, 8vw, 100px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -.065em;
+}
+
+.nithin-intro__name-part {
+    display: block;
+    overflow: hidden;
+
+    padding: 0 .035em .08em;
+}
+
+.nithin-intro__name-part span {
+    display: block;
+
+    opacity: 0;
+    transform: translateY(110%);
+
+    animation: nithin-name-reveal .8s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+.nithin-intro__name-part--first span {
+    color: #f3f7ff;
+    animation-delay: .72s;
+}
+
+.nithin-intro__name-part--last span {
+    color: transparent;
+
+    background: linear-gradient(
+        100deg,
+        #087bff,
+        #00d5ff 65%,
+        #8beeff
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation-delay: .94s;
+}
+
+/* Light sweep across the name */
+
+.nithin-intro__name-shine {
+    position: absolute;
+    top: -15%;
+    bottom: -15%;
+    left: -30%;
+
+    width: 17%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, .42),
+        transparent
+    );
+
+    transform: skewX(-18deg);
+    opacity: 0;
+
+    pointer-events: none;
+
+    animation: nithin-name-shine 1s ease 1.35s both;
+}
+
+/* ==========================================================
+   PROFESSIONAL IDENTITY
+   ========================================================== */
+
+.nithin-intro__identity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 13px;
+
+    margin: 23px 0 0;
+
+    color: #b5c7df;
+    font-size: clamp(9px, 1.2vw, 11px);
+    font-weight: 650;
+    letter-spacing: .055em;
+
+    opacity: 0;
+    transform: translateY(12px);
+
+    animation: nithin-text-enter .6s ease 1.45s forwards;
+}
+
+.nithin-intro__identity span {
+    white-space: nowrap;
+}
+
+.nithin-intro__identity i {
+    display: block;
+
+    width: 3px;
+    height: 3px;
+
+    flex: 0 0 3px;
+
+    border-radius: 50%;
+    background: #00d5ff;
+
+    box-shadow: 0 0 8px rgba(0, 213, 255, .7);
+}
+
+/* ==========================================================
+   FINAL GREETING
+   ========================================================== */
+
+.nithin-intro__greeting {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    margin: 46px 0 0;
+
+    color: #f0f6ff;
+
+    font-size: clamp(12px, 1.8vw, 16px);
+    font-weight: 600;
+    letter-spacing: .12em;
+
+    opacity: 0;
+    transform: translateY(15px);
+
+    animation: nithin-text-enter .65s ease 1.85s forwards;
+}
+
+.nithin-intro__greeting-line {
+    width: 32px;
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #00d5ff
+    );
+}
+
+.nithin-intro__greeting-line:last-child {
+    transform: rotate(180deg);
+}
+
+.nithin-intro__greeting strong {
+    color: #00d5ff;
+    font-weight: 750;
+}
+
+/* Small secondary line */
+
+.nithin-intro__subtext {
+    margin: 12px 0 0;
+
+    color: #829bb9;
+    font-size: 11px;
+    font-weight: 450;
+    letter-spacing: .025em;
+    line-height: 1.65;
+
+    opacity: 0;
+    transform: translateY(10px);
+
+    animation: nithin-text-enter .6s ease 2s forwards;
+}
+
+/* ==========================================================
+   BOTTOM CINEMATIC PROGRESS LINE
+   Not a percentage or loading card.
+   ========================================================== */
+
+.nithin-intro__loading {
+    position: absolute;
+    bottom: 27px;
+    left: 50%;
+
+    width: min(220px, 48vw);
+    height: 2px;
+
+    overflow: hidden;
+
+    background: rgba(115, 157, 204, .17);
+
+    transform: translateX(-50%);
+    opacity: 0;
+
+    animation: nithin-loading-enter .35s ease 1.3s forwards;
+}
+
+.nithin-intro__loading span {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #087bff,
+        #00d5ff,
+        #ffffff
+    );
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    animation: nithin-loading-progress 1.1s ease 1.35s forwards;
+}
+
+/* ==========================================================
+   CINEMATIC TRANSITION EDGE
+   ========================================================== */
+
+.nithin-intro.is-leaving::after {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #087bff,
+        #00e5ff,
+        #087bff,
+        transparent
+    );
+
+    box-shadow: 0 0 25px #00bfff;
+}
+
+/* ==========================================================
+   ANIMATIONS
+   ========================================================== */
+
+@keyframes nithin-beam-sweep {
+    0% {
+        opacity: 0;
+        left: -55%;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: .9;
+    }
+
+    100% {
+        opacity: 0;
+        left: 115%;
+    }
+}
+
+@keyframes nithin-name-reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(110%);
+        filter: blur(9px);
+    }
+
+    70% {
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes nithin-name-shine {
+    0% {
+        left: -30%;
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 120%;
+        opacity: 0;
+    }
+}
+
+@keyframes nithin-text-enter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes nithin-loading-enter {
+    to { opacity: 1; }
+}
+
+@keyframes nithin-loading-progress {
+    to { transform: scaleX(1); }
+}
+
+@keyframes nithin-atmosphere-in {
+    from {
+        opacity: 0;
+        transform: scale(1.08);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes nithin-particles {
+    from { opacity: .14; }
+    to { opacity: .42; }
+}
+
+@keyframes nithin-intro-fallback {
+    to {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 680px) {
+    .nithin-intro__content {
+        width: 100%;
+        padding-inline: 18px;
+    }
+
+    .nithin-intro__eyebrow {
+        margin-bottom: 20px;
+        font-size: 9px;
+        letter-spacing: .2em;
+    }
+
+    .nithin-intro__name {
+        flex-direction: column;
+        gap: 0;
+
+        font-size: clamp(49px, 12.5vw, 72px);
+        line-height: .97;
+    }
+
+    .nithin-intro__identity {
+        max-width: 350px;
+        margin-top: 20px;
+        gap: 8px;
+        font-size: 9px;
+        line-height: 1.7;
+    }
+
+    .nithin-intro__greeting {
+        gap: 8px;
+        margin-top: 35px;
+        font-size: 12px;
+    }
+
+    .nithin-intro__greeting-line {
+        width: 19px;
+    }
+
+    .nithin-intro__subtext {
+        max-width: 300px;
+        font-size: 10px;
+    }
+
+    .nithin-intro__beam {
+        top: 45%;
+        width: 65%;
+    }
+}
+
+@media (max-width: 360px) {
+    .nithin-intro__name {
+        font-size: 47px;
+    }
+
+    .nithin-intro__identity {
+        gap: 6px;
+        font-size: 8px;
+    }
+
+    .nithin-intro__greeting {
+        font-size: 10px;
+    }
+}
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .nithin-intro__beam,
+    .nithin-intro__atmosphere,
+    .nithin-intro__atmosphere::before,
+    .nithin-intro__name-part span,
+    .nithin-intro__name-shine,
+    .nithin-intro__eyebrow,
+    .nithin-intro__identity,
+    .nithin-intro__greeting,
+    .nithin-intro__subtext,
+    .nithin-intro__loading,
+    .nithin-intro__loading span {
+        animation: none !important;
+    }
+
+    .nithin-intro__eyebrow,
+    .nithin-intro__identity,
+    .nithin-intro__greeting,
+    .nithin-intro__subtext,
+    .nithin-intro__loading,
+    .nithin-intro__name-part span {
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+
+    .nithin-intro__loading span {
+        transform: scaleX(1);
+    }
+
+    .nithin-intro {
+        transition-duration: .15s;
+    }
+}
